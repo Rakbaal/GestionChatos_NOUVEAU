@@ -8,14 +8,11 @@ use Symfony\Component\HttpFoundation\Request;
 
 class AccueilController extends AbstractController
 {
-    
     /**
-     * @Route("accueil", name="Accueil")
+     * @Route("/accueil", name="Accueil")
      */
-    public function accueil($login)
-    {
-        $session->start();
-        $session->get("login");
+    public function accueil(Request $request) : Response {
+        $login = $request->getSession()->get("login");
         return new Response("Bienvenue " . $login);
     }
 }

@@ -7,34 +7,31 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Session\Session;
 use Doctrine\Persistence\ManagerRegistry;
 
 class loginController extends AbstractController {
     /**
-     * @Route("login", name="login")
+     * @Route("/login", name="login")
      */
-    function test(Request $request, ManagerRegistry $doctrine) {
+    public function Login(Request $request, ManagerRegistry $doctrine) : Response {
         $utilisateur = new Utilisateur();
         $form = $this->createForm(utilisateurType :: class, $utilisateur);
-        $entityManager = $doctrine->getManager();
-        $login = $utilisateur->getUTILOGIN();
-        $mdp = $utilisateur->getUTIMDP();
 
         $form->handleRequest($request);
         
         if($form->isSubmitted() && $form->isValid()) {
-            
-            $test = 'Utilisateur inexistant';
-            
-            if($entityManager->getRepository(Utilisateur :: class)->findOneBy(['uti_login' => $login])) {
-                $session = new Session();
-                $session->start();
-                $session->set('login', $login);
-                $test = 'Bonjour '.$login;
-            }
+            $data = $form->getData();
 
-            return new Response($test);
+            // $entityManager = $doctrine->getManager();
+            // $exist = $entityManager->getRepository(Utilisateur :: class)->findOneBy(['uti_login' => $data->getUTILOGIN()]) != null;
+            
+            if (true) {
+                $request->getSession()->set('login', $data->getUTILOGIN());
+                return $this->redirect("accueil");
+            }
+            else {
+                return new Response("L'utilisateur n'existe pas");
+            }
         }
         
         return $this->render('login.html.twig', ['form' => $form->createView()]);
