@@ -45,6 +45,19 @@ class EntrepriseRepository extends ServiceEntityRepository
         }
     }
 
+    public function listeAllEntreprises(): array
+    {
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createQuery(
+            'SELECT ent_id,	ent_rs, ent_ville, ent_pays, ent_adresse, ent_cp
+             FROM entreprise'
+        );
+
+        // returns an array of Product objects
+        return $query->getResult();
+    }
+
     // /**
     //  * @return Entreprise[] Returns an array of Entreprise objects
     //  */

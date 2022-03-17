@@ -19,25 +19,25 @@ class loginController extends AbstractController {
         $loginState = true;
 
         $form->handleRequest($request);
-        
+
         if($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
 
             $entityManager = $doctrine->getManager();
             $exist = $entityManager->getRepository(Utilisateur :: class)->findOneBy(['UTI_LOGIN' => $data->getUTILOGIN(), 'UTI_MDP' => $data->getUTIMDP()]) != null;
-            
+
             if ($exist) {
                 $utilisateur = $entityManager->getRepository(Utilisateur :: class)->findOneBy(['UTI_LOGIN' => $data->getUTILOGIN(), 'UTI_MDP' => $data->getUTIMDP()]);
                 $request->getSession()->set('login', $utilisateur->getUTILOGIN());
                 $request->getSession()->set('admin', $utilisateur->getUTIMDP());
-                
-                
+
+
                 return $this->redirect("accueil");
             } else {
                 $loginState = false;
             }
         }
-        
+
         return $this->render('login.html.twig', [
             'form' => $form->createView(),
             'loginState' => $loginState]);
