@@ -13,8 +13,13 @@ class AccueilController extends AbstractController
      */
     public function accueil(Request $request) : Response {
         $session = $request->getSession();
-        $login = $session->get("login");
-        return $this->render("accueil.html.twig", ['login' => $login]);
+        $login = $session->get('login');
+        $admin = $session->get('admin');
+
+        return $this->render("accueil.html.twig ", [
+            'login' =>$login,
+            'admin' => $admin
+        ]);
     }
 }
 
