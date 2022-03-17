@@ -27,7 +27,7 @@ class loginController extends AbstractController {
             
             $test = 'Utilisateur inexistant';
             
-            if($entityManager->getRepository(Utilisateur :: class)->findOneBy(['uti_login' => $login])) {
+            if($entityManager->getRepository(Utilisateur :: class)->findOneBy(['UTI_LOGIN' => $login])) {
                 $session = new Session();
                 $session->start();
                 $session->set('login', $login);
