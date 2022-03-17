@@ -1,3 +1,5 @@
 <h1>Connexion</h1>
-
+{% if loginState == false %}
+    <p>Une des informations entrées est erronée</p>
+{% endif %}
 {{form(form)}}

@@ -16,25 +16,31 @@ class loginController extends AbstractController {
     public function Login(Request $request, ManagerRegistry $doctrine) : Response {
         $utilisateur = new Utilisateur();
         $form = $this->createForm(utilisateurType :: class, $utilisateur);
+        $loginState = true;
 
         $form->handleRequest($request);
         
         if($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
 
-            // $entityManager = $doctrine->getManager();
-            // $exist = $entityManager->getRepository(Utilisateur :: class)->findOneBy(['uti_login' => $data->getUTILOGIN()]) != null;
+            $entityManager = $doctrine->getManager();
+            $exist = $entityManager->getRepository(Utilisateur :: class)->findOneBy(['UTI_LOGIN' => $data->getUTILOGIN(), 'UTI_MDP' => $data->getUTIMDP()]) != null;
             
-            if (true) {
-                $request->getSession()->set('login', $data->getUTILOGIN());
+            if ($exist) {
+                $utilisateur = $entityManager->getRepository(Utilisateur :: class)->findOneBy(['UTI_LOGIN' => $data->getUTILOGIN(), 'UTI_MDP' => $data->getUTIMDP()]);
+                $request->getSession()->set('login', $utilisateur->getUTILOGIN());
+                $request->getSession()->set('admin', $utilisateur->getUTIMDP());
+                
+                
                 return $this->redirect("accueil");
-            }
-            else {
-                return new Response("L'utilisateur n'existe pas");
+            } else {
+                $loginState = false;
             }
         }
         
-        return $this->render('login.html.twig', ['form' => $form->createView()]);
+        return $this->render('login.html.twig', [
+            'form' => $form->createView(),
+            'loginState' => $loginState]);
     }
 }
 ?>
