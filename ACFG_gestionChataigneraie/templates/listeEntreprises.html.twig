@@ -5,6 +5,32 @@
             <td style="width: 200px; border: 1px solid black;">Raison Sociale</td>
             <td style="width: 250px; border: 1px solid black;">Adresse</td>
             <td style="width: 150px; border: 1px solid black;">Pays</td>
+            <td style="width: 250px; border: 1px solid black;">Tuteur</td>
+            <td style="width: 150px; border: 1px solid black;">Spécialité</td>
         </tr>
+        {% for entreprise in listeEntreprises %}
+        <tr>
+            <td style="width: 30px; border: 1px solid black; "><a style="text-decoration : none; color: black;" href={{path('login')}}>{{ entreprise.getId() }} </a></td>
+            <td style="width: 200px; border: 1px solid black; text-decoration : none; color: black;"><a style="text-decoration : none; color: black;" href={{ path('login')}}> {{ entreprise.getENTRS() }} </a></td>
+            <td style="width: 250px; border: 1px solid black; text-decoration : none; color: black;">
+            <a style="text-decoration : none; color: black;" href={{ path('login')}}> 
+            {{ entreprise.getENTADRESSE() }} , {{ entreprise.getENTCP() }} {{ entreprise.getENTVILLE() }} 
+            </a></td>
+            <td style="width: 150px; border: 1px solid black; text-decoration : none; color: black;"><a style="text-decoration : none; color: black;" href={{ path('login')}}> {{ entreprise.getENTPAYS() }} </a></td>
+            <td style="width: 250px; border: 1px solid black; text-decoration : none; color: black;">
+            <a style="text-decoration : none; color: black;" href={{ path('login')}}> 
+                {% for personne in entreprise.getPersonnes() %}
+                    {{ personne.getPERNOM() }} {{ personne.getPERPRENOM() }} 
+                    {{ personne.getPERMAIL() }} , {{ personne.getPERTEL() }} 
+                {% endfor %}
+            </a></td>
+            <td style="width: 250px; border: 1px solid black; text-decoration : none; color: black;">
+            <a style="text-decoration : none; color: black;" href={{ path('login')}}> 
+                {% for personne in entreprise.getSpecialites() %}
+                    {{ personne.getSPELIBELLE() }}
+                {% endfor %}
+            </a></td>
+            </tr>
+        {% endfor %}
     </table>
 </div>
