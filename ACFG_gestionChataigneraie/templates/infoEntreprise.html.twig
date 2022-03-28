@@ -11,3 +11,33 @@
         </li>
 </ul>
 
+<div class="tableau" style="width:75%; border: 1px solid black;">
+    <table>
+        <tr>
+            <td style="width: 30px; border: 1px solid black;">ID</td>
+            <td style="width: 200px; border: 1px solid black;">Nom Prenom</td>
+            <td style="width: 150px; border: 1px solid black;">Mail Telephone</td>
+            <td style="width: 150px; border: 1px solid black;">Profil</td>
+            <td style="width: 150px; border: 1px solid black;">Fonction</td>
+        </tr>
+        {% for personne in listePersonne %}
+        <tr>
+            <td style="width: 30px; border: 1px solid black; ">{{ personne.getId() }}</td>
+            <td style="width: 200px; border: 1px solid black; text-decoration : none; color: black;">{{ personne.getPERNOM() }}, {{ personne.getPERPRENOM() }}</td>
+            <td style="width: 250px; border: 1px solid black; text-decoration : none; color: black;">
+            {{ personne.getPERMAIL() }} {{ personne.getPERTEL()}}
+            </a></td>
+            <td style="width: 250px; border: 1px solid black; text-decoration : none; color: black;">
+                {% for Profil in personne.getProfils() %}
+                    {{ personne.getPROTYPE() }}
+                {% endfor %}
+            </a></td>
+            <td style="width: 250px; border: 1px solid black; text-decoration : none; color: black;">
+                {% for Fonction in personne.getFonctions() %}
+                    {{ personne.getFONLIBELLE() }}
+                {% endfor %}
+            </a></td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>
