@@ -12,8 +12,14 @@ class AccueilController extends AbstractController
      * @Route("/accueil", name="Accueil")
      */
     public function accueil(Request $request) : Response {
-        $login = $request->getSession()->get("login");
-        return new Response("Bienvenue " . $login);
+        $session = $request->getSession();
+        $login = $session->get('login');
+        $admin = $session->get('admin');
+
+        return $this->render("accueil.html.twig ", [
+            'login' =>$login,
+            'admin' => $admin
+        ]);
     }
 }
 
