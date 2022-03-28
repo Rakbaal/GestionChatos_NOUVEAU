@@ -1,0 +1,13 @@
+<h1>Entreprise {{Entreprises.getENTRS()}}</h1>
+<ul>
+    <li>Adresse : {{Entreprises.getENTADRESSE()}}</li>
+    <li>Code postal : {{Entreprises.getENTCP()}}</li>
+    <li>Ville : {{Entreprises.getENTVILLE()}}</li>    
+    <li>Pays : {{Entreprises.getENTPAYS()}}</li>
+    <li> Spécialitée recherchée :
+    {% for specialite in Entreprises.getSpecialites() %}
+        {{specialite.getSPELIBELLE()}}
+        {% endfor %}
+        </li>
+</ul>
+
