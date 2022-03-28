@@ -29,13 +29,6 @@ class loginController extends AbstractController {
             if ($exist) {
                 $loginState = true;
                 $utilisateur = $entityManager->getRepository(Utilisateur :: class)->findOneBy(['UTI_LOGIN' => $data->getUTILOGIN(), 'UTI_MDP' => $data->getUTIMDP()]);
-<<<<<<< HEAD
-                $request->getSession()->set('login', $utilisateur->getUTILOGIN());
-                $request->getSession()->set('admin', $utilisateur->getUTIMDP());
-
-
-                return $this->redirect("accueil");
-=======
                 $session = $request->getSession();
                 $session->set('login', $utilisateur->getUTILOGIN());
                 $session->set('admin', $utilisateur->getUTIADMIN());
@@ -43,7 +36,6 @@ class loginController extends AbstractController {
                 return $this->render("accueil.html.twig", [
                     'login' => $session->get('login'), 
                 ]);
->>>>>>> login
             } else {
                 $loginState = false;
             }
