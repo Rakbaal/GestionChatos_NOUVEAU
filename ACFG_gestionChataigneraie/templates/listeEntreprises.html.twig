@@ -1,36 +1,69 @@
-<div class="tableau" style="width:75%; border: 1px solid black;">
-    <table>
+<div class="tableau" style="width:1100px; border: 1px solid black;">
+    <table style="text-align:center;">
         <tr>
             <td style="width: 30px; border: 1px solid black;">ID</td>
-            <td style="width: 200px; border: 1px solid black;">Raison Sociale</td>
-            <td style="width: 250px; border: 1px solid black;">Adresse</td>
+            <td style="width: 250px; border: 1px solid black;">Raison Sociale</td>
+            <td style="width: 400px; border: 1px solid black;">Adresse</td>
             <td style="width: 150px; border: 1px solid black;">Pays</td>
-            <td style="width: 250px; border: 1px solid black;">Tuteur</td>
-            <td style="width: 150px; border: 1px solid black;">Spécialité</td>
+            <td style="width: 200px; border: 1px solid black;">Spécialité</td>
         </tr>
         {% for entreprise in listeEntreprises %}
-        <tr>
-            <td style="width: 30px; border: 1px solid black; "><a style="text-decoration : none; color: black;" href={{path('login')}}>{{ entreprise.getId() }} </a></td>
-            <td style="width: 200px; border: 1px solid black; text-decoration : none; color: black;"><a style="text-decoration : none; color: black;" href={{ path('login')}}> {{ entreprise.getENTRS() }} </a></td>
+            <td style="width: 30px; border: 1px solid black; ">{{ entreprise.getId() }}</td>
+            <td style="width: 200px; border: 1px solid black; text-decoration : none; color: black;"><a style="text-decoration : none; color: black;" href={{ path('infoEntreprise', { 'id': entreprise.getId() }) }}> {{ entreprise.getENTRS() }} </a></td>
+            <td style="width: 300px; border: 1px solid black; text-decoration : none; color: black;">
+            {{ entreprise.getENTADRESSE() }} <br/> {{ entreprise.getENTCP() }} {{ entreprise.getENTVILLE() }} 
+            </td>
+            <td style="width: 100px; border: 1px solid black; text-decoration : none; color: black;">{{ entreprise.getENTPAYS() }}</td>
+            
+
+            {#
+            <!--
+
             <td style="width: 250px; border: 1px solid black; text-decoration : none; color: black;">
-            <a style="text-decoration : none; color: black;" href={{ path('login')}}> 
-            {{ entreprise.getENTADRESSE() }} , {{ entreprise.getENTCP() }} {{ entreprise.getENTVILLE() }} 
-            </a></td>
-            <td style="width: 150px; border: 1px solid black; text-decoration : none; color: black;"><a style="text-decoration : none; color: black;" href={{ path('login')}}> {{ entreprise.getENTPAYS() }} </a></td>
-            <td style="width: 250px; border: 1px solid black; text-decoration : none; color: black;">
-            <a style="text-decoration : none; color: black;" href={{ path('login')}}> 
                 {% for personne in entreprise.getPersonnes() %}
                     {{ personne.getPERNOM() }} {{ personne.getPERPRENOM() }} 
                     {{ personne.getPERMAIL() }} , {{ personne.getPERTEL() }} 
                 {% endfor %}
-            </a></td>
+            </td>
+
+            -->
+            #}
+
             <td style="width: 250px; border: 1px solid black; text-decoration : none; color: black;">
-            <a style="text-decoration : none; color: black;" href={{ path('login')}}> 
                 {% for personne in entreprise.getSpecialites() %}
                     {{ personne.getSPELIBELLE() }}
                 {% endfor %}
-            </a></td>
+            </td>
             </tr>
         {% endfor %}
+    </table>
+</div>
+<br/>
+<br/>
+<br/>
+
+
+<div style="margin-left:78%; margin-top:-380px;">
+    <table style="text-align:center;">
+        <tr>
+            <td colspan = 1 style="width: 150px; border: 0px solid black;">Rechercher par filtres :</td>
+            <td>
+                <select name="comboBoxFiltre" onChange="combo(this, 'theinput')" required minlength="1" maxlength="1" size="1">
+                    <option>Raison Sociale</option>
+                    <option>Adresse</option>
+                    <option>Code Postal</option>
+                    <option>Ville</option>
+                    <option>Pays</option>
+                    <option>Spécialité</option>
+                </select> 
+            </td>
+        </tr>
+        <tr>
+            <td colspan=2 style="height:50px;"><input type="text" id="textboxRS" name="textboxRS" required minlength="1" maxlength="50" size="28"></td>
+        </tr>
+        <tr>
+            <td colspan=2><input type="button" value="Rechercher" id="textboxRS" name="textboxRS" required minlength="1" maxlength="50" size="16"></td>
+        </tr>
+        
     </table>
 </div>
