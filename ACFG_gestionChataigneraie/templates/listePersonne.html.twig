@@ -1,0 +1,40 @@
+<div class="tableau" style="width:75%; border: 1px solid black;">
+    <table>
+        <tr>
+            <td style="width: 30px; border: 1px solid black;">ID</td>
+            <td style="width: 200px; border: 1px solid black;">Nom Prenom</td>
+            <td style="width: 150px; border: 1px solid black;">Mail Telephone</td>
+            <td style="width: 150px; border: 1px solid black;">Entreprise</td>
+            <td style="width: 150px; border: 1px solid black;">Profil</td>
+            <td style="width: 150px; border: 1px solid black;">Fonction</td>
+        </tr>
+        {% for personne in listePersonne %}
+        <tr>
+            <td style="width: 30px; border: 1px solid black; "><a style="text-decoration : none; color: black;" href={{path('login')}}>{{ personne.getId() }} </a></td>
+            <td style="width: 200px; border: 1px solid black; text-decoration : none; color: black;"><a style="text-decoration : none; color: black;" href={{ path('login')}}> {{ personne.getPERNOM() }}, {{ personne.getPERPRENOM() }}</a></td>
+            <td style="width: 250px; border: 1px solid black; text-decoration : none; color: black;">
+            <a style="text-decoration : none; color: black;" href={{ path('login')}}> 
+            {{ personne.getPERMAIL() }} {{ personne.getPERTEL() }}
+            </a></td>
+            <td style="width: 250px; border: 1px solid black; text-decoration : none; color: black;">
+            <a style="text-decoration : none; color: black;" href={{ path('login')}}> 
+                {% for personne in personne.getEntreprises() %}
+                    {{ personne.getENTRS() }}
+                {% endfor %}
+            </a></td>
+            <td style="width: 250px; border: 1px solid black; text-decoration : none; color: black;">
+            <a style="text-decoration : none; color: black;" href={{ path('login')}}> 
+                {% for Profil in personne.getProfils() %}
+                    {{ personne.getPROTYPE() }}
+                {% endfor %}
+            </a></td>
+            <td style="width: 250px; border: 1px solid black; text-decoration : none; color: black;">
+            <a style="text-decoration : none; color: black;" href={{ path('login')}}> 
+                {% for Fonction in personne.getFonctions() %}
+                    {{ personne.getFONLIBELLE() }}
+                {% endfor %}
+            </a></td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>
