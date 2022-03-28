@@ -17,11 +17,11 @@
             {{ personne.getPERMAIL() }} {{ personne.getPERTEL() }}
             </a></td>
             <td style="width: 250px; border: 1px solid black; text-decoration : none; color: black;">
-            <a style="text-decoration : none; color: black;" href={{ path('login')}}> 
-                {% for personne in personne.getEntreprises() %}
-                    {{ personne.getENTRS() }}
-                {% endfor %}
-            </a></td>
+                {% for entreprise in personne.getEntreprises() %}
+                    <a style="text-decoration : none; color: black;" href={{ path('infoEntreprise', {'id': entreprise.id }) }}> 
+                    {{ entreprise.getENTRS() }}                                    
+            </a>{% endfor %}
+            </td>
             <td style="width: 250px; border: 1px solid black; text-decoration : none; color: black;">
             <a style="text-decoration : none; color: black;" href={{ path('login')}}> 
                 {% for Profil in personne.getProfils() %}
