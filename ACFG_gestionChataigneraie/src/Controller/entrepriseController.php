@@ -12,17 +12,23 @@ use Symfony\Component\HttpFoundation\Response;
 class entrepriseController extends AbstractController {
 
     /**
-     * @Route("listeEntreprises", name="listeEntreprises")
+     * @Route("/listeEntreprises", name="listeEntreprises")
      */
     function listeEntreprises(ManagerRegistry $doctrine, Request $request)
     {
         $session = $request->getSession();
         $entityManager = $doctrine->getManager();
         $listeEntreprises = $entityManager->getRepository(Entreprise::class)->findAll();
-        return $this->render('listeEntreprises.html.twig', [
-            'listeEntreprises' => $listeEntreprises,
-            'admin' => $session->get('admin')
-        ]);
+        
+        if ($session->get('login')) {
+            return $this->render('listeEntreprises.html.twig', [
+                'listeEntreprises' => $listeEntreprises,
+                'admin' => $session->get('admin')
+            ]);
+        } else {
+            return new Response("Accès refusé, veuillez vous authentifier à l'adresse 127.0.0.1:8000/login");
+        }
+        
     }
 
     /**

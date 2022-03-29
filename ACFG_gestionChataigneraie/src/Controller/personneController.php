@@ -13,17 +13,23 @@ use Symfony\Component\HttpFoundation\Response;
 class personneController extends AbstractController {
 
     /**
-     * @Route("listePersonnes", name="listePersonnes")
+     * @Route("/listePersonnes", name="listePersonnes")
      */
     function listePersonnes(ManagerRegistry $doctrine, Request $request)
     {
         $session = $request->getSession();
         $entityManager = $doctrine->getManager();
         $listePersonne = $entityManager->getRepository(Personne::class)->findAll();
-        return $this->render('listePersonne.html.twig', [
-            'listePersonne' => $listePersonne,
-            'admin' => $session->get('admin')
-        ]);
+
+        if ($session->get('login')) {
+            return $this->render('listePersonne.html.twig', [
+                'listePersonne' => $listePersonne,
+                'admin' => $session->get('admin')
+            ]);
+        } else {
+            return new Response("Accès refusé, veuillez vous authentifier à l'adresse 127.0.0.1:8000/login");
+        }
+        
     }
 }
 ?>

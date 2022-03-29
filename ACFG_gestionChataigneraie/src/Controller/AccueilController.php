@@ -14,10 +14,14 @@ class AccueilController extends AbstractController
     public function accueil(Request $request) : Response {
         $session = $request->getSession();
 
-        return $this->render("accueil.html.twig ", [
-            'login' =>$session->get('login'),
-            'admin' => $session->get('admin')
-        ]);
+        if ($session->get('login')) {
+            return $this->render("accueil.html.twig ", [
+                'login' =>$session->get('login'),
+                'admin' => $session->get('admin')
+            ]);
+        } else {
+                return new Response("Accès refusé, veuillez vous authentifier à l'adresse 127.0.0.1:8000/login");
+        }
     }
 }
 
