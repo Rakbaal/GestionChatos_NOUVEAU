@@ -1,24 +1,28 @@
 {{include('navbar.html.twig')}}
-<div class="tableau" style="width:75%; border: 1px solid black;">
-    <table>
-        <tr>
-            <td style="width: 30px; border: 1px solid black;">ID</td>
-            <td style="width: 200px; border: 1px solid black;">Login</td>
-            <td style="width: 150px; border: 1px solid black;">Accès</td>
-        </tr>
-        {% for Utilisateurs in listeUtilisateur %}
-        <tr>
-            <td style="width: 30px; border: 1px solid black; "><a style="text-decoration : none; color: black;">{{ Utilisateurs.getId() }} </a></td>
-            <td style="width: 200px; border: 1px solid black; text-decoration : none; color: black;"><a style="text-decoration : none; color: black;" > {{ Utilisateurs.getUTILOGIN() }}</a></td>
-            <td style="width: 250px; border: 1px solid black; text-decoration : none; color: black;">
-            <a style="text-decoration : none; color: black;">             
-            {% if Utilisateurs.getUTIADMIN %}
-                Administrateur
-            {% else %}
-                Enseignant
-            {% endif %}
-            </a></td>
-        </tr>
-        {% endfor %}
-    </table>
-</div>
+{% if admin %}
+    <div class="tableau" style="width:75%; border: 1px solid black;">
+        <table>
+            <tr>
+                <td style="width: 30px; border: 1px solid black;">ID</td>
+                <td style="width: 200px; border: 1px solid black;">Login</td>
+                <td style="width: 150px; border: 1px solid black;">Accès</td>
+            </tr>
+            {% for Utilisateurs in listeUtilisateur %}
+                <tr>
+                    <td style="width: 30px; border: 1px solid black; "><a style="text-decoration : none; color: black;">{{ Utilisateurs.getId() }} </a></td>
+                    <td style="width: 200px; border: 1px solid black; text-decoration : none; color: black;"><a style="text-decoration : none; color: black;" > {{ Utilisateurs.getUTILOGIN() }}</a></td>
+                    <td style="width: 250px; border: 1px solid black; text-decoration : none; color: black;">
+                    <a style="text-decoration : none; color: black;">             
+                    {% if Utilisateurs.getUTIADMIN %}
+                        Administrateur
+                    {% else %}
+                        Enseignant
+                    {% endif %}
+                    </a></td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% else %}
+    L'accès à cette ressource vous est interdit.
+{% endif %}

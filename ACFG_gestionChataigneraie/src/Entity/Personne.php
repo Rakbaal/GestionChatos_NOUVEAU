@@ -18,14 +18,14 @@ class Personne
     #[ORM\Column(type: 'string', length: 38)]
     private $PER_NOM;
 
-    #[ORM\Column(type: 'string', length: 38)]
+    #[ORM\Column(type: 'string', length: 38, nullable: true)]
     private $PER_PRENOM;
 
     #[ORM\Column(type: 'string', length: 50, nullable: true)]
     private $PER_MAIL;
 
     #[ORM\Column(type: 'string', length: 10, nullable: true)]
-    private $PER_TEL;
+    private $PER_TEL_PERSO;
 
     #[ORM\ManyToMany(targetEntity: Entreprise::class, mappedBy: 'personnes')]
     private $entreprises;
@@ -35,6 +35,9 @@ class Personne
 
     #[ORM\ManyToMany(targetEntity: Fonction::class, inversedBy: 'personnes')]
     private $fonctions;
+
+    #[ORM\Column(type: 'string', length: 10, nullable: true)]
+    private $PER_TEL_PRO;
 
     public function __construct()
     {
@@ -86,12 +89,12 @@ class Personne
 
     public function getPERTEL(): ?string
     {
-        return $this->PER_TEL;
+        return $this->PER_TEL_PERSO;
     }
 
-    public function setPERTEL(?string $PER_TEL): self
+    public function setPERTEL(?string $PER_TEL_PERSO): self
     {
-        $this->PER_TEL = $PER_TEL;
+        $this->PER_TEL_PERSO = $PER_TEL_PERSO;
 
         return $this;
     }
@@ -167,6 +170,18 @@ class Personne
     public function removeFonction(Fonction $fonction): self
     {
         $this->fonctions->removeElement($fonction);
+
+        return $this;
+    }
+
+    public function getPERTELPRO(): ?string
+    {
+        return $this->PER_TEL_PRO;
+    }
+
+    public function setPERTELPRO(?string $PER_TEL_PRO): self
+    {
+        $this->PER_TEL_PRO = $PER_TEL_PRO;
 
         return $this;
     }

@@ -42,9 +42,11 @@
 <br/>
 <br/>
 <br/>
-
-
-
+{% if admin %}
+    <h1>Création d'un formulaire</h1>
+    {{form(form)}}
+{% endif %}
+{# 
 <div style="margin-left:78%; margin-top:-380px;">
     <table style="text-align:center;">
         <tr>
@@ -77,4 +79,4 @@
         
         
     </table>
-</div>
+</div> #}
