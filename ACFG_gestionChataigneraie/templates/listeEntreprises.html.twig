@@ -43,27 +43,37 @@
 <br/>
 
 
+
 <div style="margin-left:78%; margin-top:-380px;">
     <table style="text-align:center;">
         <tr>
-            <td colspan = 1 style="width: 150px; border: 0px solid black;">Rechercher par filtres :</td>
-            <td>
-                <select name="comboBoxFiltre" onChange="combo(this, 'theinput')" required minlength="1" maxlength="1" size="1">
-                    <option>Raison Sociale</option>
-                    <option>Adresse</option>
-                    <option>Code Postal</option>
-                    <option>Ville</option>
-                    <option>Pays</option>
-                    <option>Spécialité</option>
-                </select> 
+            <td colspan = 2 style="width: 150px; border: 0px solid black;">Rechercher par filtres :</td>
+        </tr>
+        <tr>
+            <td>Raison Sociale :</td>
+            <td colspan=1 style="height:50px;"><input type="text" id="textboxRS" name="textboxRS" required minlength="1" maxlength="50" size="20"></td>
+        </tr>
+        <tr>
+            <td>Ville :</td>
+            <td style="height:50px;"><input type="text" id="textboxVille" name="textboxVille" required minlength="1" maxlength="50" size="20"></td>
+        </tr>
+        <tr>
+            <td>Pays :</td>
+            <td style="height:50px;"><input type="text" id="textboxPays" name="textboxPays" required minlength="1" maxlength="50" size="20"></td>
+        </tr>
+        <tr>
+            <td>Specialité :</td>
+            <td style="height:50px;"><input type="text" id="textboxSpecialite" name="textboxSpecialite" required minlength="1" maxlength="50" size="20"></td>
+        </tr>
+        
+        <tr>
+            <td colspan = 2 >
+                <a href="{{path('listeEntreprisesFiltre', {'rs': textboxRS } , {'ville': textboxVille} , {'pays': textboxPays} , {'specialite': textboxSpecialite} )}}" style="text-decoration:none;">
+                    <button type="button" name="buttonRechercher">Rechercher</button>
+                </a>
             </td>
         </tr>
-        <tr>
-            <td colspan=2 style="height:50px;"><input type="text" id="textboxRS" name="textboxRS" required minlength="1" maxlength="50" size="28"></td>
-        </tr>
-        <tr>
-            <td colspan=2><input type="button" value="Rechercher" id="textboxRS" name="textboxRS" required minlength="1" maxlength="50" size="16"></td>
-        </tr>
+        
         
     </table>
 </div>
