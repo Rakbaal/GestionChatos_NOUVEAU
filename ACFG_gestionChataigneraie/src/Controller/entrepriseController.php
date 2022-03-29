@@ -26,7 +26,7 @@ class entrepriseController extends AbstractController {
                 'admin' => $session->get('admin')
             ]);
         } else {
-            return new Response("Accès refusé, veuillez vous authentifier à l'adresse 127.0.0.1:8000/login");
+            return $this->render("erreurAcces.html.twig");
         }
         
     }
