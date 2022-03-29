@@ -14,7 +14,12 @@ class loginController extends AbstractController {
      * @Route("/login", name="login")
      */
     public function Login(Request $request, ManagerRegistry $doctrine) : Response {
-                        $session = $request->getSession();
+        $session = $request->getSession();
+
+        if ($session->get('login' != null)) {
+            $session->invalidate();
+        }
+
         $utilisateur = new Utilisateur();
         $form = $this->createForm(utilisateurType :: class, $utilisateur);
         $loginState = true;
@@ -30,14 +35,10 @@ class loginController extends AbstractController {
             if ($exist) {
                 $loginState = true;
                 $utilisateur = $entityManager->getRepository(Utilisateur :: class)->findOneBy(['UTI_LOGIN' => $data->getUTILOGIN(), 'UTI_MDP' => $data->getUTIMDP()]);
-                $session = $request->getSession();
                 $session->set('login', $utilisateur->getUTILOGIN());
                 $session->set('admin', $utilisateur->getUTIADMIN());
                 
-                return $this->render("accueil.html.twig", [
-                    'login' => $session->get('login'), 
-                    'admin' => $session->get('admin')
-                ]);
+                return $this->redirect($this->generateUrl('Accueil'));
             } else {
                 $loginState = false;
             }

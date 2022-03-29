@@ -21,11 +21,17 @@ class infoEntrepriseController extends AbstractController
         $entityManager = $doctrine->getManager();
         $Entreprises = $entityManager->getRepository(Entreprise::class)->find($id);
         $listePersonne = $entityManager->getRepository(Personne::class)->findAll();
-        return $this->render("infoEntreprise.html.twig ", [
-            "Entreprises" => $Entreprises,
-            "listePersonne" => $listePersonne,
-            "admin" => $session->get('admin')
-        ]);
+
+        if ($session->get('login')) {
+            return $this->render("infoEntreprise.html.twig ", [
+                "Entreprises" => $Entreprises,
+                "listePersonne" => $listePersonne,
+                "admin" => $session->get('admin')
+            ]);
+        } else {
+            return new Response("Accès refusé, veuillez vous authentifier à l'adresse 127.0.0.1:8000/login");
+        }
+        
     }
 }
 
