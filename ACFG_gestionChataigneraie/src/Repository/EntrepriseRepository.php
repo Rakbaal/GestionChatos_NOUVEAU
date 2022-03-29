@@ -7,6 +7,7 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * @method Entreprise|null find($id, $lockMode = null, $lockVersion = null)
@@ -56,6 +57,66 @@ class EntrepriseRepository extends ServiceEntityRepository
 
         // returns an array of Product objects
         return $query->getResult();
+    }
+
+    public function listeEntrepriseRaisonSociale($rs): array
+    {
+        /*
+                $pdo = $this->getEntityManager();
+                $query = 'SELECT ent_id, ent_rs, ent_ville, ent_pays, ent_adresse, ent_cp FROM entreprise WHERE ent_rs = :rs';
+                $stmt = $pdo->prepare($query);
+                $stmt->bindParam(':rs', $rs);
+                $stmt->execute();
+
+                return $stmt->fetch();
+        */
+        
+        $entityManager = $this->getEntityManager();
+        $sql = "SELECT ent_id,	ent_rs, ent_ville, ent_pays, ent_adresse, ent_cp
+        FROM entreprise WHERE ent_rs = '".$rs."'";
+
+        $query = $entityManager->createQuery($sql);
+
+        // returns an array of Product objects
+        return $query->getResult();
+
+
+        /*
+
+        $query = $entityManager->createQuery(
+            "SELECT ent_id,	ent_rs, ent_ville, ent_pays, ent_adresse, ent_cp
+             FROM entreprise
+             WHERE ent_rs = :rs"
+        );
+
+        $query = conn->prepare($query);
+
+        $query->execute();
+
+
+        $connexion= $entityManager;
+        $sql="SELECT ent_id,	ent_rs, ent_ville, ent_pays, ent_adresse, ent_cp
+                FROM entreprise
+                WHERE ent_rs = :rs";
+        $stmt=$connexion->prepare($sql);
+        $stmt->bindParam(':rs', $rs);
+        $stmt->execute();
+
+        $stmt = $this->getEntityManager()
+                    ->getConnection()
+                    ->prepare('SELECT ent_id,	ent_rs, ent_ville, ent_pays, ent_adresse, ent_cp
+                                    FROM entreprise
+                                        WHERE ent_rs = :rs');
+
+
+        $stmt -> setParameter(':rs', $rs);
+        //$stmt->bindValue('foobar ', 1);
+        $stmt->execute();
+        
+        // returns an array of Product objects
+        return $query->getResult();
+
+        */
     }
 
     // /**
