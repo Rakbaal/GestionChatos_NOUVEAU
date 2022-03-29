@@ -16,11 +16,16 @@ class infoEntrepriseController extends AbstractController
     /**
      * @Route("/infoEntreprise/{id}", name="infoEntreprise")
      */
-    public function infoEntreprise($id, ManagerRegistry $doctrine){
+    public function infoEntreprise($id, ManagerRegistry $doctrine, Request $request){
+        $session = $request->getSession();
         $entityManager = $doctrine->getManager();
         $Entreprises = $entityManager->getRepository(Entreprise::class)->find($id);
         $listePersonne = $entityManager->getRepository(Personne::class)->findAll();
-        return $this->render("infoEntreprise.html.twig ", ["Entreprises" => $Entreprises, 'listePersonne' => $listePersonne]);
+        return $this->render("infoEntreprise.html.twig ", [
+            "Entreprises" => $Entreprises,
+            "listePersonne" => $listePersonne,
+            "admin" => $session->get('admin')
+        ]);
     }
 }
 

@@ -14,6 +14,7 @@ class loginController extends AbstractController {
      * @Route("/login", name="login")
      */
     public function Login(Request $request, ManagerRegistry $doctrine) : Response {
+                        $session = $request->getSession();
         $utilisateur = new Utilisateur();
         $form = $this->createForm(utilisateurType :: class, $utilisateur);
         $loginState = true;
@@ -35,6 +36,7 @@ class loginController extends AbstractController {
                 
                 return $this->render("accueil.html.twig", [
                     'login' => $session->get('login'), 
+                    'admin' => $session->get('admin')
                 ]);
             } else {
                 $loginState = false;
@@ -44,7 +46,7 @@ class loginController extends AbstractController {
         return $this->render('login.html.twig', [
             'form' => $form->createView(),
             'loginState' => $loginState,
-            'admin' => $utilisateur->getUTIADMIN()]
+            'admin' => $session->get('admin')]
         );
     }
 }
