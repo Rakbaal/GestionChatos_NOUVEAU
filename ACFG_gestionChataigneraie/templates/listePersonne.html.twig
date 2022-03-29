@@ -10,26 +10,26 @@
         </tr>
         {% for personne in listePersonne %}
         <tr>
-            <td style="width: 30px; border: 1px solid black; "><a style="text-decoration : none; color: black;" href={{path('login')}}>{{ personne.getId() }} </a></td>
-            <td style="width: 200px; border: 1px solid black; text-decoration : none; color: black;"><a style="text-decoration : none; color: black;" href={{ path('login')}}> {{ personne.getPERNOM() }}, {{ personne.getPERPRENOM() }}</a></td>
+            <td style="width: 30px; border: 1px solid black; "><a style="text-decoration : none; color: black;">{{ personne.getId() }} </a></td>
+            <td style="width: 200px; border: 1px solid black; text-decoration : none; color: black;"><a style="text-decoration : none; color: black;" => {{ personne.getPERNOM() }}, {{ personne.getPERPRENOM() }}</a></td>
             <td style="width: 250px; border: 1px solid black; text-decoration : none; color: black;">
-            <a style="text-decoration : none; color: black;" href={{ path('login')}}> 
+            <a style="text-decoration : none; color: black;"> 
             {{ personne.getPERMAIL() }} {{ personne.getPERTEL() }}
             </a></td>
             <td style="width: 250px; border: 1px solid black; text-decoration : none; color: black;">
                 {% for entreprise in personne.getEntreprises() %}
-                    <a style="text-decoration : none; color: black;" href={{ path('infoEntreprise', {'id': entreprise.id }) }}> 
+                    <a style="text-decoration : underline; color: blue;" href={{ path('infoEntreprise', {'id': entreprise.id }) }}> 
                     {{ entreprise.getENTRS() }}                                    
             </a>{% endfor %}
             </td>
             <td style="width: 250px; border: 1px solid black; text-decoration : none; color: black;">
-            <a style="text-decoration : none; color: black;" href={{ path('login')}}> 
+            <a style="text-decoration : none; color: black;"> 
                 {% for Profil in personne.getProfils() %}
                     {{ personne.getPROTYPE() }}
                 {% endfor %}
             </a></td>
             <td style="width: 250px; border: 1px solid black; text-decoration : none; color: black;">
-            <a style="text-decoration : none; color: black;" href={{ path('login')}}> 
+            <a style="text-decoration : none; color: black;"> 
                 {% for Fonction in personne.getFonctions() %}
                     {{ personne.getFONLIBELLE() }}
                 {% endfor %}
