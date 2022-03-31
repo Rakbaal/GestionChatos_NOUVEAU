@@ -20,26 +20,28 @@ class utilisateurController extends AbstractController {
         $session = $request->getSession();
         $entityManager = $doctrine->getManager();
         $listeUtilisateur = $entityManager->getRepository(Utilisateur::class)->findAll();
-        return $this->render('listeUtilisateurs.html.twig', [
-            'listeUtilisateur' => $listeUtilisateur,
-            'admin' => $session->get('admin')
-        ]);
-    }
-    public function AjouterUtilisateur(Request $request) : Response {
+        
         $utilisateur = new Utilisateur();
 
         $form = $this->createForm(utilisateurType::class, $utilisateur);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $message = $form->getData();
-
-            $doctrine = $this->getDoctrine()->getManager();
-            $doctrine->persist($message);
-            $doctrine->flush($message);
+            $password = hash('SHA256', 'password');
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($user);
+            $entityManager->flush();
+            return $this->redirect($this->generateUrl("listeUtilisateurs"));
         }
-
-        return $this->render('listeUtilisateurs.html.twig', ['form' => $form->createView() ]);
+        if ($session->get('login')) {
+            return $this->render('listeUtilisateurs.html.twig', [
+                'listeUtilisateur' => $listeUtilisateur,
+                'admin' => $session->get('admin'),
+                'form' => $form -> createView()
+            ]);
+        } else {
+            return $this->render("erreurAcces.html.twig");
+        }
     }
 }
 ?>
