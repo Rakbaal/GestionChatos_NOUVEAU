@@ -14,7 +14,7 @@ class utilisateurType extends AbstractType {
         ->add('UTI_LOGIN', TextType :: class, ['label' => 'Login :'])
         ->add('UTI_MDP', PasswordType :: class, ['label' => 'Mot de passe :'])
         ->add('UTI_ADMIN', CheckboxType :: class, ['label' => 'Admin :'])
-        ->add('créer', SubmitType :: class);
+        ->add('creer', SubmitType :: class);
     }
 }
 ?>
