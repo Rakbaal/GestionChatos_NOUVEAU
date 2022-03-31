@@ -87,12 +87,12 @@ class Personne
         return $this;
     }
 
-    public function getPERTEL(): ?string
+    public function getPERTELPERSO(): ?string
     {
         return $this->PER_TEL_PERSO;
     }
 
-    public function setPERTEL(?string $PER_TEL_PERSO): self
+    public function setPERTELPERSO(?string $PER_TEL_PERSO): self
     {
         $this->PER_TEL_PERSO = $PER_TEL_PERSO;
 
