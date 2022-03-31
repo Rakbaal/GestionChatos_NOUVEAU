@@ -54,5 +54,17 @@ class entrepriseController extends AbstractController {
         $listeEntreprises = $entityManager->getRepository(Entreprise::class)->findAll();
         return $this->render('listeEntreprises.html.twig', ['listeEntreprises' => $listeEntreprises]);
     }
+
+    /**
+     * @Route("supprimerEntreprise/{id}", name="supprimerEntreprise")
+     */
+    function supprimerEntreprise(ManagerRegistry $doctrine, $id) {
+        $entityManager = $doctrine->getManager();
+        $entreprise = $entityManager->getRepository(Entreprise::class)->find($id);
+        $entityManager->remove($entreprise);
+        $entityManager->flush($entreprise);
+        
+        return $this->redirect($this->generateUrl('listeEntreprises'));
+    }
 }
 ?>
