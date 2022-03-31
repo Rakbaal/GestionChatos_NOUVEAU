@@ -27,9 +27,11 @@ class utilisateurController extends AbstractController {
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $password = hash('SHA256', 'password');
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($user);
+            $plainPassword = 'UTI_MDP';
+            $encoded = hash('sha256', $plainPassword);
+            $utilisateur->setUTIMDP($encoded);
+            $data = $form->getData();            
+            $entityManager->persist($utilisateur);
             $entityManager->flush();
             return $this->redirect($this->generateUrl("listeUtilisateurs"));
         }
