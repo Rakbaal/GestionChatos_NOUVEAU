@@ -2,7 +2,7 @@
 namespace App\Controller;
 
 use App\Entity\Utilisateur;
-use App\Form\utilisateurType;
+use App\Form\loginType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -21,17 +21,19 @@ class loginController extends AbstractController {
         }
 
         $utilisateur = new Utilisateur();
-        $form = $this->createForm(utilisateurType :: class, $utilisateur);
+        $form = $this->createForm(loginType :: class, $utilisateur);
         $loginState = true;
 
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {
+            
+            $plainPassword = 'UTI_MDP';
+            $encoded = hash('sha256', $plainPassword);
+            $utilisateur->setUTIMDP($encoded);            
             $data = $form->getData();
-
             $entityManager = $doctrine->getManager();
             $exist = $entityManager->getRepository(Utilisateur :: class)->findOneBy(['UTI_LOGIN' => $data->getUTILOGIN(), 'UTI_MDP' => $data->getUTIMDP()]) != null;
-
             if ($exist) {
                 $loginState = true;
                 $utilisateur = $entityManager->getRepository(Utilisateur :: class)->findOneBy(['UTI_LOGIN' => $data->getUTILOGIN(), 'UTI_MDP' => $data->getUTIMDP()]);
