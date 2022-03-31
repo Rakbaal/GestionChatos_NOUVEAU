@@ -4,7 +4,9 @@
         <tr>
             <td style="width: 30px; border: 1px solid black;">ID</td>
             <td style="width: 200px; border: 1px solid black;">Nom Prenom</td>
-            <td style="width: 150px; border: 1px solid black;">Mail Telephone</td>
+            <td style="width: 150px; border: 1px solid black;">Mail</td>
+            <td style="width: 150px; border: 1px solid black;">Telephone</td>
+            <td style="width: 150px; border: 1px solid black;">Telephone professionnel</td>
             <td style="width: 150px; border: 1px solid black;">Entreprise</td>
             <td style="width: 150px; border: 1px solid black;">Profil</td>
             <td style="width: 150px; border: 1px solid black;">Fonction</td>
@@ -15,7 +17,15 @@
             <td style="width: 200px; border: 1px solid black; text-decoration : none; color: black;"><a style="text-decoration : none; color: black;" => {{ personne.getPERNOM() }}, {{ personne.getPERPRENOM() }}</a></td>
             <td style="width: 250px; border: 1px solid black; text-decoration : none; color: black;">
             <a style="text-decoration : none; color: black;"> 
-            {{ personne.getPERMAIL() }} {{ personne.getPERTEL() }}
+            {{ personne.getPERMAIL() }}
+            </a></td>
+            <td style="width: 250px; border: 1px solid black; text-decoration : none; color: black;">
+            <a style="text-decoration : none; color: black;"> 
+            {{ personne.getPERTEL() }}
+            </a></td>
+            <td style="width: 250px; border: 1px solid black; text-decoration : none; color: black;">
+            <a style="text-decoration : none; color: black;"> 
+            {{ personne.getPERTELPRO() }}
             </a></td>
             <td style="width: 250px; border: 1px solid black; text-decoration : none; color: black;">
                 {% for entreprise in personne.getEntreprises() %}
@@ -26,39 +36,16 @@
             <td style="width: 250px; border: 1px solid black; text-decoration : none; color: black;">
             <a style="text-decoration : none; color: black;"> 
                 {% for Profil in personne.getProfils() %}
-                    {{ personne.getPROTYPE() }}
+                    {{ Profil.getPROTYPE() }}
                 {% endfor %}
             </a></td>
             <td style="width: 250px; border: 1px solid black; text-decoration : none; color: black;">
             <a style="text-decoration : none; color: black;"> 
                 {% for Fonction in personne.getFonctions() %}
-                    {{ personne.getFONLIBELLE() }}
+                    {{ Fonction.getFONLIBELLE() }}
                 {% endfor %}
             </a></td>
             </tr>
         {% endfor %}
-    </table>
-</div>
-<div style="margin-left:78%; margin-top:-380px;">
-    <table style="text-align:center;">
-        <tr>
-            <td colspan = 1 style="width: 150px; border: 0px solid black;">Rechercher par filtres :</td>
-            <td>
-                <select name="comboBoxFiltre" onChange="combo(this, 'theinput')" required minlength="1" maxlength="1" size="1">
-                    <option>Nom</option>
-                    <option>Prenom</option>
-                    <option>Mail</option>
-                    <option>Telephone</option>
-                    <option>Profil</option>
-                    <option>Fonction</option>
-                </select> 
-            </td>
-        </tr>
-        <tr>
-            <td colspan=2 style="height:50px;"><input type="text" id="textboxRS" name="textboxRS" required minlength="1" maxlength="50" size="28"></td>
-        </tr>
-        <tr>
-            <td colspan=2><input type="button" value="Rechercher" id="textboxRS" name="textboxRS" required minlength="1" maxlength="50" size="16"></td>
-        </tr>
     </table>
 </div>

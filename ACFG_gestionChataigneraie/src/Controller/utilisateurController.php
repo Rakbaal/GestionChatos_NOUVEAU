@@ -8,6 +8,7 @@ use App\Entity\Utilisateur;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use App\Form\utilisateurType;
 
 class utilisateurController extends AbstractController {
 
@@ -23,6 +24,22 @@ class utilisateurController extends AbstractController {
             'listeUtilisateur' => $listeUtilisateur,
             'admin' => $session->get('admin')
         ]);
+    }
+    public function AjouterUtilisateur(Request $request) : Response {
+        $utilisateur = new Utilisateur();
+
+        $form = $this->createForm(utilisateurType::class, $utilisateur);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $message = $form->getData();
+
+            $doctrine = $this->getDoctrine()->getManager();
+            $doctrine->persist($message);
+            $doctrine->flush($message);
+        }
+
+        return $this->render('listeUtilisateurs.html.twig', ['form' => $form->createView() ]);
     }
 }
 ?>
