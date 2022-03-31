@@ -18,6 +18,9 @@
                 Enseignant
             {% endif %}
             </a></td>
+            <td>
+            <a href={{ path('supprimerUtilisateur', { 'id': Utilisateurs.getId() }) }}>X</a> 
+            </td>
         </tr>
         {% endfor %}
     </table>
@@ -26,3 +29,4 @@
 <h1>Ajouter un utilisateur</h1>
 
 {{ form(form) }}
+

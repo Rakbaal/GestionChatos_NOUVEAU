@@ -43,7 +43,19 @@ class utilisateurController extends AbstractController {
             ]);
         } else {
             return $this->render("erreurAcces.html.twig");
-        }
+        }        
+    }
+
+    /**
+     * @Route("supprimerutilisateur/{id}", name="supprimerUtilisateur")
+     */
+    public function SupprimerAnnonce(ManagerRegistry $doctrine, $id) : Response {
+        $entityManager = $doctrine->getManager();
+        $utilisateur = $entityManager->GetRepository(Utilisateur::class)->find($id);
+        $entityManager->remove($utilisateur);
+        $entityManager->flush($utilisateur);
+
+        return $this->redirect($this->generateUrl("listeUtilisateurs"));
     }
 }
 ?>
