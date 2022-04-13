@@ -29,5 +29,17 @@ class personneController extends AbstractController {
         }
         
     }
+
+    /**
+     * @Route("supprimerPersonne/{id}", name="supprimerPersonne")
+     */
+    function supprimerPersonne(ManagerRegistry $doctrine, $id) {
+        $entityManager = $doctrine->getManager();
+        $personne = $entityManager->getRepository(Personne::class)->find($id);
+        $entityManager->remove($personne);
+        $entityManager->flush($personne);
+        
+        return $this->redirect($this->generateUrl('listePPersonnes'));
+    }
 }
 ?>
