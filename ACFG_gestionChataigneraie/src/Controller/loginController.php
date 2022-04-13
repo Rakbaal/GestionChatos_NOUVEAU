@@ -27,21 +27,19 @@ class loginController extends AbstractController {
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {
-            
-            $plainPassword = 'UTI_MDP';
-            $encoded = hash('sha256', $plainPassword);
-            $utilisateur->setUTIMDP($encoded);            
             $data = $form->getData();
+            $encoded = hash('sha256', $data->getUTIMDP());
             $entityManager = $doctrine->getManager();
-            $exist = $entityManager->getRepository(Utilisateur :: class)->findOneBy(['UTI_LOGIN' => $data->getUTILOGIN(), 'UTI_MDP' => $data->getUTIMDP()]) != null;
+            $exist = $entityManager->getRepository(Utilisateur :: class)->findOneBy(['UTI_LOGIN' => $data->getUTILOGIN(), 'UTI_MDP' => $encoded]) != null;
             if ($exist) {
                 $loginState = true;
-                $utilisateur = $entityManager->getRepository(Utilisateur :: class)->findOneBy(['UTI_LOGIN' => $data->getUTILOGIN(), 'UTI_MDP' => $data->getUTIMDP()]);
+                $utilisateur = $entityManager->getRepository(Utilisateur :: class)->findOneBy(['UTI_LOGIN' => $data->getUTILOGIN(), 'UTI_MDP' => $encoded]);
                 $session->set('login', $utilisateur->getUTILOGIN());
                 $session->set('admin', $utilisateur->getUTIADMIN());
                 
                 return $this->redirect($this->generateUrl('Accueil'));
             } else {
+                echo $encoded;
                 $loginState = false;
             }
         }

@@ -27,8 +27,8 @@ class utilisateurController extends AbstractController {
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $plainPassword = 'UTI_MDP';
-            $encoded = hash('sha256', $plainPassword);
+            $data = $form->getData();
+            $encoded = hash('sha256', $data->getUTIMDP());
             $utilisateur->setUTIMDP($encoded);
             $data = $form->getData();            
             $entityManager->persist($utilisateur);
