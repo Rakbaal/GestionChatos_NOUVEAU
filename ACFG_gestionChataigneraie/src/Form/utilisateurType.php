@@ -5,7 +5,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 class utilisateurType extends AbstractType {
@@ -13,8 +13,8 @@ class utilisateurType extends AbstractType {
         $builder
         ->add('UTI_LOGIN', TextType :: class, ['label' => 'Login :'])
         ->add('UTI_MDP', PasswordType :: class, ['label' => 'Mot de passe :'])
-        ->add('UTI_ADMIN', CheckboxType :: class, ['label' => 'Admin :'])
-        ->add('creer', SubmitType :: class);
+        ->add('UTI_ADMIN', ChoiceType :: class, ['label' => 'Admin :','choices' => ['Admin'=>true,'Non Admin'=>false]])
+        ->add('Suavegarder', SubmitType :: class);
     }
 }
 ?>

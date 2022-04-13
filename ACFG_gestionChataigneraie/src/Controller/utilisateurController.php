@@ -58,5 +58,37 @@ class utilisateurController extends AbstractController {
 
         return $this->redirect($this->generateUrl("listeUtilisateurs"));
     }
+
+    /**
+     * @Route("modifierutilisateur/{id}", name="modifierUtilisateur")
+     */
+    public function ModifierUtilisateur(Request $request, $id, ManagerRegistry $doctrine) : Response {
+        $session = $request->getSession();
+        $entityManager = $doctrine->getManager();
+        $utilisateur = $entityManager->GetRepository(Utilisateur::class)->find($id);
+
+        $form = $this->createForm(utilisateurType::class, $utilisateur);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $data = $form->getData();
+
+            $entityManager = $doctrine->getManager();
+            $entityManager->remove($utilisateur);
+            $entityManager->persist($data);
+            $entityManager->flush();
+            return $this->redirect($this->generateUrl("listeUtilisateurs"));
+        }
+
+        if ($session->get('login')) {
+            return $this->render('listeUtilisateurs.html.twig', [
+                'form' => $form->createView(),
+                'listeUtilisateur' => $utilisateur,
+                'admin' => $session->get('admin')
+            ]);
+        } else {
+            return $this->render("erreurAcces.html.twig");
+        }
+    }
 }
 ?>
