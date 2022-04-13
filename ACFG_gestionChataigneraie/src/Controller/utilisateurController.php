@@ -35,21 +35,22 @@ class utilisateurController extends AbstractController {
             $entityManager->flush();
             return $this->redirect($this->generateUrl("listeUtilisateurs"));
         }
-        if ($session->get('login')) {
-            return $this->render('listeUtilisateurs.html.twig', [
-                'listeUtilisateur' => $listeUtilisateur,
-                'admin' => $session->get('admin'),
-                'form' => $form -> createView()
-            ]);
-        } else {
-            return $this->render("erreurAcces.html.twig");
-        }        
+
+        // if ($session->get('login')) {
+        //     return $this->render('listeUtilisateurs.html.twig', [
+        //         'listeUtilisateur' => $listeUtilisateur,
+        //         'admin' => $session->get('admin'),
+        //         'form' => $form -> createView()
+        //     ]);
+        // } else {
+        //     return $this->render("erreurAcces.html.twig");
+        // }        
     }
 
     /**
      * @Route("supprimerutilisateur/{id}", name="supprimerUtilisateur")
      */
-    public function SupprimerAnnonce(ManagerRegistry $doctrine, $id) : Response {
+    public function SupprimerUtilisateur(ManagerRegistry $doctrine, $id) : Response {
         $entityManager = $doctrine->getManager();
         $utilisateur = $entityManager->GetRepository(Utilisateur::class)->find($id);
         $entityManager->remove($utilisateur);
