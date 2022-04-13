@@ -29,28 +29,26 @@ class utilisateurController extends AbstractController {
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
             $encoded = hash('sha256', $data->getUTIMDP());
-            $utilisateur->setUTIMDP($encoded);
-            $data = $form->getData();            
+            $utilisateur->setUTIMDP($encoded);     
             $entityManager->persist($utilisateur);
             $entityManager->flush();
             return $this->redirect($this->generateUrl("listeUtilisateurs"));
         }
-
-        // if ($session->get('login')) {
-        //     return $this->render('listeUtilisateurs.html.twig', [
-        //         'listeUtilisateur' => $listeUtilisateur,
-        //         'admin' => $session->get('admin'),
-        //         'form' => $form -> createView()
-        //     ]);
-        // } else {
-        //     return $this->render("erreurAcces.html.twig");
-        // }        
+        if ($session->get('login') && $session->get('admin')) {
+            return $this->render('listeUtilisateurs.html.twig', [
+                'listeUtilisateur' => $listeUtilisateur,
+                'admin' => $session->get('admin'),
+                'form' => $form -> createView()
+            ]);
+        } else {
+            return $this->render("erreurAcces.html.twig");
+        }        
     }
 
     /**
      * @Route("supprimerutilisateur/{id}", name="supprimerUtilisateur")
      */
-    public function SupprimerUtilisateur(ManagerRegistry $doctrine, $id) : Response {
+    public function SupprimerAnnonce(ManagerRegistry $doctrine, $id) : Response {
         $entityManager = $doctrine->getManager();
         $utilisateur = $entityManager->GetRepository(Utilisateur::class)->find($id);
         $entityManager->remove($utilisateur);
