@@ -39,7 +39,7 @@ class personneController extends AbstractController {
         $entityManager->remove($personne);
         $entityManager->flush($personne);
         
-        return $this->redirect($this->generateUrl('listePPersonnes'));
+        return $this->redirect($this->generateUrl('listePersonnes'));
     }
 }
 ?>
