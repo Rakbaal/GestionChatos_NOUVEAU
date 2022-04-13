@@ -21,6 +21,9 @@
             <td>
             <a href={{ path('supprimerUtilisateur', { 'id': Utilisateurs.getId() }) }}>X</a> 
             </td>
+            <td>
+            <a href={{ path('modifierUtilisateur', { 'id': Utilisateurs.getId() }) }}>Modifier</a> 
+            </td>
         </tr>
         {% endfor %}
     </table>
