@@ -35,9 +35,11 @@
                     {{ personne.getSPELIBELLE() }}
                 {% endfor %}
             </td>
-            <td>
-                <a href={{ path('supprimerEntreprise', { 'id': entreprise.getId() }) }}>X</a> 
-            </td>
+            {% if admin %}
+                <td>
+                    <a href={{ path('supprimerEntreprise', { 'id': entreprise.getId() }) }}>X</a> 
+                </td>
+            {% endif %}
             </tr>
         {% endfor %}
     </table>

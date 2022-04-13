@@ -48,11 +48,12 @@ class entrepriseController extends AbstractController {
     /**
      * @Route("listeEntreprisesFiltre/{rs}{ville}{pays}{specialite}", name="listeEntreprisesFiltre")
      */
-    function listeEntreprisesFiltre(ManagerRegistry $doctrine)
+    function listeEntreprisesFiltre(ManagerRegistry $doctrine, Request $request)
     {
+        $session = $request->getSession();
         $entityManager = $doctrine->getManager();
         $listeEntreprises = $entityManager->getRepository(Entreprise::class)->findAll();
-        return $this->render('listeEntreprises.html.twig', ['listeEntreprises' => $listeEntreprises]);
+        return $this->render('listeEntreprises.html.twig', ['listeEntreprises' => $listeEntreprises, 'admin' => $session->get('admin')]);
     }
 
     /**
