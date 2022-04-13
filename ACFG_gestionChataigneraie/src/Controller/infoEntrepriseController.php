@@ -19,12 +19,12 @@ class infoEntrepriseController extends AbstractController
     public function infoEntreprise($id, ManagerRegistry $doctrine, Request $request){
         $session = $request->getSession();
         $entityManager = $doctrine->getManager();
-        $Entreprises = $entityManager->getRepository(Entreprise::class)->find($id);
-        $listePersonne = $entityManager->getRepository(Personne::class)->findAll();
+        $Entreprise = $entityManager->getRepository(Entreprise::class)->find($id);
+        $listePersonne = $Entreprise->getPersonnes();
 
         if ($session->get('login')) {
             return $this->render("infoEntreprise.html.twig ", [
-                "Entreprises" => $Entreprises,
+                "Entreprises" => $Entreprise,
                 "listePersonne" => $listePersonne,
                 "admin" => $session->get('admin')
             ]);
