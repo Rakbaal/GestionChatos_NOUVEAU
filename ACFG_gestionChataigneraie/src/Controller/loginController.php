@@ -50,5 +50,15 @@ class loginController extends AbstractController {
             'admin' => $session->get('admin')]
         );
     }
+
+    /**
+    * @Route("deconnexion", name="Deconnexion")
+    */
+    public function deconnexion(Request $request) {
+        $session = $request->getSession();
+        $session->invalidate();
+
+        return $this->redirect($this->generateUrl("login"));
+    }
 }
 ?>
