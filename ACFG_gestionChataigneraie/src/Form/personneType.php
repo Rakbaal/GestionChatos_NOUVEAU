@@ -1,6 +1,7 @@
 <?php 
 namespace App\Form;
 
+use App\Entity\Fonction;
 use Symfony\Component\Form\AbstractType;
 use App\Entity\Profil;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -17,6 +18,7 @@ class personneType extends AbstractType {
         ->add('PER_MAIL', TextType :: class, ['label' => 'Mail :'])
         ->add('PER_TEL_PERSO', NumberType :: class, ['label' => 'Téléphone :'])
         ->add('PER_TEL_PRO', NumberType :: class, ['label' => 'Téléphone professionnel :'])
+        ->add('fonctions', EntityType::class, ['class' => Fonction :: class, 'choice_label' => 'FON_LIBELLE', 'multiple' => true, 'expanded' => true])
         ->add('profils', EntityType::class, ['class' => Profil :: class, 'choice_label' => 'PRO_TYPE', 'multiple' => true, 'expanded' => true])
         ->add('envoyer', SubmitType :: class, ['label' => 'Créer']);
     }
