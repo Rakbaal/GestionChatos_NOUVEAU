@@ -26,9 +26,9 @@ class personneController extends AbstractController {
         $form = $this->createForm(personneType::class, $personne);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $data = $form->getData();            
-            $entityManager->persist($personne);
+        if ($form->isSubmitted() && $form->isValid()) {     
+            $data = $form->getData();  
+            $entityManager->persist($data);
             $entityManager->flush();
             return $this->redirect($this->generateUrl("listePersonnes"));
         }
