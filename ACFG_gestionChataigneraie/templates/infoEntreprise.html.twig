@@ -1,58 +1,70 @@
-{{include('navbar.html.twig')}}
-<h1>entreprise {{entreprise.getENTRS()}}</h1>
-<ul>
-    <li>Adresse : {{entreprise.getENTADRESSE()}}</li>
-    <li>Code postal : {{entreprise.getENTCP()}}</li>
-    <li>Ville : {{entreprise.getENTVILLE()}}</li>    
-    <li>Pays : {{entreprise.getENTPAYS()}}</li>
-    <li> Spécialité(s) recherchée(s) :
-    {% for specialite in entreprise.getSpecialites() %}
-        {{specialite.getSPELIBELLE()}}
-    {% endfor %}
-    </li>
-    {% if admin %}
-        <li><a href={{ path('modifierEntreprise', { 'id': entreprise.getId() }) }}><button>Modifier</button></a>
-    {% endif %}
-</ul>
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Info Entreprise</title>
+		<meta charset="UTF-8">
+	</head>
 
-<div class="tableau" style="width:75%; border: 1px solid black;">
-    <table>
-        <tr>
-            <td style="width: 30px; border: 1px solid black;">ID</td>
-            <td style="width: 200px; border: 1px solid black;">Nom Prenom</td>
-            <td style="width: 150px; border: 1px solid black;">Mail</td>
-            <td style="width: 150px; border: 1px solid black;">Telephone</td>
-            <td style="width: 150px; border: 1px solid black;">Telephone professionnel</td>
-            <td style="width: 150px; border: 1px solid black;">Profil</td>
-            <td style="width: 150px; border: 1px solid black;">Fonction</td>
-        </tr>
-        {% for personne in listePersonne %}
-        <tr>
-            <td style="width: 30px; border: 1px solid black; ">{{ personne.getId() }}</td>
-            <td style="width: 200px; border: 1px solid black; text-decoration : none; color: black;">{{ personne.getPERNOM() }}, {{ personne.getPERPRENOM() }}</td>
-            <td style="width: 250px; border: 1px solid black; text-decoration : none; color: black;">
-            <a style="text-decoration : none; color: black;"> 
-            {{ personne.getPERMAIL() }}
-            </a></td>
-            <td style="width: 250px; border: 1px solid black; text-decoration : none; color: black;">
-            <a style="text-decoration : none; color: black;"> 
-            {{ personne.getPERTELPERSO() }}
-            </a></td>
-            <td style="width: 250px; border: 1px solid black; text-decoration : none; color: black;">
-            <a style="text-decoration : none; color: black;"> 
-            {{ personne.getPERTELPRO() }}
-            </a></td>
-            <td style="width: 250px; border: 1px solid black; text-decoration : none; color: black;">
-                {% for Profil in personne.getProfils() %}
-                    {{ Profil.getPROTYPE() }}
-                {% endfor %}
-            </a></td>
-            <td style="width: 250px; border: 1px solid black; text-decoration : none; color: black;">
-                {% for Fonction in personne.getFonctions() %}
-                    {{ Fonction.getFONLIBELLE() }}
-                {% endfor %}
-            </a></td>
-            </tr>
-        {% endfor %}
-    </table>
-</div>
+	<body>
+		{{include('navbar.html.twig')}}
+		<h1>Entreprise
+			{{entreprise.getENTRS()}}</h1>
+		<ul>
+			<li>Adresse :
+				{{entreprise.getENTADRESSE()}}</li>
+			<li>Code postal :
+				{{entreprise.getENTCP()}}</li>
+			<li>Ville :
+				{{entreprise.getENTVILLE()}}</li>
+			<li>Pays :
+				{{entreprise.getENTPAYS()}}</li>
+			<li>
+				Spécialité(s) recherchée(s) :
+				{% for specialite in entreprise.getSpecialites() %}
+					{{specialite.getSPELIBELLE()}}
+				{% endfor %}
+			</li>
+			{% if admin %}
+				<li>
+					<a href={{ path('modifierEntreprise', { 'id': entreprise.getId() } ) }}>
+						<button>Modifier</button>
+					</a>
+				</li>
+			{% endif %}
+		</ul>
+
+		<div>
+			<table>
+				<tr>
+					<td>ID</td>
+					<td>Nom Prenom</td>
+					<td>Mail</td>
+					<td>Telephone</td>
+					<td>Telephone professionnel</td>
+					<td>Profil</td>
+					<td>Fonction</td>
+				</tr>
+				{% for personne in listePersonne %}
+					<tr>
+						<td>{{ personne.getId() }}</td>
+						<td>{{ personne.getPERNOM() }},
+							{{ personne.getPERPRENOM() }}</td>
+						<td>{{ personne.getPERMAIL() }}</td>
+						<td>{{ personne.getPERTELPERSO() }}</td>
+						<td>{{ personne.getPERTELPRO() }}</td>
+						<td>
+							{% for Profil in personne.getProfils() %}
+								{{ Profil.getPROTYPE() }}
+							{% endfor %}
+						</td>
+						<td>
+							{% for Fonction in personne.getFonctions() %}
+								{{ Fonction.getFONLIBELLE() }}
+							{% endfor %}
+						</td>
+					</tr>
+				{% endfor %}
+			</table>
+		</div>
+	</body>
+</html>
