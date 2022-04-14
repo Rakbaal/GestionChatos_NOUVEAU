@@ -69,24 +69,53 @@ class entrepriseController extends AbstractController {
     }
 
     /**
+     * @Route("modifierEntreprise/{id}", name="modifierEntreprise")
+     */
+    function modifierEntreprise(ManagerRegistry $doctrine, Request $request, $id) {
+        $session = $request->getSession();
+        $titre = "de l'entreprise ".$id;
+        $entityManager = $doctrine->getManager();
+        $entreprise = $entityManager->getRepository(Entreprise::class)->find($id);
+        $form = $this->createForm(entrepriseCompletType::class, $entreprise);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $data = $form->getData();
+            $entityManager->persist($data);
+            $entityManager->flush();
+            return $this->redirect($this->generateUrl("listeEntreprises"));
+        }
+
+        if ($session->get('login') && $session->get('admin') == true) {
+            return $this->render("modifier.html.twig", [
+                'titre' => $titre, 
+                'form' => $form->createView(),
+                'admin' => $session->get('admin')
+            ]);
+        } else {
+            return $this->render("erreurAcces.html.twig");
+        }
+    }
+
+    /**
      * @Route("/infoEntreprise/{id}", name="infoEntreprise")
      */
     public function infoEntreprise($id, ManagerRegistry $doctrine, Request $request){
         $session = $request->getSession();
         $entityManager = $doctrine->getManager();
-        $Entreprise = $entityManager->getRepository(Entreprise::class)->find($id);
-        $listePersonne = $Entreprise->getPersonnes();
+        $entreprise = $entityManager->getRepository(Entreprise::class)->find($id);
+        $listePersonne = $entreprise->getPersonnes();
 
         if ($session->get('login')) {
-            return $this->render("infoEntreprise.html.twig ", [
-                "Entreprises" => $Entreprise,
+            return $this->render("infoEntreprise.html.twig", [
+                "entreprise" => $entreprise,
                 "listePersonne" => $listePersonne,
                 "admin" => $session->get('admin')
             ]);
         } else {
             return $this->render("erreurAcces.html.twig");
         }
-        
     }
 }
 ?>

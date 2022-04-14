@@ -1,15 +1,18 @@
 {{include('navbar.html.twig')}}
-<h1>Entreprise {{Entreprises.getENTRS()}}</h1>
+<h1>entreprise {{entreprise.getENTRS()}}</h1>
 <ul>
-    <li>Adresse : {{Entreprises.getENTADRESSE()}}</li>
-    <li>Code postal : {{Entreprises.getENTCP()}}</li>
-    <li>Ville : {{Entreprises.getENTVILLE()}}</li>    
-    <li>Pays : {{Entreprises.getENTPAYS()}}</li>
-    <li> Spécialitée recherchée :
-    {% for specialite in Entreprises.getSpecialites() %}
+    <li>Adresse : {{entreprise.getENTADRESSE()}}</li>
+    <li>Code postal : {{entreprise.getENTCP()}}</li>
+    <li>Ville : {{entreprise.getENTVILLE()}}</li>    
+    <li>Pays : {{entreprise.getENTPAYS()}}</li>
+    <li> Spécialité(s) recherchée(s) :
+    {% for specialite in entreprise.getSpecialites() %}
         {{specialite.getSPELIBELLE()}}
-        {% endfor %}
-        </li>
+    {% endfor %}
+    </li>
+    {% if admin %}
+        <li><a href={{ path('modifierEntreprise', { 'id': entreprise.getId() }) }}><button>Modifier</button></a>
+    {% endif %}
 </ul>
 
 <div class="tableau" style="width:75%; border: 1px solid black;">

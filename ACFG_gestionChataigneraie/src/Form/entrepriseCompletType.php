@@ -17,7 +17,7 @@ class entrepriseCompletType extends AbstractType {
         ->add('ENT_VILLE', TextType :: class, ['label' => 'Ville :'])
         ->add('ENT_PAYS', TextType :: class, ['label' => 'Pays :'])
         ->add('specialites', EntityType::class, ['class' => Specialite :: class, 'choice_label' => 'SPE_LIBELLE', 'multiple' => true, 'expanded' => true])
-        ->add('envoyer', SubmitType :: class, ['label' => 'Créer']);
+        ->add('envoyer', SubmitType :: class, ['label' => 'Enregistrer']);
     }
 }
 ?>
