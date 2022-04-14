@@ -1,35 +1,41 @@
-{{include('navbar.html.twig')}}
-<div class="tableau" style="width:75%; border: 1px solid black;">
-    <table>
-        <tr>
-            <td style="width: 30px; border: 1px solid black;">ID</td>
-            <td style="width: 200px; border: 1px solid black;">Login</td>
-            <td style="width: 150px; border: 1px solid black;">Accès</td>
-        </tr>
-        {% for Utilisateurs in listeUtilisateur %}
-        <tr>
-            <td style="width: 30px; border: 1px solid black; "><a style="text-decoration : none; color: black;">{{ Utilisateurs.getId() }} </a></td>
-            <td style="width: 200px; border: 1px solid black; text-decoration : none; color: black;"><a style="text-decoration : none; color: black;" > {{ Utilisateurs.getUTILOGIN() }}</a></td>
-            <td style="width: 250px; border: 1px solid black; text-decoration : none; color: black;">
-            <a style="text-decoration : none; color: black;">             
-            {% if Utilisateurs.getUTIADMIN %}
-                Administrateur
-            {% else %}
-                Enseignant
-            {% endif %}
-            </a></td>
-            <td>
-            <a href={{ path('supprimerUtilisateur', { 'id': Utilisateurs.getId() }) }}>X</a> 
-            </td>
-            <td>
-            <a href={{ path('modifierUtilisateur', { 'id': Utilisateurs.getId() }) }}>Modifier</a> 
-            </td>
-        </tr>
-        {% endfor %}
-    </table>
-</div>
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Liste Utilisateurs</title>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        {{include('navbar.html.twig')}}
+        <div>
+            <table>
+                <tr>
+                    <td>ID</td>
+                    <td>Login</td>
+                    <td>Accès</td>
+                </tr>
+                {% for Utilisateurs in listeUtilisateur %}
+                    <tr>
+                        <td>{{ Utilisateurs.getId() }}</td>
+                        <td> {{ Utilisateurs.getUTILOGIN() }}</td>
+                        <td>            
+                            {% if Utilisateurs.getUTIADMIN %}
+                                Administrateur
+                            {% else %}
+                                Enseignant
+                            {% endif %}
+                        </td>
+                        <td>
+                        <a href={{ path('supprimerUtilisateur', { 'id': Utilisateurs.getId() }) }}>X</a> 
+                        </td>
+                        <td>
+                        <a href={{ path('modifierUtilisateur', { 'id': Utilisateurs.getId() }) }}>Modifier</a> 
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
 
-<h1>Ajouter un utilisateur</h1>
-
-{{ form(form) }}
-
+        <h1>Ajouter un utilisateur</h1>
+        {{ form(form) }}
+    </body>
+</html>

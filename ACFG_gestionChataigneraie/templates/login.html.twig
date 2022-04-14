@@ -1,5 +1,14 @@
-<h1>Connexion</h1>
-{% if loginState == false %}
-    <p>Une des informations entrées est erronée</p>
-{% endif %}
-{{form(form)}}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Connexion</title>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <h1>Connexion</h1>
+        {% if loginState == false %}
+            <p>Une des informations entrées est erronée</p>
+        {% endif %}
+        {{form(form)}}
+    </body>
+</html>
