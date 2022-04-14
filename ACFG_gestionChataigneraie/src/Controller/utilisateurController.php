@@ -62,6 +62,7 @@ class utilisateurController extends AbstractController {
      */
     public function ModifierUtilisateur(Request $request, $id, ManagerRegistry $doctrine) : Response {
         $session = $request->getSession();
+        $titre = "de l'utilisateur ".$id;
         $entityManager = $doctrine->getManager();
         $utilisateur = $entityManager->GetRepository(Utilisateur::class)->find($id);
 
@@ -70,16 +71,17 @@ class utilisateurController extends AbstractController {
 
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
-
-            $entityManager = $doctrine->getManager();
-            $entityManager->remove($utilisateur);
+            $encoded = hash('sha256', $data->getUTIMDP());
+            $utilisateur->setUTIMDP($encoded); 
+            $data = $form->getData();
             $entityManager->persist($data);
             $entityManager->flush();
             return $this->redirect($this->generateUrl("listeUtilisateurs"));
         }
 
         if ($session->get('login')) {
-            return $this->render('listeUtilisateurs.html.twig', [
+            return $this->render("modifier.html.twig", [
+                'titre' => $titre,
                 'form' => $form->createView(),
                 'listeUtilisateur' => $utilisateur,
                 'admin' => $session->get('admin')

@@ -13,7 +13,7 @@ class utilisateurType extends AbstractType {
         $builder
         ->add('UTI_LOGIN', TextType :: class, ['label' => 'Login :'])
         ->add('UTI_MDP', PasswordType :: class, ['label' => 'Mot de passe :'])
-        ->add('UTI_ADMIN', ChoiceType :: class, ['label' => 'Droits d\'accès :','choices' => ['Administrateur'=>true,'Professeur'=>false]])
+        ->add('UTI_ADMIN', ChoiceType :: class, ['label' => 'Droits d\'accès :','choices' => ['Administrateur'=>true,'Enseignant'=>false]])
         ->add('Enregistrer', SubmitType :: class);
     }
 }
