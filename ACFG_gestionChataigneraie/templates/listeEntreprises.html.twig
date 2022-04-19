@@ -43,21 +43,25 @@
     </table>
 </div>
 
-<div style="margin-left:78%; margin-top:-380px;">
+<div style="margin-left:78%; margin-top:-700px;">
     <table style="text-align:center;">
         <tr>
             <td colspan = 2 style="width: 150px; border: 0px solid black;">Rechercher par filtres :</td>
         </tr>
     </table>
-    {{form(form)}}
+    {{form(formFiltre)}}
 </div>
 
 <br/>
 <br/>
 <br/>
-{% if admin %}
-    <h1>Création d'un formulaire</h1>
-    {{form(form)}}
-{% endif %}
+
+
+<div style="margin-top: 550px;">
+    <h1>Création d'une entreprise :</h1>
+    {% if admin %}  
+        {{form(formNouveau)}}
+    {% endif %}
+</div>
 
 
