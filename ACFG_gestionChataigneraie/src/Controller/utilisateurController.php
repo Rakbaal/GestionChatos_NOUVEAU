@@ -34,6 +34,7 @@ class utilisateurController extends AbstractController {
             $entityManager->flush();
             return $this->redirect($this->generateUrl("listeUtilisateurs"));
         }
+        
         if ($session->get('login') && $session->get('admin')) {
             return $this->render('listeUtilisateurs.html.twig', [
                 'listeUtilisateur' => $listeUtilisateur,
@@ -48,11 +49,13 @@ class utilisateurController extends AbstractController {
     /**
      * @Route("supprimerutilisateur/{id}", name="supprimerUtilisateur")
      */
-    public function SupprimerAnnonce(ManagerRegistry $doctrine, $id) : Response {
-        $entityManager = $doctrine->getManager();
-        $utilisateur = $entityManager->GetRepository(Utilisateur::class)->find($id);
-        $entityManager->remove($utilisateur);
-        $entityManager->flush($utilisateur);
+    public function SupprimerAnnonce(ManagerRegistry $doctrine, $id, Request $request) : Response {
+        if ($request->getSession()->get('admin')) {
+            $entityManager = $doctrine->getManager();
+            $utilisateur = $entityManager->GetRepository(Utilisateur::class)->find($id);
+            $entityManager->remove($utilisateur);
+            $entityManager->flush($utilisateur);
+        }
 
         return $this->redirect($this->generateUrl("listeUtilisateurs"));
     }
@@ -79,7 +82,7 @@ class utilisateurController extends AbstractController {
             return $this->redirect($this->generateUrl("listeUtilisateurs"));
         }
 
-        if ($session->get('login')) {
+        if ($session->get('login') && $session->get('admin')) {
             return $this->render("modifier.html.twig", [
                 'titre' => $titre,
                 'form' => $form->createView(),
