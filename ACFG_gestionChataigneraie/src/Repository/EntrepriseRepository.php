@@ -59,6 +59,77 @@ class EntrepriseRepository extends ServiceEntityRepository
         return $query->getResult();
     }
 
+    /** 
+     * @return listeEntreprisesFiltre[] Returns an array of Entreprise objects
+     */
+    
+    public function findByEntrepriseFiltre($data)
+    {
+        // Si les 3 texbox sont vides, alors on renvoit toutes les entreprises
+        if ($data == null) {
+            $rs = '';
+            $ville = '';
+            $pays = '';
+            //$listeSpecialites = [];
+        }
+        // Si il y a au moins 1 texbox remplis
+        else {
+            // Si le textbox Raison Sociale est null
+            if ($data->getENTRS() == null) {
+                $rs = '';
+            }
+            else {
+                $rs = $data->getENTRS();
+            }
+    
+            // Si le textbox Ville est null
+            if ($data->getENTVILLE() == null) {
+                $ville = '';
+            }
+            else {
+                $ville = $data->getENTVILLE();
+            }
+    
+            // Si le textbox Pays est null
+            if ($data->getENTPAYS() == null) {
+                $pays = '';
+            }
+            else {
+                $pays = $data->getENTPAYS();
+            }
+
+            // Si les checkbox Specialite sont null
+            // if ($data->getSpecialites() == null) {
+            //     $listeSpecialites = [];
+            // }
+            // else {
+            //     $listeSpecialites = $data->getSpecialites();
+            // }
+
+            // Les variables Q... permettent d'ajouter les % avant et après la valeur saisie
+            $Qrs = '%'.$rs.'%';
+            $Qville = '%'.$ville.'%';
+            $Qpays = '%'.$pays.'%';
+        }
+
+        // Constitue la requête de filtrage avec 3 paramètres
+        return $this->createQueryBuilder('e')
+            //->innerJoin('e.entreprise', 'es.entreprise_specialite', 'WITH', 'e.id = :entreprise')
+            ->andWhere('e.ENT_RS LIKE :rs')
+            ->andWhere('e.ENT_VILLE LIKE :ville')
+            ->andWhere('e.ENT_PAYS LIKE :pays')
+            //->andWhere('e.specialites IN ( :listeSpecialites )')
+            ->setParameter('rs', $Qrs)          
+            ->setParameter('ville', $Qville)
+            ->setParameter('pays', $Qpays)
+            //->setParameter('listeSpecialites', $listeSpecialites)
+            ->orderBy('e.id', 'ASC')
+            ->setMaxResults(100)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     public function listeEntrepriseRaisonSociale($rs): array
     {
         /*

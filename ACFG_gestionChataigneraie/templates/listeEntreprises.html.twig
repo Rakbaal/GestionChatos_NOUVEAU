@@ -38,53 +38,49 @@
                         -->
                         #}
 
-					<td>
-						{% for personne in entreprise.getSpecialites() %}
-							{{ personne.getSPELIBELLE() }}
-						{% endfor %}
-					</td>
-					{% if admin %}
-						<td>
-							<a href={{ path('supprimerEntreprise', { 'id': entreprise.getId() } ) }}>X</a>
-						</td>
-					{% endif %}
-				</tr>
-			{% endfor %}
-		</table>
-        <br/><br/><br/>
-        {% if admin %}
-            <h1>Création d'une entreprise</h1>
-            {{form(form)}}
-        {% endif %}
-        {# 
-	    <div style="margin-left:78%; margin-top:-380px;">
-	    <table style="text-align:center;">
-	        <tr>
-	            <td colspan = 2 style="width: 150px; border: 0px solid black;">Rechercher par filtres :</td>
-	        </tr>
-	        <tr>
-	            <td>Raison Sociale :</td>
-	            <td colspan=1 style="height:50px;"><input type="text" id="textboxRS" name="textboxRS" required minlength="1" maxlength="50" size="20"></td>
-	        </tr>
-	        <tr>
-	            <td>Ville :</td>
-	            <td style="height:50px;"><input type="text" id="textboxVille" name="textboxVille" required minlength="1" maxlength="50" size="20"></td>
-	        </tr>
-	        <tr>
-	            <td>Pays :</td>
-	            <td style="height:50px;"><input type="text" id="textboxPays" name="textboxPays" required minlength="1" maxlength="50" size="20"></td>
-	        </tr>
-	        <tr>
-	            <td>Specialité :</td>
-	            <td style="height:50px;"><input type="text" id="textboxSpecialite" name="textboxSpecialite" required minlength="1" maxlength="50" size="20"></td>
-	        </tr>
-	        
-	        {# <tr>
-	            <td colspan = 2 >
-	                <a href="{{path('listeEntreprisesFiltre', {'rs': textboxRS } , {'ville': textboxVille} , {'pays': textboxPays} , {'specialite': textboxSpecialite} )}}" style="text-decoration:none;">
-	                    <button type="button" name="buttonRechercher">Rechercher</button>
-	                </a>
-	            </td>
-	        </tr> #}
-    </body>
-</html>
+            {#
+            <!--
+
+            <td style="width: 250px; border: 1px solid black; text-decoration : none; color: black;">
+                {% for personne in entreprise.getPersonnes() %}
+                    {{ personne.getPERNOM() }} {{ personne.getPERPRENOM() }} 
+                    {{ personne.getPERMAIL() }} , {{ personne.getPERTEL() }} 
+                {% endfor %}
+            </td>
+
+            -->
+            #}
+
+            <td>
+                {% for personne in entreprise.getSpecialites() %}
+                    {{ personne.getSPELIBELLE() }}
+                {% endfor %}
+            </td>
+            <td>
+                <a href={{ path('supprimerEntreprise', { 'id': entreprise.getId() }) }}>X</a> 
+            </td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>
+
+<div>
+    <table>
+        <tr>
+            <td>Rechercher par filtres :</td>
+        </tr>
+    </table>
+    {{form(formFiltre)}}
+</div>
+
+<br/>
+<br/>
+<br/>
+
+{% if admin %}
+	<div>
+		<h1>Création d'une entreprise :</h1>  
+		{{form(formNouveau)}}
+	</div>
+    {% endif %}
+
