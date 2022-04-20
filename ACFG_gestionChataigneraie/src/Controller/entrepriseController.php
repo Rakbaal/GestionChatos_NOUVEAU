@@ -23,7 +23,6 @@ class entrepriseController extends AbstractController {
         // Execute une requête pour afficher toutes les entreprises dans le tableau
         $entityManager = $doctrine->getManager();
         $listeEntreprises = $entityManager->getRepository(Entreprise::class)->findAll();
-        
 
         // Création du formulaire pour le filtrage
         $entreprise = new Entreprise();
@@ -72,26 +71,18 @@ class entrepriseController extends AbstractController {
             return $this->render("erreurAcces.html.twig");
         }
 
-
-        /*
-        // Retourne la liste entière des entreprises
-        return $this->render('listeEntreprises.html.twig', [
-            'form' => $formFiltre->createView(),
-            'listeEntreprises' => $listeEntreprises,
-            'admin' => $session->get('admin')
-        ]);
-        */
-
     }
 
     /**
      * @Route("supprimerEntreprise/{id}", name="supprimerEntreprise")
      */
-    function supprimerEntreprise(ManagerRegistry $doctrine, $id) {
-        $entityManager = $doctrine->getManager();
-        $entreprise = $entityManager->getRepository(Entreprise::class)->find($id);
-        $entityManager->remove($entreprise);
-        $entityManager->flush($entreprise);
+    function supprimerEntreprise(ManagerRegistry $doctrine, $id, Request $request) {
+        if ($request->getSession()->get('admin')) {
+            $entityManager = $doctrine->getManager();
+            $entreprise = $entityManager->getRepository(Entreprise::class)->find($id);
+            $entityManager->remove($entreprise);
+            $entityManager->flush($entreprise);
+        }
         
         return $this->redirect($this->generateUrl('listeEntreprises'));
     }

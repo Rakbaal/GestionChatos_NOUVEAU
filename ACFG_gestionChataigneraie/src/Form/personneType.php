@@ -16,10 +16,28 @@ class personneType extends AbstractType {
         ->add('PER_NOM', TextType :: class, ['label' => 'Nom :'])
         ->add('PER_PRENOM', TextType :: class, ['label' => 'Prénom :'])
         ->add('PER_MAIL', TextType :: class, ['label' => 'Mail :'])
-        ->add('PER_TEL_PERSO', NumberType :: class, ['label' => 'Téléphone :'])
-        ->add('PER_TEL_PRO', NumberType :: class, ['label' => 'Téléphone professionnel :'])
-        ->add('fonctions', EntityType::class, ['class' => Fonction :: class, 'choice_label' => 'FON_LIBELLE', 'multiple' => true, 'expanded' => true])
-        ->add('profils', EntityType::class, ['class' => Profil :: class, 'choice_label' => 'PRO_TYPE', 'multiple' => true, 'expanded' => true])
+        ->add('PER_TEL_PERSO', NumberType :: class, [
+            'label' => 'Téléphone perso:',
+            'required' => false
+        ])
+        ->add('PER_TEL_PRO', NumberType :: class, [
+                'label' => 'Téléphone pro :',
+                'required' => false
+            ])
+        ->add('fonctions', EntityType::class, [
+                'class' => Fonction :: class, 
+                'choice_label' => 'FON_LIBELLE', 
+                'multiple' => true, 
+                'expanded' => true,
+                'required' => false
+            ])
+        ->add('profils', EntityType::class, [
+                'class' => Profil :: class, 
+                'choice_label' => 'PRO_TYPE', 
+                'multiple' => true, 
+                'expanded' => true,
+                'required' => false
+        ])
         ->add('envoyer', SubmitType :: class, ['label' => 'Créer']);
     }
 }

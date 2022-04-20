@@ -27,38 +27,16 @@
 						{{ entreprise.getENTCP() }}
 						{{ entreprise.getENTVILLE() }}</td>
 					<td>{{ entreprise.getENTPAYS() }}</td>
-
-					{#<!-- <td style="width: 250px; border: 1px solid black; text-decoration : none; color: black;">
-                            {% for personne in entreprise.getPersonnes() %}
-                                {{ personne.getPERNOM() }} {{ personne.getPERPRENOM() }} 
-                                {{ personne.getPERMAIL() }} , {{ personne.getPERTEL() }} 
-                            {% endfor %}
-                        </td>
-            
-                        -->
-                        #}
-
-            {#
-            <!--
-
-            <td style="width: 250px; border: 1px solid black; text-decoration : none; color: black;">
-                {% for personne in entreprise.getPersonnes() %}
-                    {{ personne.getPERNOM() }} {{ personne.getPERPRENOM() }} 
-                    {{ personne.getPERMAIL() }} , {{ personne.getPERTEL() }} 
-                {% endfor %}
-            </td>
-
-            -->
-            #}
-
-            <td>
+			<td>
                 {% for personne in entreprise.getSpecialites() %}
                     {{ personne.getSPELIBELLE() }}
                 {% endfor %}
             </td>
-            <td>
-                <a href={{ path('supprimerEntreprise', { 'id': entreprise.getId() }) }}>X</a> 
-            </td>
+			{% if admin %}
+				<td>
+					<a href={{ path('supprimerEntreprise', { 'id': entreprise.getId() }) }}>X</a> 
+				</td>
+			{% endif %}
             </tr>
         {% endfor %}
     </table>
@@ -82,5 +60,5 @@
 		<h1>Création d'une entreprise :</h1>  
 		{{form(formNouveau)}}
 	</div>
-    {% endif %}
+{% endif %}
 
