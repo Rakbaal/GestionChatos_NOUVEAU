@@ -47,8 +47,7 @@
 				{% for personne in listePersonne %}
 					<tr>
 						<td>{{ personne.getId() }}</td>
-						<td>{{ personne.getPERNOM() }},
-							{{ personne.getPERPRENOM() }}</td>
+						<td>{{ personne.getPERNOM() }} {{ personne.getPERPRENOM() }}</td>
 						<td>{{ personne.getPERMAIL() }}</td>
 						<td>{{ personne.getPERTELPERSO() }}</td>
 						<td>{{ personne.getPERTELPRO() }}</td>
