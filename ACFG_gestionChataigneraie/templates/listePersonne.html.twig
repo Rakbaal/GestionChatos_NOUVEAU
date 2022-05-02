@@ -19,8 +19,8 @@
                 </a>
             </td>
             <td style="width: 200px; border: 1px solid black; text-decoration : none; color: black;">
-                <a style="text-decoration : none; color: black;"> 
-                    {{ personne.getPERNOM() }}, {{ personne.getPERPRENOM() }}
+                <a style="text-decoration : none; color: black;" href={{ path('modifierPersonne', { 'id': personne.getId() }) }}> {{ personne.getPERNOM() }}, {{ personne.getPERPRENOM() }} </a></td>
+                    
                 </a>
             </td>
             <td style="width: 250px; border: 1px solid black; text-decoration : none; color: black;">

@@ -55,6 +55,36 @@ class personneController extends AbstractController {
         
         return $this->redirect($this->generateUrl('listePersonnes'));
     }
+
+    /**
+     * @Route("modifierPersonne/{id}", name="modifierPersonne")
+     */
+    function modifierPersonne(ManagerRegistry $doctrine, Request $request, $id) {
+        $session = $request->getSession();
+        $titre = "de la personne ".$id;
+        $entityManager = $doctrine->getManager();
+        $personne = $entityManager->getRepository(Personne::class)->find($id);
+        $form = $this->createForm(personneType::class, $personne);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $data = $form->getData();
+            $entityManager->persist($data);
+            $entityManager->flush();
+            return $this->redirect($this->generateUrl("listePersonnes"));
+        }
+
+        if ($session->get('login') && $session->get('admin') == true) {
+            return $this->render("modifier.html.twig", [
+                'titre' => $titre, 
+                'form' => $form->createView(),
+                'admin' => $session->get('admin')
+            ]);
+        } else {
+            return $this->render("erreurAcces.html.twig");
+        }
+    }
 }
 
 
