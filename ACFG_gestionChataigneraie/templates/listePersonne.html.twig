@@ -44,11 +44,29 @@
                         {{ entreprise.getENTRS() }}                                    
                     </a>
                 {% endfor %}
-            </table>
-        </div>
-        {% if admin %}
-            <h1>Création d'une personne :</h1>
-            {{form(form)}}
-        {% endif %}
-    </body>
-</html>
+            </td>
+            <td style="width: 250px; border: 1px solid black; text-decoration : none; color: black;">
+                <a style="text-decoration : none; color: black;"> 
+                    {% for Profil in personne.getProfils() %}
+                        {{ Profil.getPROTYPE() }}
+                    {% endfor %}
+                </a>
+            </td>
+            <td style="width: 250px; border: 1px solid black; text-decoration : none; color: black;">
+                <a style="text-decoration : none; color: black;"> 
+                    {% for Fonction in personne.getFonctions() %}
+                        {{ Fonction.getFONLIBELLE() }}
+                    {% endfor %}
+                </a>
+            </td>
+            <td>
+                <a href={{ path('supprimerPersonne', { 'id': personne.getId() }) }}>X</a> 
+            </td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>
+
+<h1>Ajouter une personne</h1>
+
+{{ form(form) }}
