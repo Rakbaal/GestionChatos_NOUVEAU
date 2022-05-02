@@ -39,6 +39,7 @@ class loginController extends AbstractController {
                 
                 return $this->redirect($this->generateUrl('Accueil'));
             } else {
+                
                 $loginState = false;
             }
         }
