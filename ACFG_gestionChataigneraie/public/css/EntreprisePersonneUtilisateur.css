@@ -2,15 +2,11 @@
     font-size: 19px;
 }
 
-.creationTexte {
-    font-size: 19px;
-}
-
 body {
     background-color: #e9ecef;
 }
 
-.banner {
+.toolBox {
     background-color: #EFECE9;
     border-radius: 5px;
     border: solid #1e1a15;

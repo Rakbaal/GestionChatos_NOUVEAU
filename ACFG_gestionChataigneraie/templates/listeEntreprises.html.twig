@@ -11,57 +11,61 @@
 	<body class="body">
 		{{include('navbar.html.twig')}}
 		
-		<div class="container-fluid">
+		<div class="container-fluid isolated">
 			<div class="row">
 				<div id="main" class="col-10">
-					<table class="table table-striped">
-						<tr>
-							<td>ID</td>
-							<td>Raison Sociale</td>
-							<td>Adresse</td>
-							<td>Pays</td>
-							<td colspan="2">Spécialité</td>
-						</tr>
-						{% for entreprise in listeEntreprises %}
+					<table class="table table-striped table-custom">
+						<thead>
 							<tr>
-								<td>{{ entreprise.getId() }}</td>
-								<td>
-									<a href={{ path('infoEntreprise', { 'id': entreprise.getId() } ) }}>
-										{{ entreprise.getENTRS() }}</a>
-								</td>
-								<td>{{ entreprise.getENTADRESSE() }}
-									<br/>
-									{{ entreprise.getENTCP() }}
-									{{ entreprise.getENTVILLE() }}</td>
-								<td>{{ entreprise.getENTPAYS() }}</td>
-								<td>
-									{% for personne in entreprise.getSpecialites() %}
-										{{ personne.getSPELIBELLE() }} /
-									{% endfor %}
-								</td>
-
-								{% if admin %}
-									<td>
-										<a href={{ path('supprimerEntreprise', { 'id': entreprise.getId() }) }}>X</a> 
-									</td>
-								{% endif %}
+								<td class="tdheader">ID</td>
+								<td>Raison Sociale</td>
+								<td>Adresse</td>
+								<td>Pays</td>
+								<td colspan="2">Spécialité</td>
 							</tr>
-						{% endfor %}
+						</thead>
+						<tbody>
+							{% for entreprise in listeEntreprises %}
+								<tr>
+									<td>{{ entreprise.getId() }}</td>
+									<td>
+										<a href={{ path('infoEntreprise', { 'id': entreprise.getId() } ) }}>
+											{{ entreprise.getENTRS() }}</a>
+									</td>
+									<td>{{ entreprise.getENTADRESSE() }}
+										<br/>
+										{{ entreprise.getENTCP() }}
+										{{ entreprise.getENTVILLE() }}</td>
+									<td>{{ entreprise.getENTPAYS() }}</td>
+									<td>
+										{% for personne in entreprise.getSpecialites() %}
+											{{ personne.getSPELIBELLE() }} /
+										{% endfor %}
+									</td>
+
+									{% if admin %}
+										<td>
+											<a href={{ path('supprimerEntreprise', { 'id': entreprise.getId() }) }}>X</a> 
+										</td>
+									{% endif %}
+								</tr>
+							{% endfor %}
+						</tbody>
 					</table>
 				</div>
 				<div id="sidebar" class="col-2">
-					<div class="banner filtreDiv">
+					<div class="toolBox">
 						<div class="form">
-							<h1 class="filtreTexte"> Rechercher par filtres : </h1>
+							<h1 class="custom-text"> Rechercher par filtres : </h1>
 							<br/>
 							{{form(formFiltre)}}
 						</div>
 					</div>
 					
 					{% if admin %}
-						<div class="banner creationDiv">
+						<div class="toolBox">
 							<div class="form">
-								<h1 class="creationTexte">Création d'une entreprise : </h1>  
+								<h1 class="custom-text">Création d'une entreprise : </h1>  
 								<br/>
 								{{form(formNouveau)}}
 							</div>
