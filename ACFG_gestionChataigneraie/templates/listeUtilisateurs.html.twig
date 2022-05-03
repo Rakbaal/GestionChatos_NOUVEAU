@@ -2,40 +2,55 @@
 <html>
     <head>
         <title>Liste Utilisateurs</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+		<link rel="stylesheet" href="/css/EntreprisePersonneUtilisateur.css">
         <meta charset="UTF-8">
     </head>
     <body>
         {{include('navbar.html.twig')}}
-        <div>
-            <table>
-                <tr>
-                    <td>ID</td>
-                    <td>Login</td>
-                    <td>Accès</td>
-                </tr>
-                {% for Utilisateurs in listeUtilisateur %}
-                    <tr>
-                        <td>{{ Utilisateurs.getId() }}</td>
-                        <td> {{ Utilisateurs.getUTILOGIN() }}</td>
-                        <td>            
-                            {% if Utilisateurs.getUTIADMIN %}
-                                Administrateur
-                            {% else %}
-                                Enseignant
-                            {% endif %}
-                        </td>
-                        <td>
-                        <a href={{ path('supprimerUtilisateur', { 'id': Utilisateurs.getId() }) }}>X</a> 
-                        </td>
-                        <td>
-                        <a href={{ path('modifierUtilisateur', { 'id': Utilisateurs.getId() }) }}>Modifier</a> 
-                        </td>
-                    </tr>
-                {% endfor %}
-            </table>
+        <div class="container-fluid">
+            <div class="row">
+				<div id="main" class="col-10">
+                    <table class="table table-striped">
+                        <tr>
+                            <td>ID</td>
+                            <td>Login</td>
+                            <td colspan="3">Accès</td>
+                        </tr>
+                        {% for Utilisateurs in listeUtilisateur %}
+                            <tr>
+                                <td>{{ Utilisateurs.getId() }}</td>
+                                <td> {{ Utilisateurs.getUTILOGIN() }}</td>
+                                <td>            
+                                    {% if Utilisateurs.getUTIADMIN %}
+                                        Administrateur
+                                    {% else %}
+                                        Enseignant
+                                    {% endif %}
+                                </td>
+                                <td>
+                                <a href={{ path('supprimerUtilisateur', { 'id': Utilisateurs.getId() }) }}>X</a> 
+                                </td>
+                                <td>
+                                <a href={{ path('modifierUtilisateur', { 'id': Utilisateurs.getId() }) }}>Modifier</a> 
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            
+                <div id="sidebar" class="col-2">
+					<div class="banner filtreDiv">
+                        {% if admin %}
+                            <div class="form">
+                                <h1 class="creationTexte">Ajouter un utilisateur :</h1>
+                                <br/>
+                                {{ form(form) }}
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
         </div>
-
-        <h1>Ajouter un utilisateur</h1>
-        {{ form(form) }}
     </body>
 </html>

@@ -1,72 +1,80 @@
-{{include('navbar.html.twig')}}
-<div class="tableau" style="width:75%; border: 1px solid black;">
-    <table>
-        <tr>
-            <td style="width: 30px; border: 1px solid black;">ID</td>
-            <td style="width: 200px; border: 1px solid black;">Nom Prenom</td>
-            <td style="width: 150px; border: 1px solid black;">Mail</td>
-            <td style="width: 150px; border: 1px solid black;">Telephone</td>
-            <td style="width: 150px; border: 1px solid black;">Telephone professionnel</td>
-            <td style="width: 150px; border: 1px solid black;">Entreprise</td>
-            <td style="width: 150px; border: 1px solid black;">Profil</td>
-            <td style="width: 150px; border: 1px solid black;">Fonction</td>
-        </tr>
-        {% for personne in listePersonne %}
-        <tr>
-            <td style="width: 30px; border: 1px solid black; ">
-                <a style="text-decoration : none; color: black;">
-                    {{ personne.getId() }} 
-                </a>
-            </td>
-            <td style="width: 200px; border: 1px solid black; text-decoration : none; color: black;">
-                <a style="text-decoration : none; color: black;" href={{ path('modifierPersonne', { 'id': personne.getId() }) }}> {{ personne.getPERNOM() }}, {{ personne.getPERPRENOM() }} </a></td>
-                    
-                </a>
-            </td>
-            <td style="width: 250px; border: 1px solid black; text-decoration : none; color: black;">
-                <a style="text-decoration : none; color: black;"> 
-                    {{ personne.getPERMAIL() }}
-                </a>
-            </td>
-            <td style="width: 250px; border: 1px solid black; text-decoration : none; color: black;">
-                <a style="text-decoration : none; color: black;"> 
-                    {{ personne.getPERTELPERSO() }}
-                </a>
-            </td>
-            <td style="width: 250px; border: 1px solid black; text-decoration : none; color: black;">
-                <a style="text-decoration : none; color: black;"> 
-                    {{ personne.getPERTELPRO() }}
-                </a>
-            </td>
-            <td style="width: 250px; border: 1px solid black; text-decoration : none; color: black;">
-                {% for entreprise in personne.getEntreprises() %}
-                    <a style="text-decoration : underline; color: blue;" href={{ path('infoEntreprise', {'id': entreprise.id }) }}> 
-                        {{ entreprise.getENTRS() }}                                    
-                    </a>
-                {% endfor %}
-            </td>
-            <td style="width: 250px; border: 1px solid black; text-decoration : none; color: black;">
-                <a style="text-decoration : none; color: black;"> 
-                    {% for Profil in personne.getProfils() %}
-                        {{ Profil.getPROTYPE() }}
-                    {% endfor %}
-                </a>
-            </td>
-            <td style="width: 250px; border: 1px solid black; text-decoration : none; color: black;">
-                <a style="text-decoration : none; color: black;"> 
-                    {% for Fonction in personne.getFonctions() %}
-                        {{ Fonction.getFONLIBELLE() }}
-                    {% endfor %}
-                </a>
-            </td>
-            <td>
-                <a href={{ path('supprimerPersonne', { 'id': personne.getId() }) }}>X</a> 
-            </td>
-            </tr>
-        {% endfor %}
-    </table>
-</div>
-
-<h1>Ajouter une personne</h1>
-
-{{ form(form) }}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Liste Personnes</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+		<link rel="stylesheet" href="/css/EntreprisePersonneUtilisateur.css">
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        {{include('navbar.html.twig')}}
+        <div class="container-fluid">
+			<div class="row">
+                {% if admin %}
+                    <div id="main" class="col-10">      
+                {% else %}
+                    <div id="main" class="col-12">        
+                {% endif %}
+                        <table class="table table-striped">
+                            <tr>
+                                <td>ID</td>
+                                <td>Nom Prenom</td>
+                                <td>Mail</td>
+                                <td>Telephone perso.</td>
+                                <td>Telephone pro.</td>
+                                <td>Entreprise</td>
+                                <td>Profil</td>
+                                <td colspan="2">Fonction</td>
+                            </tr>
+                            {% for personne in listePersonne %}
+                            <tr>
+                                <td>
+                                    <a>
+                                        {{ personne.getId() }} 
+                                    </a>
+                                </td>
+                                <td>{{ personne.getPERNOM() }} {{ personne.getPERPRENOM() }}</td>
+                                <td>{{ personne.getPERMAIL() }}</td>
+                                <td>{{ personne.getPERTELPERSO() }}</td>
+                                <td>{{ personne.getPERTELPRO() }}</td>
+                                <td>
+                                    {% for entreprise in personne.getEntreprises() %}
+                                        <a href={{ path('infoEntreprise', {'id': entreprise.id }) }}> 
+                                            {{ entreprise.getENTRS() }}                                    
+                                        </a>
+                                    {% endfor %}
+                                </td>
+                                <td>
+                                    {% for Profil in personne.getProfils() %}
+                                        {{ Profil.getPROTYPE() }}
+                                    {% endfor %}
+                                </td>
+                                <td>
+                                    {% for Fonction in personne.getFonctions() %}
+                                        {{ Fonction.getFONLIBELLE() }}
+                                    {% endfor %}
+                                </td>
+                                {% if admin %}
+                                    <td>
+                                        <a href={{ path('supprimerPersonne', { 'id': personne.getId() }) }}>X</a> 
+                                    </td>
+                                {% endif %}
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+            
+                    {% if admin %}
+                        <div id="sidebar" class="col-2">
+                            <div class="banner filtreDiv">
+                                <div class="form">
+                                    <h1 class="creationTexte">Création d'une personne :</h1>
+                                    {{form(form)}}
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+            </div>
+        </div> 
+    </body>
+</html>
