@@ -10,8 +10,8 @@ use Symfony\Component\Form\FormBuilderInterface;
 class loginType extends AbstractType {
     function buildForm(FormBuilderInterface $builder, array $options){
         $builder
-        ->add('UTI_LOGIN', TextType :: class, ['label' => 'Login :'])
-        ->add('UTI_MDP', PasswordType :: class, ['label' => 'Mot de passe :'])
+        ->add('UTI_LOGIN', TextType :: class, ['label' => 'Login'])
+        ->add('UTI_MDP', PasswordType :: class, ['label' => 'Mot de passe'])
         ->add('connexion', SubmitType :: class);
     }
 }

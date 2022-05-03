@@ -31,6 +31,7 @@ class loginController extends AbstractController {
             $encoded = hash('sha256', $data->getUTIMDP());
             $entityManager = $doctrine->getManager();
             $exist = $entityManager->getRepository(Utilisateur :: class)->findOneBy(['UTI_LOGIN' => $data->getUTILOGIN(), 'UTI_MDP' => $encoded]) != null;
+            
             if ($exist) {
                 $loginState = true;
                 $utilisateur = $entityManager->getRepository(Utilisateur :: class)->findOneBy(['UTI_LOGIN' => $data->getUTILOGIN(), 'UTI_MDP' => $encoded]);
