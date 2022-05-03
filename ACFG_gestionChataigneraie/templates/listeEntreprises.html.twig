@@ -17,7 +17,7 @@
 					<table class="table table-striped table-custom">
 						<thead>
 							<tr>
-								<td class="tdheader">ID</td>
+								<td>ID</td>
 								<td>Raison Sociale</td>
 								<td>Adresse</td>
 								<td>Pays</td>
@@ -29,7 +29,7 @@
 								<tr>
 									<td>{{ entreprise.getId() }}</td>
 									<td>
-										<a href={{ path('infoEntreprise', { 'id': entreprise.getId() } ) }}>
+										<a class="link-custom" href={{ path('infoEntreprise', { 'id': entreprise.getId() } ) }}>
 											{{ entreprise.getENTRS() }}</a>
 									</td>
 									<td>{{ entreprise.getENTADRESSE() }}
@@ -45,7 +45,7 @@
 
 									{% if admin %}
 										<td>
-											<a href={{ path('supprimerEntreprise', { 'id': entreprise.getId() }) }}>X</a> 
+											<a class="erreur" href={{ path('supprimerEntreprise', { 'id': entreprise.getId() }) }}>X</a> 
 										</td>
 									{% endif %}
 								</tr>
