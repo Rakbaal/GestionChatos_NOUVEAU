@@ -56,6 +56,11 @@ html {
     border: 3px solid;
 }
 
+.table-custom > thead > tr {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
 .table-custom > thead > tr > td{
     border-color: #878792;
     border-left-style: dotted;
@@ -77,4 +82,14 @@ html {
 .link-custom:hover {
     color: #059ba1;
     font-weight: bold;
+}
+
+.ul-custom {
+    list-style: none;
+    font-size: large;
+}
+
+.larger {
+    font-size: 30px;
+    text-decoration: underline;
 }

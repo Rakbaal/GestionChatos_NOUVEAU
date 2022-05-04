@@ -8,7 +8,9 @@
 
     <body class="body">
         {{include('navbar.html.twig')}}
-        <h1>Modification {{titre}}</h1>
-        {{form(form)}}
+        <h1 class="custom-text isolated">Modification {{titre}}</h1>
+        <div class="form isolated">
+            {{form(form)}}
+        </div>
     </body>
 </html>
