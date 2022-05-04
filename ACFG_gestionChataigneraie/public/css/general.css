@@ -47,8 +47,7 @@ html {
 }
 
 .isolated {
-    margin-top: 1%;
-    margin-left: 1%;
+    margin: 1%;
 }
 
 .table-custom > thead {

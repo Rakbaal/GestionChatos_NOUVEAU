@@ -13,12 +13,14 @@
         <div class="container-fluid">
             <div class="row">
 				<div id="main" class="col-10">
-                    <table class="table table-striped">
-                        <tr>
-                            <td>ID</td>
-                            <td>Login</td>
-                            <td colspan="3">Accès</td>
-                        </tr>
+                    <table class="table table-striped table-custom isolated">
+                        <thead>
+                            <tr>
+                                <td>ID</td>
+                                <td>Login</td>
+                                <td colspan="3">Accès</td>
+                            </tr>
+                        </thead>
                         {% for Utilisateurs in listeUtilisateur %}
                             <tr>
                                 <td>{{ Utilisateurs.getId() }}</td>
@@ -31,10 +33,10 @@
                                     {% endif %}
                                 </td>
                                 <td>
-                                <a href={{ path('supprimerUtilisateur', { 'id': Utilisateurs.getId() }) }}>X</a> 
+                                <a class="erreur" href={{ path('supprimerUtilisateur', { 'id': Utilisateurs.getId() }) }}>X</a> 
                                 </td>
                                 <td>
-                                <a href={{ path('modifierUtilisateur', { 'id': Utilisateurs.getId() }) }}>Modifier</a> 
+                                <a class="link-custom" href={{ path('modifierUtilisateur', { 'id': Utilisateurs.getId() }) }}>Modifier</a> 
                                 </td>
                             </tr>
                         {% endfor %}
@@ -42,10 +44,10 @@
                 </div>
             
                 <div id="sidebar" class="col-2">
-					<div class="banner filtreDiv">
+					<div class="toolBox">
                         {% if admin %}
                             <div class="form">
-                                <h1 class="creationTexte">Ajouter un utilisateur :</h1>
+                                <h1 class="custom-text">Ajouter un utilisateur :</h1>
                                 <br/>
                                 {{ form(form) }}
                             </div>
