@@ -58,7 +58,24 @@
 						<div class="form">
 							<h1 class="custom-text"> Rechercher par filtres : </h1>
 							<br/>
-							{{form(formFiltre)}}
+							{{form_start(formFiltre)}}
+								{{form_label(formFiltre.ENT_RS)}}
+								<br/>
+								{{form_widget(formFiltre.ENT_RS)}}
+								<br/>
+								<br/>
+								{{form_label(formFiltre.ENT_VILLE)}}
+								<br/>
+								{{form_widget(formFiltre.ENT_VILLE)}}
+								<br/>
+								<br/>
+								{{form_label(formFiltre.ENT_PAYS)}}
+								<br/>
+								{{form_widget(formFiltre.ENT_PAYS)}}
+								<br/>
+								<br/>
+								{{form_widget(formFiltre.Rechercher)}}
+							{{form_end(formFiltre)}}
 						</div>
 					</div>
 					
@@ -67,7 +84,39 @@
 							<div class="form">
 								<h1 class="custom-text">Création d'une entreprise : </h1>  
 								<br/>
-								{{form(formNouveau)}}
+								{{form_start(formNouveau)}}
+									{{form_label(formNouveau.ENT_RS)}}
+									<br/>
+									{{form_widget(formNouveau.ENT_RS)}}
+									<br/>
+									<br/>
+									{{form_label(formNouveau.ENT_ADRESSE)}}
+									<br/>
+									{{form_widget(formNouveau.ENT_ADRESSE)}}
+									<br/>
+									<br/>
+									{{form_label(formNouveau.ENT_CP)}}
+									<br/>
+									{{form_widget(formNouveau.ENT_CP)}}
+									<br/>
+									<br/>
+									{{form_label(formNouveau.ENT_VILLE)}}
+									<br/>
+									{{form_widget(formNouveau.ENT_VILLE)}}
+									<br/>
+									<br/>
+									{{form_label(formNouveau.ENT_PAYS)}}
+									<br/>
+									{{form_widget(formNouveau.ENT_PAYS)}}
+									<br/>
+									<br/>
+									{{form_label(formNouveau.specialites)}}
+									<br/>
+									{{form_widget(formNouveau.specialites)}}
+									<br/>
+									{{form_widget(formNouveau.envoyer)}}
+								{{form_end(formNouveau)}}
+
 							</div>
 						</div>
 						<br/>
@@ -77,5 +126,4 @@
 		</div>
 	</body>
 </html>
-
 
