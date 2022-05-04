@@ -40,6 +40,7 @@ html {
     border: solid #1e1a15;
     margin-top: 30px;
     padding: 3%;
+    overflow: hidden;
 }
 
 .custom-text {
