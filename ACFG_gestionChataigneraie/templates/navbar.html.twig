@@ -2,25 +2,25 @@
 <link rel="stylesheet" href="/css/navbar.css"/>
 <nav class="navbar navbar-custom navbar-expand-lg">
   <div class="container-fluid">
-    <a class="navbar-brand" href={{path("Accueil")}}><img src="/Logo-Brand.png"/></a>
+    <a class="navbar-brand" href={{path("Accueil")}}><img src="/Logo-BrandNoBackground.png"/></a>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link nav-link-custom active" aria-current="page" href={{path("Accueil")}}>Accueil</a>
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+        <li class="nav-item ">
+          <a class="nav-link nav-link-custom active " aria-current="page" href={{path("Accueil")}}>Accueil</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link nav-link-custom active" aria-current="page" href={{path("listeEntreprises")}}>Entreprises</a>
+        <li class="nav-item ">
+          <a class="nav-link nav-link-custom active " aria-current="page" href={{path("listeEntreprises")}}>Entreprises</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link nav-link-custom active" aria-current="page" href={{path("listePersonnes")}}>Personnes</a>
+        <li class="nav-item ">
+          <a class="nav-link nav-link-custom active " aria-current="page" href={{path("listePersonnes")}}>Personnes</a>
         </li>
         {% if admin %}
-            <li class="nav-item">
-            <a class="nav-link nav-link-custom active" aria-current="page" href={{path("listeUtilisateurs")}}>Utilisateurs</a>
+            <li class="nav-item ">
+            <a class="nav-link nav-link-custom active " aria-current="page" href={{path("listeUtilisateurs")}}>Utilisateurs</a>
             </li>
         {% endif %}
-        <li class="nav-item">
-          <a class="nav-link nav-link-custom active" aria-current="page" href={{path("Deconnexion")}}>Se déconnecter</a>
+        <li class="nav-item ">
+          <a class="nav-link nav-link-custom active " aria-current="page" href={{path("Deconnexion")}}>Se déconnecter</a>
         </li>
     </div>
   </div>
