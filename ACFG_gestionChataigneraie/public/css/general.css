@@ -95,3 +95,15 @@ html {
     text-decoration: underline;
     transition: background-color 2s ease-out 100ms;
 }
+
+.brand-custom {
+    background-color: #f0f2f4;
+    border-radius: 5px;
+    padding: 4px;
+}
+
+.brand-custom-rounder {
+    background-color: #f0f2f4;
+    border-radius: 10px;
+    padding: 4px;
+}

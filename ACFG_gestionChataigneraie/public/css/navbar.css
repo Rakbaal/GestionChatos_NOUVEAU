@@ -11,12 +11,6 @@
 }
 
 
-.navbar-custom {
-    color: #0c0c0e;
-    background-color: #323237;
-    font-weight: bold;
-}
-
 * {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -105,6 +99,13 @@ body {
 body {
     font-family: sans-serif;
 }
+
+.navbar-custom {
+    color: #0c0c0e;
+    background-color: #323237;
+    font-weight: bold;
+}
+
 ul {
     position: absolute;
     top: 58%;
