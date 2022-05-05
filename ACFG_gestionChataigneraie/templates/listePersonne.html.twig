@@ -37,7 +37,7 @@
                                             {{ personne.getId() }} 
                                         </a>
                                     </td>
-                                    <td><a class="link-custom" href={{ path('modifierPersonne', { 'id': personne.getId() }) }}>{{ personne.getPERNOM() }} {{ personne.getPERPRENOM() }}</a></td>
+                                    <td><a class="link-custom" id="link" href={{ path('modifierPersonne', { 'id': personne.getId() }) }}>{{ personne.getPERNOM() }} {{ personne.getPERPRENOM() }}</a></td>
                                     <td>{{ personne.getPERMAIL() }}</td>
                                     <td>{{ personne.getPERTELPERSO() }}</td>
                                     <td>{{ personne.getPERTELPRO() }}</td>

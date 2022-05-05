@@ -106,22 +106,28 @@ body {
     font-weight: bold;
 }
 
-ul {
+#deconnexion {
+    width: 210px;
+}
+
+#navbarSupportedContent ul {
     position: absolute;
     top: 58%;
-    left: 40em;
+    left: 45em;
     transform: translate(-50%, -50%);
     display: flex;
 }
-ul li {
+#navbarSupportedContent ul li {
     list-style: none;
     margin-right: 10px;
 }
-ul li a {
+
+#navbarSupportedContent ul li a {
     position: relative;
     display: block;
     text-transform: uppercase;
     margin: 20px 0;
+    margin-top: 0.45em;
     padding: 10px 20px;
     text-decoration: none;
     color: #666666;
@@ -131,7 +137,7 @@ ul li a {
     transition: 0.5s;
     z-index: 1;
 }
-ul li a:before {
+#navbarSupportedContent ul li a:before {
     content: '';
     position: absolute;
     top: 0;
@@ -144,7 +150,7 @@ ul li a:before {
     opacity: 0;
     transition: 0.3s;
 }
-ul li a:after {
+#navbarSupportedContent ul li a:after {
     content: '';
     position: absolute;
     top: 2px;
@@ -157,14 +163,14 @@ ul li a:after {
     transition: 0.3s;
     z-index: -1;
 }
-ul li a:hover {
+#navbarSupportedContent ul li a:hover {
     color: #fff;
 }
-ul li a:hover:before {
+#navbarSupportedContent ul li a:hover:before {
     transform: scaleY(1);
     opacity: 1;
 }
-ul li a:hover:after {
+#navbarSupportedContent ul li a:hover:after {
     transform: scaleY(1);
     opacity: 1;
 }
