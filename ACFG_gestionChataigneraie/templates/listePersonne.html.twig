@@ -43,7 +43,7 @@
                                     <td>{{ personne.getPERTELPRO() }}</td>
                                     <td>
                                         {% for entreprise in personne.getEntreprises() %}
-                                            <a class="link-custom" href={{ path('infoEntreprise', {'id': entreprise.id }) }}> 
+                                            <a class="link-custom" id="link" href={{ path('infoEntreprise', {'id': entreprise.id }) }}> 
                                                 {{ entreprise.getENTRS() }}                                    
                                             </a>
                                         {% endfor %}

@@ -29,7 +29,7 @@
 								<tr>
 									<td>{{ entreprise.getId() }}</td>
 									<td>
-										<a class="link-custom" href={{ path('infoEntreprise', { 'id': entreprise.getId() } ) }}>
+										<a class="link-custom" id="link" href={{ path('infoEntreprise', { 'id': entreprise.getId() } ) }}>
 											{{ entreprise.getENTRS() }}</a>
 									</td>
 									<td>{{ entreprise.getENTADRESSE() }}

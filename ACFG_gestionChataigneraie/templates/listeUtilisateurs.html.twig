@@ -36,7 +36,7 @@
                                 <a class="erreur" href={{ path('supprimerUtilisateur', { 'id': Utilisateurs.getId() }) }}>X</a> 
                                 </td>
                                 <td>
-                                <a class="link-custom" href={{ path('modifierUtilisateur', { 'id': Utilisateurs.getId() }) }}>Modifier</a> 
+                                <a id="link" href={{ path('modifierUtilisateur', { 'id': Utilisateurs.getId() }) }}>Modifier</a> 
                                 </td>
                             </tr>
                         {% endfor %}
