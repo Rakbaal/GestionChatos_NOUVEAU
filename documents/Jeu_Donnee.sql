@@ -1,22 +1,3 @@
--- INSERTION PERSONNE
-
-INSERT INTO personne (per_nom, per_prenom, per_mail, per_tel_perso) VALUES ('Seité', 'Alexandre', 'aseite@digiworks.fr', '0278770260');
-INSERT INTO personne (per_nom, per_mail, per_tel_perso) VALUES ('Leuleu', 'l.leuleu@agevol.fr', '0332181832');
-INSERT INTO personne (per_nom, per_prenom, per_mail) VALUES ('Soumillon', 'loïc', 'l.soumillon@dreux-agglomeration.fr');
-INSERT INTO personne (per_nom, per_prenom, per_mail) VALUES ('Barré', 'Stéphane', 's.barre@agisoft-e.fr');
-INSERT INTO personne (per_nom, per_prenom, per_mail) VALUES ('Loïc', 'Soumillon', 'l.soumillon@dreux-agglomeration.fr');
-INSERT INTO personne (per_nom, per_prenom, per_mail, per_tel_perso) VALUES ('Ronan', 'Pensec', 'ronan.pensec@alstomgroup.com','0760901598');
-INSERT INTO personne (per_prenom,per_nom, per_mail, per_tel_perso, per_tel_pro) VALUES ('Christophe', 'Delmas', 'christophe.delmas@alta-soft.com', '0972307020', '0972307020');
-INSERT INTO personne (per_prenom,per_nom, per_mail) VALUES ('Régis', 'Lepelletier', 'r.leppeletier@alternative-conseil.com');
-INSERT INTO personne (per_prenom,per_nom, per_mail) VALUES ('David', 'Avigni', 'david.avigni@ankapi.com');
-INSERT INTO personne (per_prenom,per_nom, per_mail, per_tel_perso) VALUES ('Jérémy', 'Bruneau', 'jeremy.bruneau@apave.com', '0778860116');
-INSERT INTO personne (per_prenom,per_nom, per_mail, per_tel_perso, per_tel_pro) VALUES ('Frédéric', 'Henry', 'f.henry-cs@attineos.com', '0652333636', '0235764739');
-INSERT INTO personne (per_prenom,per_nom, per_mail) VALUES ('David', 'Michel', 'david.michel@autoliv.com');
-INSERT INTO personne (per_prenom,per_nom, per_mail, per_tel_perso) VALUES ('Renan', 'Decamp', 'renan@bearstudio.fr', '0760391776');
-INSERT INTO personne (per_prenom,per_nom, per_mail, per_tel_perso) VALUES ('Aurélien', 'Andres', 'aurelien.andres@benteler.com', '0633562780');
-INSERT INTO personne (per_prenom,per_nom, per_mail, per_tel_perso) VALUES ('Antoine', 'Lepiller', 'alepiller@bimandco.com', '0763916210');
-INSERT INTO personne (per_prenom,per_nom, per_mail, per_tel_perso, per_tel_pro) VALUES ('Jean-Marc', 'Le Denmat', 'jean-marc.le-denmat@chb.unicancer.fr', '0232082209', '0232082958');
-
 -- INSERTION ENTREPRISE
 
 INSERT INTO ENTREPRISE (ent_rs, ent_adresse, ent_cp, ent_ville, ent_pays) VALUES ('ABC INFORMATIQUE', 'Zac Le Parc Allée des marettes', '80130', 'FRIVILLE', 'France');
@@ -36,24 +17,24 @@ INSERT INTO ENTREPRISE (ent_rs, ent_adresse, ent_cp, ent_ville, ent_pays) VALUES
 INSERT INTO ENTREPRISE (ent_rs, ent_adresse, ent_cp, ent_ville, ent_pays) VALUES ('BIM&CO', 'Parc Eco Normandie', '76430', 'Saint Romain de Colbosc', 'France');
 INSERT INTO ENTREPRISE (ent_rs, ent_adresse, ent_cp, ent_ville, ent_pays) VALUES ('Centre Henri-Becquerel', 'Rue d''Amiens', '76038', 'Rouen Cedex 1', 'France');
 
--- INSERTION ENTREPRISE PERSONNE
+-- INSERTION PERSONNE
 
-INSERT INTO entreprise_personne (entreprise_id, personne_id) VALUES ('1','1');
-INSERT INTO entreprise_personne (entreprise_id, personne_id) VALUES ('2','2');
-INSERT INTO entreprise_personne (entreprise_id, personne_id) VALUES ('3','3');
-INSERT INTO entreprise_personne (entreprise_id, personne_id) VALUES ('4','4');
-INSERT INTO entreprise_personne (entreprise_id, personne_id) VALUES ('5','5');
-INSERT INTO entreprise_personne (entreprise_id, personne_id) VALUES ('6','6');
-INSERT INTO entreprise_personne (entreprise_id, personne_id) VALUES ('7','7');
-INSERT INTO entreprise_personne (entreprise_id, personne_id) VALUES ('8','8');
-INSERT INTO entreprise_personne (entreprise_id, personne_id) VALUES ('9','9');
-INSERT INTO entreprise_personne (entreprise_id, personne_id) VALUES ('10','10');
-INSERT INTO entreprise_personne (entreprise_id, personne_id) VALUES ('11','11');
-INSERT INTO entreprise_personne (entreprise_id, personne_id) VALUES ('12','12');
-INSERT INTO entreprise_personne (entreprise_id, personne_id) VALUES ('13','13');
-INSERT INTO entreprise_personne (entreprise_id, personne_id) VALUES ('14','14');
-INSERT INTO entreprise_personne (entreprise_id, personne_id) VALUES ('15','15');
-INSERT INTO entreprise_personne (entreprise_id, personne_id) VALUES ('16','16');
+INSERT INTO personne (per_nom, per_prenom, per_mail, per_tel_perso, entreprise_id) VALUES ('Seité', 'Alexandre', 'aseite@digiworks.fr', '0278770260', '1');
+INSERT INTO personne (per_nom, per_mail, per_tel_perso, entreprise_id) VALUES ('Leuleu', 'l.leuleu@agevol.fr', '0332181832', '2');
+INSERT INTO personne (per_nom, per_prenom, per_mail, entreprise_id) VALUES ('Soumillon', 'loïc', 'l.soumillon@dreux-agglomeration.fr', '16');
+INSERT INTO personne (per_nom, per_prenom, per_mail, entreprise_id) VALUES ('Barré', 'Stéphane', 's.barre@agisoft-e.fr', '3');
+INSERT INTO personne (per_nom, per_prenom, per_mail, entreprise_id) VALUES ('Loïc', 'Soumillon', 'l.soumillon@dreux-agglomeration.fr', '4');
+INSERT INTO personne (per_nom, per_prenom, per_mail, per_tel_perso, entreprise_id) VALUES ('Ronan', 'Pensec', 'ronan.pensec@alstomgroup.com','0760901598', '5');
+INSERT INTO personne (per_prenom,per_nom, per_mail, per_tel_perso, per_tel_pro, entreprise_id) VALUES ('Christophe', 'Delmas', 'christophe.delmas@alta-soft.com', '0972307020', '0972307020', '6');
+INSERT INTO personne (per_prenom,per_nom, per_mail, entreprise_id) VALUES ('Régis', 'Lepelletier', 'r.leppeletier@alternative-conseil.com', '7');
+INSERT INTO personne (per_prenom,per_nom, per_mail, entreprise_id) VALUES ('David', 'Avigni', 'david.avigni@ankapi.com', '8');
+INSERT INTO personne (per_prenom,per_nom, per_mail, per_tel_perso, entreprise_id) VALUES ('Jérémy', 'Bruneau', 'jeremy.bruneau@apave.com', '0778860116', '9');
+INSERT INTO personne (per_prenom,per_nom, per_mail, per_tel_perso, per_tel_pro, entreprise_id) VALUES ('Frédéric', 'Henry', 'f.henry-cs@attineos.com', '0652333636', '0235764739', '10');
+INSERT INTO personne (per_prenom,per_nom, per_mail, entreprise_id) VALUES ('David', 'Michel', 'david.michel@autoliv.com', '11');
+INSERT INTO personne (per_prenom,per_nom, per_mail, per_tel_perso, entreprise_id) VALUES ('Renan', 'Decamp', 'renan@bearstudio.fr', '0760391776', '12');
+INSERT INTO personne (per_prenom,per_nom, per_mail, per_tel_perso, entreprise_id) VALUES ('Aurélien', 'Andres', 'aurelien.andres@benteler.com', '0633562780', '13');
+INSERT INTO personne (per_prenom,per_nom, per_mail, per_tel_perso, entreprise_id) VALUES ('Antoine', 'Lepiller', 'alepiller@bimandco.com', '0763916210', '14');
+INSERT INTO personne (per_prenom,per_nom, per_mail, per_tel_perso, per_tel_pro, entreprise_id) VALUES ('Jean-Marc', 'Le Denmat', 'jean-marc.le-denmat@chb.unicancer.fr', '0232082209', '0232082958', '15');
 
 -- INSERTION SPECIALITE
 
@@ -96,8 +77,16 @@ INSERT INTO profil (pro_type) VALUES ('Envoi de CV');
 
 -- INSERTION UTILISATEUR
 
-INSERT INTO utilisateur (uti_login,uti_mdp,uti_admin) VALUES ('tGarin','test',0);
-INSERT INTO utilisateur (uti_login,uti_mdp,uti_admin) VALUES ('pDelamare','1234',1);
+INSERT INTO utilisateur (uti_login,uti_mdp,uti_admin) VALUES ('tGarin','9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08',0);
+INSERT INTO utilisateur (uti_login,uti_mdp,uti_admin) VALUES ('pDelamare','03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4',1);
 
 -- INSERTION PERSONNE PROFIL
 
+INSERT INTO personne_profil (personne_id,profil_id) VALUES ('5','1');
+INSERT INTO personne_profil (personne_id,profil_id) VALUES ('1','2');
+INSERT INTO personne_profil (personne_id,profil_id) VALUES ('16','2');
+INSERT INTO personne_profil (personne_id,profil_id) VALUES ('10','2');
+INSERT INTO personne_profil (personne_id,profil_id) VALUES ('8','3');
+INSERT INTO personne_profil (personne_id,profil_id) VALUES ('2','3');
+INSERT INTO personne_profil (personne_id,profil_id) VALUES ('7','4');
+INSERT INTO personne_profil (personne_id,profil_id) VALUES ('11','4');

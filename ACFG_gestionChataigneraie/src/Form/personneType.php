@@ -25,10 +25,9 @@ class personneType extends AbstractType {
                 'label' => 'Téléphone pro :',
                 'required' => false
             ])
-        ->add('entreprises', EntityType::class, [
+        ->add('entreprise', EntityType::class, [
             'class' => Entreprise :: class,
             'choice_label' => 'ENT_RS',
-            'multiple' => true,
             'required' => false
             ])
         ->add('fonctions', EntityType::class, [

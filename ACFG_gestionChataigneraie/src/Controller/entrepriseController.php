@@ -8,6 +8,7 @@ use App\Entity\Entreprise;
 use App\Form\entrepriseType;
 use App\Form\entrepriseCompletType;
 use Doctrine\Persistence\ManagerRegistry;
+use App\Entity\Personne;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 

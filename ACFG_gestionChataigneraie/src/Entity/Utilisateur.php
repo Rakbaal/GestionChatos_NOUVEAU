@@ -16,7 +16,7 @@ class Utilisateur
     #[ORM\Column(type: 'string', length: 50)]
     private $UTI_LOGIN;
 
-    #[ORM\Column(type: 'string', length: 50)]
+    #[ORM\Column(type: 'string', length: 255)]
     private $UTI_MDP;
 
     #[ORM\Column(type: 'boolean')]

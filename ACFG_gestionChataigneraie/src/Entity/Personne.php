@@ -27,8 +27,9 @@ class Personne
     #[ORM\Column(type: 'string', length: 10, nullable: true)]
     private $PER_TEL_PERSO;
 
-    #[ORM\ManyToMany(targetEntity: Entreprise::class, mappedBy: 'personnes')]
-    private $entreprises;
+    #[ORM\ManyToOne(targetEntity: Entreprise::class)]
+    #[ORM\JoinColumn(nullable: true, onDelete:"SET NULL")]
+    private $entreprise;
 
     #[ORM\ManyToMany(targetEntity: Profil::class, inversedBy: 'personnes')]
     private $profils;
@@ -41,7 +42,6 @@ class Personne
 
     public function __construct()
     {
-        $this->entreprises = new ArrayCollection();
         $this->profils = new ArrayCollection();
         $this->fonctions = new ArrayCollection();
     }
@@ -99,29 +99,14 @@ class Personne
         return $this;
     }
 
-    /**
-     * @return Collection<int, Entreprise>
-     */
-    public function getEntreprises(): Collection
+    public function getEntreprise(): ?Entreprise
     {
-        return $this->entreprises;
+        return $this->entreprise;
     }
 
-    public function addEntreprise(Entreprise $entreprise): self
+    public function setEntreprise(?Entreprise $entreprise): self 
     {
-        if (!$this->entreprises->contains($entreprise)) {
-            $this->entreprises[] = $entreprise;
-            $entreprise->addPersonne($this);
-        }
-
-        return $this;
-    }
-
-    public function removeEntreprise(Entreprise $entreprise): self
-    {
-        if ($this->entreprises->removeElement($entreprise)) {
-            $entreprise->removePersonne($this);
-        }
+        $this->entreprise = $entreprise;
 
         return $this;
     }
