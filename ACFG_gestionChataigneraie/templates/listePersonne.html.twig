@@ -42,11 +42,10 @@
                                     <td>{{ personne.getPERTELPERSO() }}</td>
                                     <td>{{ personne.getPERTELPRO() }}</td>
                                     <td>
-                                        {% for entreprise in personne.getEntreprises() %}
-                                            <a class="link-custom" href={{ path('infoEntreprise', {'id': entreprise.id }) }}> 
-                                                {{ entreprise.getENTRS() }}                                    
-                                            </a>
-                                        {% endfor %}
+                                            {% set entreprise = personne.getEntreprise() %}
+                                            {% if entreprise != null %}
+                                                <a class="link-custom" href={{ path('infoEntreprise', {'id': entreprise.getId() }) }}> {{ entreprise.getENTRS() }}</a>
+                                            {% endif %}
                                     </td>
                                     <td>
                                         {% for Profil in personne.getProfils() %}
