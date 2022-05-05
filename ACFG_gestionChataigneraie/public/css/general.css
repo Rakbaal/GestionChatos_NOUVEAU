@@ -92,3 +92,15 @@ html {
     font-size: 30px;
     text-decoration: underline;
 }
+
+.brand-custom {
+    background-color: #f0f2f4;
+    border-radius: 5px;
+    padding: 4px;
+}
+
+.brand-custom-rounder {
+    background-color: #f0f2f4;
+    border-radius: 10px;
+    padding: 4px;
+}
