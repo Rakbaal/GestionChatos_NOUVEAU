@@ -77,7 +77,15 @@ html {
 
 .link-custom {
     color: #059ba1;
-    transition: background-color 4s ease-out 100ms
+    background-image: linear-gradient(to right, #059ba1, #059ba1 50%, #059ba1 50%);
+    background-size: 200% 100%;
+    background-position: -100%;
+    display: inline-block;
+    padding: 5px 0;
+    position: relative;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: all 0.2s ease-in-out;
 }
 
 .link-custom:hover {
@@ -109,18 +117,7 @@ html {
     padding: 4px;
 }
 
-#link {
-    background-image: linear-gradient(to right, #059ba1, #059ba1 50%, #059ba1 50%);
-    background-size: 200% 100%;
-    background-position: -100%;
-    display: inline-block;
-    padding: 5px 0;
-    position: relative;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    transition: all 0.2s ease-in-out;
-}
-#link:before {
+.link-custom:before {
     content: '';
     background: #059ba1;
     display: block;
@@ -131,10 +128,12 @@ html {
     height: 3px;
     transition: all 0.2s ease-in-out;
 }
-#link:hover {
+
+.link_custom:hover {
     background-position: 0;
 }
-#link:hover::before {
+
+.link-custom:hover::before {
     width: 100%;
 }
 

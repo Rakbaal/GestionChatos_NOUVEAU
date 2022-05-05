@@ -5,6 +5,7 @@
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 		<meta charset="UTF-8">
 		<link rel="stylesheet" href="/css/general.css"/>
+		<script type="text/javascript" src="/js/confirmation.js"></script>
 	</head>
 
 	<body class="body">
@@ -28,7 +29,7 @@
 								<tr>
 									<td>{{ entreprise.getId() }}</td>
 									<td>
-										<a class="link-custom" id="link" href={{ path('infoEntreprise', { 'id': entreprise.getId() } ) }}>
+										<a class="link-custom" href={{ path('infoEntreprise', { 'id': entreprise.getId() } ) }}>
 											{{ entreprise.getENTRS() }}</a>
 									</td>
 									<td>{{ entreprise.getENTADRESSE() }}
@@ -44,7 +45,8 @@
 
 									{% if admin %}
 										<td>
-											<a class="erreur" href={{ path('supprimerEntreprise', { 'id': entreprise.getId() }) }}>X</a> 
+											{% set id = entreprise.getId() %}
+											<a class="erreur" href="#" onclick={{"confirmDeleteEntreprise(#{id})"}}>X</a> 
 										</td>
 									{% endif %}
 								</tr>

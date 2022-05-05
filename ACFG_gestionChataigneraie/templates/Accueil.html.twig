@@ -9,7 +9,13 @@
     <body class="body">
         {{include('navbar.html.twig')}}
         <div class="jumbotron">
-            <h1>Bienvenue <b>{{login}}</b></h1>
+            <h1>Bienvenue <b>{{login}},</b>
+            {% if admin %}
+                vous êtes connecté au back-office.
+            {% else %}
+                vous êtes connecté au front-office.
+            {% endif %}
+            </h1>
         </div>
     </body>
 </html>

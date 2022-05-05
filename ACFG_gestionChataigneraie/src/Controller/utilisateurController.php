@@ -47,7 +47,7 @@ class utilisateurController extends AbstractController {
     }
 
     /**
-     * @Route("supprimerutilisateur/{id}", name="supprimerUtilisateur")
+     * @Route("supprimerUtilisateur/{id}", name="supprimerUtilisateur")
      */
     public function SupprimerAnnonce(ManagerRegistry $doctrine, $id, Request $request) : Response {
         if ($request->getSession()->get('admin')) {
