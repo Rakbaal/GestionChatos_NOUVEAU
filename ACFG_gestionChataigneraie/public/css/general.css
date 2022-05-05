@@ -40,6 +40,7 @@ html {
     border: solid #1e1a15;
     margin-top: 30px;
     padding: 3%;
+    overflow: hidden;
 }
 
 .custom-text {
@@ -76,6 +77,7 @@ html {
 
 .link-custom {
     color: #059ba1;
+    transition: background-color 4s ease-out 100ms
 }
 
 .link-custom:hover {
@@ -91,4 +93,5 @@ html {
 .larger {
     font-size: 30px;
     text-decoration: underline;
+    transition: background-color 2s ease-out 100ms;
 }
