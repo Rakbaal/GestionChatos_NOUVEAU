@@ -74,7 +74,48 @@
                             <div class="toolBox">
                                 <div class="form">
                                     <h1 class="custom-text">Création d'une personne :</h1>
-                                    {{form(form)}}
+                                    {{form_start(formPersonne)}}
+                                        {{form_label(formPersonne.PER_NOM)}}
+                                        <br/>
+                                        {{form_widget(formPersonne.PER_NOM)}}
+                                        <br/>
+                                        <br/>
+                                        {{form_label(formPersonne.PER_PRENOM)}}
+                                        <br/>
+                                        {{form_widget(formPersonne.PER_PRENOM)}}
+                                        <br/>
+                                        <br/>
+                                        {{form_label(formPersonne.PER_MAIL)}}
+                                        <br/>
+                                        {{form_widget(formPersonne.PER_MAIL)}}
+                                        <br/>
+                                        <br/>
+                                        {{form_label(formPersonne.PER_TEL_PERSO)}}
+                                        <br/>
+                                        {{form_widget(formPersonne.PER_TEL_PERSO, {'attr': {'class' : 'formNouveau' , 'maxlength' : '10'}} ) }}
+                                        <br/>
+                                        <br/>
+                                        {{form_label(formPersonne.PER_TEL_PRO)}}
+                                        <br/>
+                                        {{form_widget(formPersonne.PER_TEL_PRO, {'attr': {'class' : 'formNouveau' , 'maxlength' : '10'}} ) }}
+                                        <br/>
+                                        <br/>
+                                        {{form_label(formPersonne.profils)}}
+                                        <br/>
+                                        {{form_widget(formPersonne.profils)}}
+                                        <br/>
+                                        <br/>
+                                        {{form_label(formPersonne.fonctions)}}
+                                        <br/>
+                                        {{form_widget(formPersonne.fonctions)}}
+                                        <br/>
+                                        {{form_label(formPersonne.entreprise)}}
+                                        <br/>
+                                        {{form_widget(formPersonne.entreprise)}}
+                                        <br/>
+                                        <br/>
+                                        {{form_widget(formPersonne.envoyer)}}
+                                    {{form_end(formPersonne)}}
                                 </div>
                             </div>
                         </div>

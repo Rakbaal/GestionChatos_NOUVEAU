@@ -36,7 +36,7 @@ class personneController extends AbstractController {
             return $this->render('listePersonne.html.twig', [
                 'listePersonne' => $listePersonne,
                 'admin' => $session->get('admin'),
-                'form' => $form -> createView()
+                'formPersonne' => $form -> createView()
             ]);
         } else {
             return $this->render("erreurAcces.html.twig");
