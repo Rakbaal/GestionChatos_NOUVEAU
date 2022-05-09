@@ -1,0 +1,139 @@
+* {
+    color: #0c0c0e;
+}
+
+html {
+    background-color: #e9ecef;
+}
+
+.body {
+    background-color: #e9ecef;
+}
+
+.banner {
+    background-color: #242428;;
+}
+
+.jumbotron {
+    background-color: #e9ecef;
+}
+
+#loginBox {
+    background-color: #EFECE9;
+    margin-top: 2%;
+    border: solid #1e1a15;
+}
+
+.erreur:hover {
+    color: #b0251a;
+    text-decoration: none;
+}
+
+.erreur {
+    color: #b0251a;
+    font-weight: bold;
+}
+
+.toolBox {
+    background-color: #EFECE9;
+    border-radius: 5px;
+    border: solid #1e1a15;
+    margin-top: 30px;
+    padding: 3%;
+    overflow: hidden;
+}
+
+.custom-text {
+    font-size: 19px;
+}
+
+.isolated {
+    margin: 1%;
+}
+
+.table-custom > thead {
+    border-color: #1e1a15;
+    border: 3px solid;
+}
+
+.table-custom > thead > tr {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.table-custom > thead > tr > td{
+    border-color: #878792;
+    border-left-style: dotted;
+    text-transform: uppercase;
+    font-weight: bold;
+    background-color: #6d6d78;
+}
+
+.table-custom > tbody > tr > td {
+    border-color: #c9c9cf;
+    border-left-style: dotted;
+    border-right-style: dotted;
+}
+
+.link-custom {
+    color: #059ba1;
+    background-image: linear-gradient(to right, #059ba1, #059ba1 50%, #059ba1 50%);
+    background-size: 200% 100%;
+    background-position: -100%;
+    display: inline-block;
+    padding: 5px 0;
+    position: relative;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: all 0.2s ease-in-out;
+}
+
+.link-custom:hover {
+    color: #059ba1;
+    font-weight: normal;
+    transition: background-color 2s ease-out 100ms
+}
+
+.ul-custom {
+    list-style: none;
+    font-size: large;
+}
+
+.larger {
+    font-size: 30px;
+    text-decoration: underline;
+    transition: background-color 2s ease-out 100ms;
+}
+
+.brand-custom {
+    background-color: #f0f2f4;
+    border-radius: 5px;
+    padding: 4px;
+}
+
+.brand-custom-rounder {
+    background-color: #f0f2f4;
+    border-radius: 10px;
+    padding: 4px;
+}
+
+.link-custom:before {
+    content: '';
+    background: #059ba1;
+    display: block;
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 0;
+    height: 3px;
+    transition: all 0.2s ease-in-out;
+}
+
+.link_custom:hover {
+    background-position: 0;
+}
+
+.link-custom:hover::before {
+    width: 100%;
+}
+

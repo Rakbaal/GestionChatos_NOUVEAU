@@ -8,6 +8,7 @@ use App\Entity\Entreprise;
 use App\Form\entrepriseType;
 use App\Form\entrepriseCompletType;
 use Doctrine\Persistence\ManagerRegistry;
+use App\Entity\Personne;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -67,10 +68,9 @@ class entrepriseController extends AbstractController {
                 'listeEntreprises' => $listeEntreprises,
                 'admin' => $session->get('admin')
             ]);
-        } else {
-            return $this->render("erreurAcces.html.twig");
         }
-
+        
+        return $this->render("erreurAcces.html.twig");
     }
 
     /**
@@ -82,9 +82,10 @@ class entrepriseController extends AbstractController {
             $entreprise = $entityManager->getRepository(Entreprise::class)->find($id);
             $entityManager->remove($entreprise);
             $entityManager->flush($entreprise);
+            return $this->redirect($this->generateUrl('listeEntreprises'));
         }
         
-        return $this->redirect($this->generateUrl('listeEntreprises'));
+        return $this->render("erreurAcces.html.twig");
     }
 
     /**
@@ -112,9 +113,9 @@ class entrepriseController extends AbstractController {
                 'form' => $form->createView(),
                 'admin' => $session->get('admin')
             ]);
-        } else {
-            return $this->render("erreurAcces.html.twig");
-        }
+        } 
+        
+        return $this->render("erreurAcces.html.twig");
     }
 
     /**
@@ -132,9 +133,9 @@ class entrepriseController extends AbstractController {
                 "listePersonne" => $listePersonne,
                 "admin" => $session->get('admin')
             ]);
-        } else {
-            return $this->render("erreurAcces.html.twig");
-        }
+        } 
+        
+        return $this->render("erreurAcces.html.twig");
     }
 }
 ?>

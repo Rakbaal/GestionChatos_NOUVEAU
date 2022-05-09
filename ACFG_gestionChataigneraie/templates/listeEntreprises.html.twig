@@ -2,63 +2,129 @@
 <html>
 	<head>
 		<title>Liste Entreprises</title>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 		<meta charset="UTF-8">
+		<link rel="stylesheet" href="/css/general.css"/>
+		<script type="text/javascript" src="/js/confirmation.js"></script>
 	</head>
 
-	<body>
+	<body class="body">
 		{{include('navbar.html.twig')}}
-		<table>
-			<tr>
-				<td>ID</td>
-				<td>Raison Sociale</td>
-				<td>Adresse</td>
-				<td>Pays</td>
-				<td>Spécialité</td>
-			</tr>
-			{% for entreprise in listeEntreprises %}
-				<tr>
-					<td>{{ entreprise.getId() }}</td>
-					<td>
-						<a href={{ path('infoEntreprise', { 'id': entreprise.getId() } ) }}>
-							{{ entreprise.getENTRS() }}</a>
-					</td>
-					<td>{{ entreprise.getENTADRESSE() }}
+		
+		<div class="container-fluid isolated">
+			<div class="row">
+				<div id="main" class="col-10">
+					<table class="table table-striped table-custom">
+						<thead>
+							<tr>
+								<td>ID</td>
+								<td>Raison Sociale</td>
+								<td>Adresse</td>
+								<td>Pays</td>
+								<td colspan="2">Spécialité</td>
+							</tr>
+						</thead>
+						<tbody>
+							{% for entreprise in listeEntreprises %}
+								<tr>
+									<td>{{ entreprise.getId() }}</td>
+									<td>
+										<a class="link-custom" href={{ path('infoEntreprise', { 'id': entreprise.getId() } ) }}>
+											{{ entreprise.getENTRS() }}</a>
+									</td>
+									<td>{{ entreprise.getENTADRESSE() }}
+										<br/>
+										{{ entreprise.getENTCP() }}
+										{{ entreprise.getENTVILLE() }}</td>
+									<td>{{ entreprise.getENTPAYS() }}</td>
+									<td>
+										{% for personne in entreprise.getSpecialites() %}
+											{{ personne.getSPELIBELLE() }} /
+										{% endfor %}
+									</td>
+
+									{% if admin %}
+										<td>
+											{% set id = entreprise.getId() %}
+											<a class="erreur" href="#" onclick={{"confirmDeleteEntreprise(#{id})"}}>X</a> 
+										</td>
+									{% endif %}
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+				<div id="sidebar" class="col-2">
+					<div class="toolBox">
+						<div class="form">
+							<h1 class="custom-text"> Rechercher par filtres : </h1>
+							<br/>
+							{{form_start(formFiltre)}}
+								{{form_label(formFiltre.ENT_RS)}}
+								<br/>
+								{{form_widget(formFiltre.ENT_RS)}}
+								<br/>
+								<br/>
+								{{form_label(formFiltre.ENT_VILLE)}}
+								<br/>
+								{{form_widget(formFiltre.ENT_VILLE)}}
+								<br/>
+								<br/>
+								{{form_label(formFiltre.ENT_PAYS)}}
+								<br/>
+								{{form_widget(formFiltre.ENT_PAYS)}}
+								<br/>
+								<br/>
+								{{form_widget(formFiltre.Rechercher)}}
+							{{form_end(formFiltre)}}
+						</div>
+					</div>
+					
+					{% if admin %}
+						<div class="toolBox">
+							<div class="form">
+								<h1 class="custom-text">Création d'une entreprise : </h1>  
+								<br/>
+								{{form_start(formNouveau)}}
+									{{form_label(formNouveau.ENT_RS)}}
+									<br/>
+									{{form_widget(formNouveau.ENT_RS)}}
+									<br/>
+									<br/>
+									{{form_label(formNouveau.ENT_ADRESSE)}}
+									<br/>
+									{{form_widget(formNouveau.ENT_ADRESSE)}}
+									<br/>
+									<br/>
+									{{form_label(formNouveau.ENT_CP)}}
+									<br/>
+									{{form_widget(formNouveau.ENT_CP)}}
+									<br/>
+									<br/>
+									{{form_label(formNouveau.ENT_VILLE)}}
+									<br/>
+									{{form_widget(formNouveau.ENT_VILLE)}}
+									<br/>
+									<br/>
+									{{form_label(formNouveau.ENT_PAYS)}}
+									<br/>
+									{{form_widget(formNouveau.ENT_PAYS)}}
+									<br/>
+									<br/>
+									{{form_label(formNouveau.specialites)}}
+									<br/>
+									{{form_widget(formNouveau.specialites)}}
+									<br/>
+									{{form_widget(formNouveau.envoyer)}}
+								{{form_end(formNouveau)}}
+
+							</div>
+						</div>
 						<br/>
-						{{ entreprise.getENTCP() }}
-						{{ entreprise.getENTVILLE() }}</td>
-					<td>{{ entreprise.getENTPAYS() }}</td>
-			<td>
-                {% for personne in entreprise.getSpecialites() %}
-                    {{ personne.getSPELIBELLE() }}
-                {% endfor %}
-            </td>
-			{% if admin %}
-				<td>
-					<a href={{ path('supprimerEntreprise', { 'id': entreprise.getId() }) }}>X</a> 
-				</td>
-			{% endif %}
-            </tr>
-        {% endfor %}
-    </table>
-</div>
-
-<div>
-    <table>
-        <tr>
-            <td>Rechercher par filtres :</td>
-        </tr>
-    </table>
-    {{form(formFiltre)}}
-</div>
-
-<br/>
-<br/>
-<br/>
-
-{% if admin %}
-	<div>
-		<h1>Création d'une entreprise :</h1>  
-		{{form(formNouveau)}}
-	</div>
-{% endif %}
+					{% endif %}
+				</div>	
+			</div>
+		</div>
+	</body>
+</html>
 

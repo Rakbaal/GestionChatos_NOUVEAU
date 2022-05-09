@@ -30,11 +30,11 @@ class Entreprise
     #[ORM\Column(type: 'string', length: 5)]
     private $ENT_CP;
 
-    #[ORM\ManyToMany(targetEntity: Personne::class, inversedBy: 'entreprises')]
-    private $personnes;
-
     #[ORM\ManyToMany(targetEntity: Specialite::class, inversedBy: 'entreprises')]
     private $specialites;
+
+    #[ORM\OneToMany(mappedBy: 'entreprise', targetEntity: Personne::class)]
+    private $personnes;
 
     public function __construct()
     {
@@ -108,30 +108,6 @@ class Entreprise
     }
 
     /**
-     * @return Collection<int, Personne>
-     */
-    public function getPersonnes(): Collection
-    {
-        return $this->personnes;
-    }
-
-    public function addPersonne(Personne $personne): self
-    {
-        if (!$this->personnes->contains($personne)) {
-            $this->personnes[] = $personne;
-        }
-
-        return $this;
-    }
-
-    public function removePersonne(Personne $personne): self
-    {
-        $this->personnes->removeElement($personne);
-
-        return $this;
-    }
-
-    /**
      * @return Collection<int, Specialite>
      */
     public function getSpecialites(): Collection
@@ -151,6 +127,36 @@ class Entreprise
     public function removeSpecialite(Specialite $specialite): self
     {
         $this->specialites->removeElement($specialite);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Personne>
+     */
+    public function getPersonnes(): Collection
+    {
+        return $this->personnes;
+    }
+
+    public function addPersonne(Personne $personne): self
+    {
+        if (!$this->personnes->contains($personne)) {
+            $this->personnes[] = $personne;
+            $personne->setEntreprise($this);
+        }
+
+        return $this;
+    }
+
+    public function removePersonne(Personne $personne): self
+    {
+        if ($this->personnes->removeElement($personne)) {
+            // set the owning side to null (unless already changed)
+            if ($personne->getEntreprise() === $this) {
+                $personne->setEntreprise(null);
+            }
+        }
 
         return $this;
     }

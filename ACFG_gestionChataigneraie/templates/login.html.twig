@@ -3,12 +3,40 @@
     <head>
         <title>Connexion</title>
         <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="/css/general.css"/>
     </head>
-    <body>
-        <h1>Connexion</h1>
-        {% if loginState == false %}
-            <p>Une des informations entrées est erronée</p>
-        {% endif %}
-        {{form(form)}}
+    
+    <body class="body">
+        <div class="text-center banner">
+            <img class="brand-custom-rounder isolated" src="/LogoNoBackground.png">
+        </div>
+
+        <div class="container jumbotron" id="loginBox">
+            <div class="row justify-content-center">
+                    <h1>Plateforme de gestion d'entreprises</h1>
+            </div>
+            </br>
+            <div class="row justify-content-center">
+                <h2>Connexion</h2>
+            </div>
+
+            <div class="row justify-content-center">
+                {{form_start(form)}}
+                    <p>{{form_label(form.UTI_LOGIN)}} :
+                    </br>
+                    {{form_widget(form.UTI_LOGIN)}}</p>
+                    <p>{{form_label(form.UTI_MDP)}} :
+                    </br>
+                    {{form_widget(form.UTI_MDP)}}</p>
+                    <div class="row justify-content-center">
+                        {% if loginState == false %}
+                            <p class="erreur">Une des informations entrées est erronée</p>
+                        {% endif %}
+                    </div>
+                    <p>{{form_widget(form.connexion)}}</p>
+                {{form_end(form)}}
+            </div>
+        </div>
     </body>
 </html>

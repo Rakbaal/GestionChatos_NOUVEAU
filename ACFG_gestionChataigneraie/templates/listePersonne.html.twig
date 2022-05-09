@@ -2,54 +2,82 @@
 <html>
     <head>
         <title>Liste Personnes</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="/css/general.css"/>
         <meta charset="UTF-8">
+        <script type="text/javascript" src="/js/confirmation.js"></script>
     </head>
-    <body>
+    <body class="body">
         {{include('navbar.html.twig')}}
-        <div>
-            <table>
-                <tr>
-                    <td>ID</td>
-                    <td>Nom Prenom</td>
-                    <td>Mail</td>
-                    <td>Telephone perso.</td>
-                    <td>Telephone pro.</td>
-                    <td>Entreprise</td>
-                    <td>Profil</td>
-                    <td>Fonction</td>
-                </tr>
-                {% for personne in listePersonne %}
-                <tr>
-                    <td>
-                        <a>
-                            {{ personne.getId() }} 
-                        </a>
-                    </td>
-                    <td>{{ personne.getPERNOM() }} {{ personne.getPERPRENOM() }}</td>
-                    <td>{{ personne.getPERMAIL() }}</td>
-                    <td>{{ personne.getPERTELPERSO() }}</td>
-                    <td>{{ personne.getPERTELPRO() }}</td>
-                    <td>
-                        {% for entreprise in personne.getEntreprises() %}
-                            <a href={{ path('infoEntreprise', {'id': entreprise.id }) }}> 
-                                {{ entreprise.getENTRS() }}                                    
-                            </a>
-                        {% endfor %}
-                    </td>
-                    <td>
-                        {% for Profil in personne.getProfils() %}
-                            {{ Profil.getPROTYPE() }}
-                        {% endfor %}
-                    </td>
-                    <td>
-                        {% for Fonction in personne.getFonctions() %}
-                            {{ Fonction.getFONLIBELLE() }}
-                        {% endfor %}
-                    </td>
+        <div class="container-fluid isolated">
+			<div class="row">
+                {% if admin %}
+                    <div id="main" class="col-10">      
+                {% else %}
+                    <div id="main" class="col-12">        
+                {% endif %}
+                        <table class="table table-striped table-custom">
+                            <thead>
+                                <tr>
+                                    <td>ID</td>
+                                    <td>Nom Prenom</td>
+                                    <td>Mail</td>
+                                    <td>Telephone perso.</td>
+                                    <td>Telephone pro.</td>
+                                    <td>Entreprise</td>
+                                    <td>Profil</td>
+                                    <td colspan="2">Fonction</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for personne in listePersonne %}
+                                <tr>
+                                    <td>
+                                        <a>
+                                            {{ personne.getId() }} 
+                                        </a>
+                                    </td>
+                                    <td><a class="link-custom" id="link" href={{ path('modifierPersonne', { 'id': personne.getId() }) }}>{{ personne.getPERNOM() }} {{ personne.getPERPRENOM() }}</a></td>
+                                    <td>{{ personne.getPERMAIL() }}</td>
+                                    <td>{{ personne.getPERTELPERSO() }}</td>
+                                    <td>{{ personne.getPERTELPRO() }}</td>
+                                    <td>
+                                            {% set entreprise = personne.getEntreprise() %}
+                                            {% if entreprise != null %}
+                                                <a class="link-custom" href={{ path('infoEntreprise', {'id': entreprise.getId() }) }}> {{ entreprise.getENTRS() }}</a>
+                                            {% endif %}
+                                    </td>
+                                    <td>
+                                        {% for Profil in personne.getProfils() %}
+                                            {{ Profil.getPROTYPE() }}
+                                        {% endfor %}
+                                    </td>
+                                    <td>
+                                        {% for Fonction in personne.getFonctions() %}
+                                            {{ Fonction.getFONLIBELLE() }}
+                                        {% endfor %}
+                                    </td>
+                                    {% if admin %}
+                                        <td>
+                                            {% set id = personne.getId() %}
+                                            <a class="erreur" href="#" onclick={{"confirmDeletePersonne(#{id})"}}>X</a> 
+                                        </td>
+                                    {% endif %}
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+            
                     {% if admin %}
-                        <td>
-                            <a href={{ path('supprimerPersonne', { 'id': personne.getId() }) }}>X</a> 
-                        </td>
+                        <div id="sidebar" class="col-2">
+                            <div class="toolBox">
+                                <div class="form">
+                                    <h1 class="custom-text">Création d'une personne :</h1>
+                                    {{form(form)}}
+                                </div>
+                            </div>
+                        </div>
                     {% endif %}
                     </tr>
                 {% endfor %}
@@ -76,3 +104,4 @@
         {% endif %}
     </body>
 </html>
+

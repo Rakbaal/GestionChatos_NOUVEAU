@@ -3,10 +3,16 @@
     <head>
         <title>Modification</title>
         <meta charset="UTF-8">
+        <link rel="stylesheet" href="/css/general.css"/>
     </head>
-    <body>
+
+    <body class="body">
         {{include('navbar.html.twig')}}
-        <h1>Modification {{titre}}</h1>
-        {{form(form)}}
+        <div class="toolBox isolated">
+            <h1 class="custom-text larger isolated">Modification {{titre}}</h1>
+            <div class="form isolated">
+                {{form(form)}}
+            </div>
+        </div>
     </body>
 </html>

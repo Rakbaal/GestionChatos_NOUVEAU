@@ -1,6 +1,7 @@
 <?php 
 namespace App\Form;
 
+use App\Entity\Entreprise;
 use App\Entity\Fonction;
 use Symfony\Component\Form\AbstractType;
 use App\Entity\Profil;
@@ -23,6 +24,11 @@ class personneType extends AbstractType {
         ->add('PER_TEL_PRO', NumberType :: class, [
                 'label' => 'Téléphone pro :',
                 'required' => false
+            ])
+        ->add('entreprise', EntityType::class, [
+            'class' => Entreprise :: class,
+            'choice_label' => 'ENT_RS',
+            'required' => false
             ])
         ->add('fonctions', EntityType::class, [
                 'class' => Fonction :: class, 
