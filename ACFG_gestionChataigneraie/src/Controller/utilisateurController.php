@@ -47,7 +47,7 @@ class utilisateurController extends AbstractController {
     }
 
     /**
-     * @Route("supprimerutilisateur/{id}", name="supprimerUtilisateur")
+     * @Route("supprimerUtilisateur/{id}", name="supprimerUtilisateur")
      */
     public function SupprimerAnnonce(ManagerRegistry $doctrine, $id, Request $request) : Response {
         if ($request->getSession()->get('admin')) {
@@ -65,6 +65,7 @@ class utilisateurController extends AbstractController {
      */
     public function ModifierUtilisateur(Request $request, $id, ManagerRegistry $doctrine) : Response {
         $session = $request->getSession();
+        $typeForm = "utilisateur";
         $titre = "de l'utilisateur ".$id;
         $entityManager = $doctrine->getManager();
         $utilisateur = $entityManager->GetRepository(Utilisateur::class)->find($id);
@@ -82,14 +83,15 @@ class utilisateurController extends AbstractController {
             return $this->redirect($this->generateUrl("listeUtilisateurs"));
         }
 
-        if ($session->get('login') && $session->get('admin')) {
+        if ($session->get('login') && $session->get('admin') == true) {
             return $this->render("modifier.html.twig", [
-                'titre' => $titre,
-                'form' => $form->createView(),
-                'listeUtilisateur' => $utilisateur,
+                'titre' => $titre, 
+                'typeForm' => $typeForm,
+                'formUtilisateur' => $form->createView(),
                 'admin' => $session->get('admin')
             ]);
-        } else {
+        }
+        else {
             return $this->render("erreurAcces.html.twig");
         }
     }

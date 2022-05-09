@@ -8,41 +8,44 @@
 
 	<body class="body">
 		{{include('navbar.html.twig')}}
-		<h1 class="custom-text larger isolated">Entreprise
-			{{entreprise.getENTRS()}}</h1>
-		<ul class="ul-custom">
-			<li><b>Adresse :</b>
-				{{entreprise.getENTADRESSE()}}</li>
-			<li><b>Code postal :</b>
-				{{entreprise.getENTCP()}}</li>
-			<li><b>Ville :</b>
-				{{entreprise.getENTVILLE()}}</li>
-			<li><b>Pays :</b>
-				{{entreprise.getENTPAYS()}}</li>
-			<li>
-				<b>Spécialité(s) recherchée(s) :</b>
-				{% for specialite in entreprise.getSpecialites() %}
-					{{specialite.getSPELIBELLE()}}
-				{% endfor %}
-			</li>
-			{% if admin %}
+		<div class="toolBox isolated">
+			<h1 class="custom-text larger isolated">Entreprise
+				{{entreprise.getENTRS()}}</h1>
+			<ul class="ul-custom">
+				<li><b>Adresse :</b>
+					{{entreprise.getENTADRESSE()}}</li>
+				<li><b>Code postal :</b>
+					{{entreprise.getENTCP()}}</li>
+				<li><b>Ville :</b>
+					{{entreprise.getENTVILLE()}}</li>
+				<li><b>Pays :</b>
+					{{entreprise.getENTPAYS()}}</li>
 				<li>
-					<a href={{ path('modifierEntreprise', { 'id': entreprise.getId() } ) }}>
-						<button>Modifier</button>
-					</a>
+					<b>Spécialité(s) recherchée(s) :</b>
+					{% for specialite in entreprise.getSpecialites() %}
+						{{specialite.getSPELIBELLE()}}
+					{% endfor %}
 				</li>
-			{% endif %}
-		</ul>
+				{% if admin %}
+					<li>
+						<a href={{ path('modifierEntreprise', { 'id': entreprise.getId() } ) }}>
+							<button>Modifier</button>
+						</a>
+					</li>
+				{% endif %}
+			</ul>
+		</div>
 
 		<div>
+			<h1 class="custom-text larger isolated">Employés de l'entreprise {{entreprise.getENTRS()}}</h1>
 			<table class="table-custom isolated col-9">
 				<thead>
 					<tr>
 						<td>ID</td>
 						<td>Nom Prenom</td>
 						<td>Mail</td>
-						<td>Telephone</td>
-						<td>Telephone professionnel</td>
+						<td>Telephone perso.</td>
+						<td>Telephone pro.</td>
 						<td>Profil</td>
 						<td>Fonction</td>
 					</tr>
