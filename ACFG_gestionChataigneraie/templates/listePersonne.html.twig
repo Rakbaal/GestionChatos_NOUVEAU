@@ -55,9 +55,24 @@
                 {% endfor %}
             </table>
         </div>
+        <br/>
+<br/>
+<br/>
+        <div>
+    <table>
+        <tr>
+            <td>Rechercher par filtres :</td>
+        </tr>
+    </table>
+    {{form(formFiltre)}}
+</div>
+
+<br/>
+<br/>
+<br/>
         {% if admin %}
             <h1>Création d'une personne :</h1>
-            {{form(form)}}
+            {{form(formNouveau)}}
         {% endif %}
     </body>
 </html>
