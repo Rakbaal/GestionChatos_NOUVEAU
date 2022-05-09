@@ -11,7 +11,108 @@
         <div class="toolBox isolated">
             <h1 class="custom-text larger isolated">Modification {{titre}}</h1>
             <div class="form isolated">
-                {{form(form)}}
+                {% if typeForm == null %}
+                    <h1>Veuillez accéder à ce formulaire autrement ...</h1>
+                {% endif %}
+
+                {% if typeForm == "entreprise" %}
+                    {{form_start(formEntreprise)}}
+                        {{form_label(formEntreprise.ENT_RS)}}
+                        <br/>
+                        {{form_widget(formEntreprise.ENT_RS)}}
+                        <br/>
+                        <br/>
+                        {{form_label(formEntreprise.ENT_ADRESSE)}}
+                        <br/>
+                        {{form_widget(formEntreprise.ENT_ADRESSE)}}
+                        <br/>
+                        <br/>
+                        {{form_label(formEntreprise.ENT_CP)}}
+                        <br/>
+                        {{form_widget(formEntreprise.ENT_CP , {'attr': {'class' : 'formNouveau' , 'maxlength' : '5'} } ) }}
+                        <br/>
+                        <br/>
+                        {{form_label(formEntreprise.ENT_VILLE)}}
+                        <br/>
+                        {{form_widget(formEntreprise.ENT_VILLE)}}
+                        <br/>
+                        <br/>
+                        {{form_label(formEntreprise.ENT_PAYS)}}
+                        <br/>
+                        {{form_widget(formEntreprise.ENT_PAYS)}}
+                        <br/>
+                        <br/>
+                        {{form_label(formEntreprise.specialites)}}
+                        <br/>
+                        {{form_widget(formEntreprise.specialites)}}
+                        <br/>
+                        {{form_widget(formEntreprise.envoyer)}}
+                    {{form_end(formEntreprise)}}
+                {% endif %}
+                 
+                {% if typeForm == "personne" %}
+                    {{form_start(formPersonne)}}
+                        {{form_label(formPersonne.PER_NOM)}}
+                        <br/>
+                        {{form_widget(formPersonne.PER_NOM)}}
+                        <br/>
+                        <br/>
+                        {{form_label(formPersonne.PER_PRENOM)}}
+                        <br/>
+                        {{form_widget(formPersonne.PER_PRENOM)}}
+                        <br/>
+                        <br/>
+                        {{form_label(formPersonne.PER_MAIL)}}
+                        <br/>
+                        {{form_widget(formPersonne.PER_MAIL)}}
+                        <br/>
+                        <br/>
+                        {{form_label(formPersonne.PER_TEL_PERSO)}}
+                        <br/>
+                        {{form_widget(formPersonne.PER_TEL_PERSO, {'attr': {'class' : 'formNouveau' , 'maxlength' : '10'}} ) }}
+                        <br/>
+                        <br/>
+                        {{form_label(formPersonne.PER_TEL_PRO)}}
+                        <br/>
+                        {{form_widget(formPersonne.PER_TEL_PRO, {'attr': {'class' : 'formNouveau' , 'maxlength' : '10'}} ) }}
+                        <br/>
+                        <br/>
+                        {{form_label(formPersonne.profils)}}
+                        <br/>
+                        {{form_widget(formPersonne.profils)}}
+                        <br/>
+                        <br/>
+                        {{form_label(formPersonne.fonctions)}}
+                        <br/>
+                        {{form_widget(formPersonne.fonctions)}}
+                        <br/>
+                        {{form_label(formPersonne.entreprises)}}
+                        <br/>
+                        {{form_widget(formPersonne.entreprises)}}
+                        <br/>
+                        <br/>
+                        {{form_widget(formPersonne.envoyer)}}
+                    {{form_end(formPersonne)}}
+                {% endif %}
+
+                {% if typeForm == "utilisateur" %}
+                    {{form_start(formUtilisateur)}}
+                        {{form_label(formUtilisateur.UTI_LOGIN)}}
+                        <br/>
+                        {{form_widget(formUtilisateur.UTI_LOGIN)}}
+                        <br/>
+                        <br/>
+                        {{form_label(formUtilisateur.UTI_MDP)}}
+                        <br/>
+                        {{form_widget(formUtilisateur.UTI_MDP)}}
+                        <br/>
+                        <br/>
+                        {{form_label(formUtilisateur.UTI_ADMIN)}}
+                        <br/>
+                        {{form_widget(formUtilisateur.UTI_ADMIN)}}
+                        {{form_widget(formUtilisateur.Enregistrer)}}
+                    {{form_end(formUtilisateur)}}
+                {% endif %}
             </div>
         </div>
     </body>
