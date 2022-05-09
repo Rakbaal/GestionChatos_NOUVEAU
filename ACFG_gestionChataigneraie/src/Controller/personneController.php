@@ -63,6 +63,7 @@ class personneController extends AbstractController {
      */
     function modifierPersonne(ManagerRegistry $doctrine, Request $request, $id) {
         $session = $request->getSession();
+        $typeForm = "personne";
         $titre = "de la personne ".$id;
         $entityManager = $doctrine->getManager();
         $personne = $entityManager->getRepository(Personne::class)->find($id);
@@ -81,10 +82,12 @@ class personneController extends AbstractController {
         if ($session->get('login') && $session->get('admin') == true) {
             return $this->render("modifier.html.twig", [
                 'titre' => $titre, 
-                'form' => $form->createView(),
+                'typeForm' => $typeForm,
+                'formPersonne' => $form->createView(),
                 'admin' => $session->get('admin')
             ]);
-        } else {
+        } 
+        else {
             return $this->render("erreurAcces.html.twig");
         }
     }

@@ -93,6 +93,7 @@ class entrepriseController extends AbstractController {
      */
     function modifierEntreprise(ManagerRegistry $doctrine, Request $request, $id) {
         $session = $request->getSession();
+        $typeForm = "entreprise";
         $titre = "de l'entreprise ".$id;
         $entityManager = $doctrine->getManager();
         $entreprise = $entityManager->getRepository(Entreprise::class)->find($id);
@@ -110,7 +111,8 @@ class entrepriseController extends AbstractController {
         if ($session->get('login') && $session->get('admin') == true) {
             return $this->render("modifier.html.twig", [
                 'titre' => $titre, 
-                'form' => $form->createView(),
+                'typeForm' => $typeForm,
+                'formEntreprise' => $form->createView(),
                 'admin' => $session->get('admin')
             ]);
         } 
