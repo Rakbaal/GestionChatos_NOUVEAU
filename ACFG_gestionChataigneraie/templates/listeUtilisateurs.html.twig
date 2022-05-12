@@ -50,7 +50,24 @@
                             <div class="form">
                                 <h1 class="custom-text">Ajouter un utilisateur :</h1>
                                 <br/>
-                                {{ form(form) }}
+                                {{form_start(form)}}
+									{{form_label(form.UTI_LOGIN)}}
+									<br/>
+									{{form_widget(form.UTI_LOGIN)}}
+									<br/>
+									<br/>
+									{{form_label(form.UTI_MDP)}}
+									<br/>
+									{{form_widget(form.UTI_MDP)}}
+									<br/>
+									<br/>
+									{{form_label(form.UTI_ADMIN)}}
+									<br/>
+									{{form_widget(form.UTI_ADMIN)}}
+									<br/>
+									<br/>
+									{{form_widget(form.Enregistrer)}}
+								{{form_end(form)}}
                             </div>
                         {% endif %}
                     </div>
