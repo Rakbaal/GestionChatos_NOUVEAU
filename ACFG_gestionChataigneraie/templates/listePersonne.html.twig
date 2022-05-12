@@ -1,107 +1,156 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Liste Personnes</title>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <link rel="stylesheet" href="/css/general.css"/>
-        <meta charset="UTF-8">
-        <script type="text/javascript" src="/js/confirmation.js"></script>
-    </head>
-    <body class="body">
-        {{include('navbar.html.twig')}}
-        <div class="container-fluid isolated">
+	<head>
+		<title>Liste Personnes</title>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+		<link rel="stylesheet" href="/css/general.css"/>
+		<meta charset="UTF-8">
+		<script type="text/javascript" src="/js/confirmation.js"></script>
+	</head>
+	<body class="body">
+		{{include('navbar.html.twig')}}
+		<div class="container-fluid isolated">
 			<div class="row">
-                {% if admin %}
-                    <div id="main" class="col-10">      
-                {% else %}
-                    <div id="main" class="col-12">        
-                {% endif %}
-                        <table class="table table-striped table-custom">
-                            <thead>
-                                <tr>
-                                    <td>ID</td>
-                                    <td>Nom Prenom</td>
-                                    <td>Mail</td>
-                                    <td>Telephone perso.</td>
-                                    <td>Telephone pro.</td>
-                                    <td>Entreprise</td>
-                                    <td>Profil</td>
-                                    <td colspan="2">Fonction</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for personne in listePersonne %}
-                                <tr>
-                                    <td>
-                                        <a>
-                                            {{ personne.getId() }} 
-                                        </a>
-                                    </td>
-                                    <td><a class="link-custom" id="link" href={{ path('modifierPersonne', { 'id': personne.getId() }) }}>{{ personne.getPERNOM() }} {{ personne.getPERPRENOM() }}</a></td>
-                                    <td>{{ personne.getPERMAIL() }}</td>
-                                    <td>{{ personne.getPERTELPERSO() }}</td>
-                                    <td>{{ personne.getPERTELPRO() }}</td>
-                                    <td>
-                                            {% set entreprise = personne.getEntreprise() %}
-                                            {% if entreprise != null %}
-                                                <a class="link-custom" href={{ path('infoEntreprise', {'id': entreprise.getId() }) }}> {{ entreprise.getENTRS() }}</a>
-                                            {% endif %}
-                                    </td>
-                                    <td>
-                                        {% for Profil in personne.getProfils() %}
-                                            {{ Profil.getPROTYPE() }}
-                                        {% endfor %}
-                                    </td>
-                                    <td>
-                                        {% for Fonction in personne.getFonctions() %}
-                                            {{ Fonction.getFONLIBELLE() }}
-                                        {% endfor %}
-                                    </td>
-                                    {% if admin %}
-                                        <td>
-                                            {% set id = personne.getId() %}
-                                            <a class="erreur" href="#" onclick={{"confirmDeletePersonne(#{id})"}}>X</a> 
-                                        </td>
-                                    {% endif %}
-                                    </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
-            
-                    {% if admin %}
-                        <div id="sidebar" class="col-2">
-                            <div class="toolBox">
-                                <div class="form">
-                                    <h1 class="custom-text">Création d'une personne :</h1>
-                                    {{form(form)}}
-                                </div>
-                            </div>
-                        </div>
-                    {% endif %}
-                    </tr>
-                {% endfor %}
-            </table>
-        </div>
-        <br/>
-<br/>
-<br/>
-        <div>
-    <table>
-        <tr>
-            <td>Rechercher par filtres :</td>
-        </tr>
-    </table>
-    {{form(formFiltre)}}
-</div>
+				{% if admin %}
+					<div id="main" class="col-10">
+					{% else %}
+						<div id="main" class="col-12">
+						{% endif %}
+						<table class="table table-striped table-custom">
+							<thead>
+								<tr>
+									<td>ID</td>
+									<td>Nom Prenom</td>
+									<td>Mail</td>
+									<td>Telephone perso.</td>
+									<td>Telephone pro.</td>
+									<td>Entreprise</td>
+									<td>Profil</td>
+									<td colspan="2">Fonction</td>
+								</tr>
+							</thead>
+							<tbody>
+								{% for personne in listePersonne %}
+									<tr>
+										<td>
+											<a>
+												{{ personne.getId() }}
+											</a>
+										</td>
+										<td>
+											<a class="link-custom" id="link" href={{ path('modifierPersonne', { 'id': personne.getId() } ) }}>{{ personne.getPERNOM() }}
+												{{ personne.getPERPRENOM() }}</a>
+										</td>
+										<td>{{ personne.getPERMAIL() }}</td>
+										<td>{{ personne.getPERTELPERSO() }}</td>
+										<td>{{ personne.getPERTELPRO() }}</td>
+										<td>
+											{% set entreprise = personne.getEntreprise() %}
+											{% if entreprise != null %}
+												<a class="link-custom" href={{ path('infoEntreprise', {'id': entreprise.getId() } ) }}>
+													{{ entreprise.getENTRS() }}</a>
+											{% endif %}
+										</td>
+										<td>
+											{% for Profil in personne.getProfils() %}
+												{{ Profil.getPROTYPE() }}
+											{% endfor %}
+										</td>
+										<td>
+											{% for Fonction in personne.getFonctions() %}
+												{{ Fonction.getFONLIBELLE() }}
+											{% endfor %}
+										</td>
+										{% if admin %}
+											<td>
+												{% set id = personne.getId() %}
+												<a class="erreur" href="#" onclick={{"confirmDeletePersonne(#{id})"}}>X</a>
+											</td>
+										{% endif %}
+									</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+					</div>
+                    <div id="sidebar" class="col-2">
+					<div class="toolBox">
+						<div class="form">
+							<h1 class="custom-text"> Rechercher par filtres : </h1>
+							<br/>
+							{{form_start(formFiltre)}}
+								{{form_label(formFiltre.PER_NOM)}}
+								<br/>
+								{{form_widget(formFiltre.PER_NOM)}}
+								<br/>
+								<br/>
+								{{form_label(formFiltre.PER_PRENOM)}}
+								<br/>
+								{{form_widget(formFiltre.PER_PRENOM)}}								
+								<br/>
+								<br/>
+								{{form_widget(formFiltre.Rechercher)}}
+							{{form_end(formFiltre)}}
+						</div>
+					</div>
 
-<br/>
-<br/>
-<br/>
-        {% if admin %}
-            <h1>Création d'une personne :</h1>
-            {{form(formNouveau)}}
-        {% endif %}
-    </body>
+					{% if admin %}
+						<div class="toolBox">
+							<div class="form">
+								<h1 class="custom-text">Création d'une personne : </h1>  
+								<br/>
+								{{form_start(formNouveau)}}
+									{{form_label(formNouveau.PER_NOM)}}
+									<br/>
+									{{form_widget(formNouveau.PER_NOM)}}
+									<br/>
+									<br/>
+									{{form_label(formNouveau.PER_PRENOM)}}
+									<br/>
+									{{form_widget(formNouveau.PER_PRENOM)}}
+									<br/>
+									<br/>
+									{{form_label(formNouveau.PER_MAIL)}}
+									<br/>
+									{{form_widget(formNouveau.PER_MAIL)}}
+									<br/>
+									<br/>
+									{{form_label(formNouveau.PER_TEL_PERSO)}}
+									<br/>
+									{{form_widget(formNouveau.PER_TEL_PERSO)}}
+									<br/>
+									<br/>
+									{{form_label(formNouveau.PER_TEL_PRO)}}
+									<br/>
+									{{form_widget(formNouveau.PER_TEL_PRO)}}
+									<br/>
+									<br/>
+									{{form_label(formNouveau.entreprise)}}
+									<br/>
+									{{form_widget(formNouveau.entreprise)}}
+									<br/>
+                                    <br/>
+									{{form_label(formNouveau.fonctions)}}
+									<br/>
+									{{form_widget(formNouveau.fonctions)}}
+                                    <br/>
+									{{form_label(formNouveau.profils)}}
+									<br/>
+									{{form_widget(formNouveau.profils)}}
+									<br/>
+									{{form_widget(formNouveau.envoyer)}}
+								{{form_end(formNouveau)}}
+
+							</div>
+						</div>
+						<br/>
+					{% endif %}
+					</tr>
+				</table>
+			</div>
+			<br/>
+			<br/>
+			<br/>
+			</body>
+		</html>
+	</body>
 </html>
-

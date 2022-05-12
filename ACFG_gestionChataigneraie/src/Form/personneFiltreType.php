@@ -18,21 +18,6 @@ class personneFiltreType extends AbstractType {
         $builder
         ->add('PER_NOM', TextType :: class , ['required' => false , 'label' => 'Nom :']) 
         ->add('PER_PRENOM', TextType :: class , ['required' => false , 'label' => 'Prénom :'])
-        ->add('fonctions', EntityType::class, [
-            'class' => Fonction :: class, 
-            'choice_label' => 'FON_LIBELLE', 
-            'multiple' => true, 
-            //'expanded' => false,
-            'required' => false,
-        ])
-        ->add('profils', EntityType::class, [
-            'class' => Profil :: class, 
-            'choice_label' => 'PRO_TYPE', 
-            'multiple' => true, 
-            //'expanded' => false,
-            'required' => false,
-        ])
-        // ->add('fonctions', TextType :: class , ['required' => false , 'label' => 'Fonctions :'])
         ->add('Rechercher', SubmitType :: class);
     }
 }
