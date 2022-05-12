@@ -45,7 +45,7 @@ class personneType extends AbstractType {
                 'expanded' => true,
                 'required' => false
         ])
-        ->add('envoyer', SubmitType :: class, ['label' => 'Sauvegarder']);
+        ->add('envoyer', SubmitType :: class, ['label' => 'Enregistrer']);
     }
 }
 ?>

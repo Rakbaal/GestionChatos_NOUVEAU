@@ -9,6 +9,7 @@ use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use App\Form\personneType;
+use App\Form\personneFiltreType;
 
 class personneController extends AbstractController {
 
@@ -22,21 +23,39 @@ class personneController extends AbstractController {
         $listePersonne = $entityManager->getRepository(Personne::class)->findAll();
 
         $personne = new Personne();
+        $formFiltre = $this->createForm(personneFiltreType :: class, $personne);
+        $formFiltre->handleRequest($request);
 
-        $form = $this->createForm(personneType::class, $personne);
-        $form->handleRequest($request);
+        $personne2 = new Personne();
+        $formNouveau = $this->createForm(personneType :: class, $personne2);
+        $formNouveau->handleRequest($request);
+        
+        if($formFiltre->isSubmitted() && $formFiltre->isValid()) {
+            $data = $formFiltre->getData();
 
-        if ($form->isSubmitted() && $form->isValid()) {     
-            $data = $form->getData();  
+            $entityManager = $doctrine->getManager();
+            $listePersonnesFiltre = $entityManager->getRepository(Personne::class)->findByPersonneFiltre($data);
+        
+            return $this->render('listePersonne.html.twig', [
+                'formFiltre' => $formFiltre->createView(),
+                'formNouveau' => $formNouveau->createView(),
+                'listePersonne' => $listePersonnesFiltre,
+                'admin' => $session->get('admin')
+            ]);
+        }
+
+        if ($formNouveau->isSubmitted() && $formNouveau->isValid()) {     
+            $data = $formNouveau->getData();  
             $entityManager->persist($data);
             $entityManager->flush();
             return $this->redirect($this->generateUrl("listePersonnes"));
         }
         if ($session->get('login')) {
             return $this->render('listePersonne.html.twig', [
+                'formFiltre' => $formFiltre->createView(),
+                'formNouveau' => $formNouveau->createView(),
                 'listePersonne' => $listePersonne,
                 'admin' => $session->get('admin'),
-                'formPersonne' => $form -> createView()
             ]);
         } else {
             return $this->render("erreurAcces.html.twig");
