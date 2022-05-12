@@ -53,6 +53,7 @@ class entrepriseController extends AbstractController {
             ]);
         }
         
+        // Sauvegarde en base de données l'entreprise créée
         if($formNouveau->isSubmitted() && $formNouveau->isValid()) {
             $data = $formNouveau->getData();
             $entityManager->persist($data);
@@ -61,6 +62,7 @@ class entrepriseController extends AbstractController {
             return $this->redirect($this->generateUrl("listeEntreprises"));
         }
 
+        // Affiche la liste des entreprises si le visiteur est authentifié
         if ($session->get('login')) {
             return $this->render('listeEntreprises.html.twig', [
                 'formFiltre' => $formFiltre->createView(),
@@ -70,6 +72,7 @@ class entrepriseController extends AbstractController {
             ]);
         }
         
+        // Si l'utilisateur n'est pas authentifié, renvoie une page d'erreur
         return $this->render("erreurAcces.html.twig");
     }
 
@@ -77,6 +80,8 @@ class entrepriseController extends AbstractController {
      * @Route("supprimerEntreprise/{id}", name="supprimerEntreprise")
      */
     function supprimerEntreprise(ManagerRegistry $doctrine, $id, Request $request) {
+        // Si le visiteur est authentifié comme administrateur, supprime l'utilisateur
+        // et redirige vers la liste des entreprises
         if ($request->getSession()->get('admin')) {
             $entityManager = $doctrine->getManager();
             $entreprise = $entityManager->getRepository(Entreprise::class)->find($id);
@@ -85,6 +90,7 @@ class entrepriseController extends AbstractController {
             return $this->redirect($this->generateUrl('listeEntreprises'));
         }
         
+        // Si le visiteur n'est pas administrateur, renvoie une page d'erreur
         return $this->render("erreurAcces.html.twig");
     }
 
@@ -101,6 +107,7 @@ class entrepriseController extends AbstractController {
 
         $form->handleRequest($request);
 
+        // Si le formulaire est soumis et valide, enregistre les modification
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
             $entityManager->persist($data);
@@ -108,6 +115,8 @@ class entrepriseController extends AbstractController {
             return $this->redirect($this->generateUrl("listeEntreprises"));
         }
 
+        // Si l'utilisateur est authentifié en tant qu'administrateur, renvoie vers la page 
+        // de modification d'une entreprise
         if ($session->get('login') && $session->get('admin') == true) {
             return $this->render("modifier.html.twig", [
                 'titre' => $titre, 
@@ -117,6 +126,7 @@ class entrepriseController extends AbstractController {
             ]);
         } 
         
+        // Si le visiteur n'est pas un administrateur, renvoie une page d'erreur
         return $this->render("erreurAcces.html.twig");
     }
 
@@ -129,6 +139,7 @@ class entrepriseController extends AbstractController {
         $entreprise = $entityManager->getRepository(Entreprise::class)->find($id);
         $listePersonne = $entreprise->getPersonnes();
 
+        // Si l'utilisateur est authentifié, renvoie les informations d'une entreprise
         if ($session->get('login')) {
             return $this->render("infoEntreprise.html.twig", [
                 "entreprise" => $entreprise,
@@ -137,6 +148,7 @@ class entrepriseController extends AbstractController {
             ]);
         } 
         
+        // Si l'utilisateur n'est pas authentifié, renvoie une page d'erreur
         return $this->render("erreurAcces.html.twig");
     }
 }

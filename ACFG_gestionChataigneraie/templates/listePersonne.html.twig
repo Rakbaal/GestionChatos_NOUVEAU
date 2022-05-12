@@ -80,6 +80,12 @@
                         <div id="sidebar" class="col-2">
                             <div class="toolBox">
                                 <div class="form">
+                                    <h1 class="custom-text">Rechercher par filtres :</h1>
+                                    {{form(formFiltre)}}
+                                </div>
+                            </div>
+                            <div class="toolBox">
+                                <div class="form">
                                     <h1 class="custom-text">Création d'une personne :</h1>
                                     {{form_start(formNouveau)}}
                                         {{form_label(formNouveau.PER_NOM)}}
@@ -124,17 +130,8 @@
                                         {{form_widget(formNouveau.envoyer)}}
                                     {{form_end(formNouveau)}}
                                 </div>
-					{% endif %}
-                        <br/>
-                        <br/>
-                        <br/>
-                        <div class="toolBox">
-                            <div class="form">
-                                <h1 class="custom-text">Rechercher par filtres :</h1>
-                                {{form(formFiltre)}}
                             </div>
-                        </div>
-                    </div>
+					{% endif %}
     </body>
 </html>
 

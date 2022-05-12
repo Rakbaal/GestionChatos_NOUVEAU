@@ -19,6 +19,7 @@ class AccueilController extends AbstractController
                 'login' =>$session->get('login'),
                 'admin' => $session->get('admin')
             ]);
+        // Si l'utilisateur n'est pas authentifié, renvoie une page d'erreur
         } else {
             return $this->render("erreurAcces.html.twig");
         }

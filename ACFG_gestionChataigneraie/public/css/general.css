@@ -1,3 +1,4 @@
+/* ----------- GENERAL ----------- */
 * {
     color: #0c0c0e;
 }
@@ -10,47 +11,7 @@ html {
     background-color: #e9ecef;
 }
 
-.banner {
-    background-color: #242428;;
-}
-
-.jumbotron {
-    background-color: #e9ecef;
-}
-
-#loginBox {
-    background-color: #EFECE9;
-    margin-top: 2%;
-    border: solid #1e1a15;
-}
-
-.erreur:hover {
-    color: #b0251a;
-    text-decoration: none;
-}
-
-.erreur {
-    color: #b0251a;
-    font-weight: bold;
-}
-
-.toolBox {
-    background-color: #EFECE9;
-    border-radius: 5px;
-    border: solid #1e1a15;
-    margin-top: 30px;
-    padding: 3%;
-    overflow: hidden;
-}
-
-.custom-text {
-    font-size: 19px;
-}
-
-.isolated {
-    margin: 1%;
-}
-
+/* ----------- TABLE ----------- */
 .table-custom > thead {
     border-color: #1e1a15;
     border: 3px solid;
@@ -75,6 +36,7 @@ html {
     border-right-style: dotted;
 }
 
+/* ----------- LIENS ----------- */
 .link-custom {
     color: #059ba1;
     background-image: linear-gradient(to right, #059ba1, #059ba1 50%, #059ba1 50%);
@@ -91,30 +53,12 @@ html {
 .link-custom:hover {
     color: #059ba1;
     font-weight: normal;
-    transition: background-color 2s ease-out 100ms
-}
-
-.ul-custom {
-    list-style: none;
-    font-size: large;
-}
-
-.larger {
-    font-size: 30px;
-    text-decoration: underline;
     transition: background-color 2s ease-out 100ms;
+    background-position: 0;
 }
 
-.brand-custom {
-    background-color: #f0f2f4;
-    border-radius: 5px;
-    padding: 4px;
-}
-
-.brand-custom-rounder {
-    background-color: #f0f2f4;
-    border-radius: 10px;
-    padding: 4px;
+.link-custom:hover::before {
+    width: 100%;
 }
 
 .link-custom:before {
@@ -129,11 +73,78 @@ html {
     transition: all 0.2s ease-in-out;
 }
 
-.link_custom:hover {
-    background-position: 0;
+/* ----------- LOGO ----------- */
+.brand-custom {
+    background-color: #f0f2f4;
+    border-radius: 5px;
+    padding: 4px;
 }
 
-.link-custom:hover::before {
-    width: 100%;
+.brand-custom-rounder {
+    background-color: #f0f2f4;
+    border-radius: 10px;
+    padding: 4px;
 }
+
+/* ----------- MESSAGES EREUR ----------- */
+.erreur:hover {
+    color: #b0251a;
+    text-decoration: none;
+}
+
+.erreur {
+    color: #b0251a;
+    font-weight: bold;
+}
+
+/* ----------- FORMATAGE ----------- */
+.ul-custom {
+    list-style: none;
+    font-size: large;
+}
+
+.larger {
+    font-size: 30px;
+    text-decoration: underline;
+    transition: background-color 2s ease-out 100ms;
+}
+
+.banner {
+    background-color: #242428;;
+}
+
+.jumbotron {
+    background-color: #e9ecef;
+}
+
+#loginBox {
+    background-color: #EFECE9;
+    margin-top: 2%;
+    border: solid #1e1a15;
+}
+
+.toolBox {
+    background-color: #EFECE9;
+    border-radius: 5px;
+    border: solid #1e1a15;
+    margin-top: 30px;
+    padding: 3%;
+    overflow: hidden;
+}
+
+.custom-text {
+    font-size: 19px;
+}
+
+.isolated {
+    margin: 1%;
+}
+
+
+
+
+
+
+
+
 
