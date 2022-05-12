@@ -44,8 +44,6 @@ class personneController extends AbstractController {
             ]);
         }
 
-
-
         if ($formNouveau->isSubmitted() && $formNouveau->isValid()) {     
             $data = $formNouveau->getData();  
             $entityManager->persist($data);

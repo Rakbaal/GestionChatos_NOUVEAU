@@ -63,16 +63,15 @@ class EntrepriseRepository extends ServiceEntityRepository
      * @return listeEntreprisesFiltre[] Returns an array of Entreprise objects
      */
     
-    public function findByEntrepriseFiltre($data)
+    public function findByEntrepriseFiltre(Entreprise $data)
     {
         // Si les 3 texbox sont vides, alors on renvoit toutes les entreprises
         if ($data == null) {
             $rs = '';
             $ville = '';
             $pays = '';
-            //$listeSpecialites = [];
         }
-        // Si il y a au moins 1 texbox remplis
+        // Si il y a au moins 1 textbox remplie
         else {
             // Si le textbox Raison Sociale est null
             if ($data->getENTRS() == null) {
@@ -123,8 +122,7 @@ class EntrepriseRepository extends ServiceEntityRepository
             ->setParameter('ville', $Qville)
             ->setParameter('pays', $Qpays)
             //->setParameter('listeSpecialites', $listeSpecialites)
-            ->orderBy('e.id', 'ASC')
-            ->setMaxResults(100)
+            ->orderBy('e.ENT_RS', 'ASC')
             ->getQuery()
             ->getResult()
         ;
