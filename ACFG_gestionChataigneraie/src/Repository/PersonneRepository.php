@@ -7,6 +7,9 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\HttpFoundation\Request;
+use App\Entity\Fonction;
+use PDO;
 
 /**
  * @method Personne|null find($id, $lockMode = null, $lockVersion = null)
@@ -73,4 +76,50 @@ class PersonneRepository extends ServiceEntityRepository
         ;
     }
     */
+    
+    /* Renvoie la liste  complète des entreprises */
+    public function listeAllEntreprises(): array
+    {
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createQuery(
+            'SELECT ent_id,	ent_rs, ent_ville, ent_pays, ent_adresse, ent_cp
+             FROM entreprise'
+        );
+
+        // returns an array of Product objects
+        return $query->getResult();
+    }
+
+    public function findByPersonneFiltre(Personne $data)
+    {
+        // Si les 3 textbox sont vides, alors on renvoit toutes les entreprises
+        $nom = '';
+        $prenom = '';
+
+            // Si le textbox nom est null
+            if (($holderNom = $data->getPERNOM()) != null) {
+                $nom = $holderNom;
+            }
+    
+            // Si le textbox prénom est null
+            if (($holderPrenom = $data->getPERPRENOM()) != null) {
+                $prenom = $holderPrenom;
+            }
+
+            // Les variables Q... permettent d'ajouter les % avant et après la valeur saisie
+            $qNom = $nom.'%';
+            $qPrenom = $prenom.'%';
+
+        // Constitue la requête de filtrage avec 3 paramètres
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.PER_NOM LIKE :nom')
+            ->andWhere('p.PER_PRENOM LIKE :prenom')
+            ->setParameter('nom', $qNom)          
+            ->setParameter('prenom', $qPrenom)
+            ->orderBy('p.PER_NOM', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 }
