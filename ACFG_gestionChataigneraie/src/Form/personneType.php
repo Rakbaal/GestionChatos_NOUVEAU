@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class personneType extends AbstractType {
     function buildForm(FormBuilderInterface $builder, array $options){
@@ -17,11 +18,11 @@ class personneType extends AbstractType {
         ->add('PER_NOM', TextType :: class, ['label' => 'Nom :'])
         ->add('PER_PRENOM', TextType :: class, ['label' => 'Prénom :'])
         ->add('PER_MAIL', TextType :: class, ['label' => 'Mail :'])
-        ->add('PER_TEL_PERSO', NumberType :: class, [
+        ->add('PER_TEL_PERSO', TextType :: class, [
             'label' => 'Téléphone perso:',
             'required' => false
         ])
-        ->add('PER_TEL_PRO', NumberType :: class, [
+        ->add('PER_TEL_PRO', TextType :: class, [
                 'label' => 'Téléphone pro :',
                 'required' => false
             ])

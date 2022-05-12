@@ -108,8 +108,8 @@ class PersonneRepository extends ServiceEntityRepository
             }
 
             // Les variables Q... permettent d'ajouter les % avant et après la valeur saisie
-            $qNom = $nom.'%';
-            $qPrenom = $prenom.'%';
+            $qNom = '%'.$nom.'%';
+            $qPrenom = '%'.$prenom.'%';
 
         // Constitue la requête de filtrage avec 3 paramètres
         return $this->createQueryBuilder('p')

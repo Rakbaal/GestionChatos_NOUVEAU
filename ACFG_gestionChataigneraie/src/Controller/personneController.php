@@ -55,7 +55,7 @@ class personneController extends AbstractController {
                 'formFiltre' => $formFiltre->createView(),
                 'formNouveau' => $formNouveau->createView(),
                 'listePersonne' => $listePersonne,
-                'admin' => $session->get('admin')
+                'admin' => $session->get('admin'),
             ]);
         } else {
             return $this->render("erreurAcces.html.twig");
@@ -92,7 +92,6 @@ class personneController extends AbstractController {
 
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
-            
             $entityManager->persist($data);
             $entityManager->flush();
             return $this->redirect($this->generateUrl("listePersonnes"));
