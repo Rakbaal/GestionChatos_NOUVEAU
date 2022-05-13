@@ -14,12 +14,13 @@ class AccueilController extends AbstractController
     public function accueil(Request $request) : Response {
         $session = $request->getSession();
 
+        // Si le visiteur est authentifié, renvoie vers l'accueil
         if ($session->get('login')) {
             return $this->render("accueil.html.twig ", [
                 'login' =>$session->get('login'),
                 'admin' => $session->get('admin')
             ]);
-        // Si l'utilisateur n'est pas authentifié, renvoie une page d'erreur
+        // Si le visiteur n'est pas authentifié, renvoie une page d'erreur
         } else {
             return $this->render("erreurAcces.html.twig");
         }

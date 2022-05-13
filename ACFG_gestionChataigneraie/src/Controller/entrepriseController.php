@@ -14,6 +14,8 @@ use Symfony\Component\HttpFoundation\Response;
 
 class entrepriseController extends AbstractController {
 
+    // Liste les entreprises existantes. En tant qu'administrateur, donne accès à la suppression 
+    // et la création d'entreprises.
     /**
      * @Route("/listeEntreprises", name="listeEntreprises")
      */
@@ -76,6 +78,8 @@ class entrepriseController extends AbstractController {
         return $this->render("erreurAcces.html.twig");
     }
 
+    // Accessible uniquement aux visiteurs administrateurs. Permet la
+    // suppression d'une entreprise sur la base de son id
     /**
      * @Route("supprimerEntreprise/{id}", name="supprimerEntreprise")
      */
@@ -94,6 +98,8 @@ class entrepriseController extends AbstractController {
         return $this->render("erreurAcces.html.twig");
     }
 
+    // Accessible uniquement aux visiteurs administrateurs. Permet la modification
+    // des informations d'une entreprise sur la base de son id.
     /**
      * @Route("modifierEntreprise/{id}", name="modifierEntreprise")
      */
@@ -139,7 +145,7 @@ class entrepriseController extends AbstractController {
         $entreprise = $entityManager->getRepository(Entreprise::class)->find($id);
         $listePersonne = $entreprise->getPersonnes();
 
-        // Si l'utilisateur est authentifié, renvoie les informations d'une entreprise
+        // Si le visiteur est authentifié, renvoie les informations d'une entreprise
         if ($session->get('login')) {
             return $this->render("infoEntreprise.html.twig", [
                 "entreprise" => $entreprise,
