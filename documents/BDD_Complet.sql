@@ -80,7 +80,7 @@ INSERT INTO `entreprise` (`id`, `ent_rs`, `ent_ville`, `ent_pays`, `ent_adresse`
 (14, 'Benteler Aluminium System', 'Louviers', 'France', 'Parc industriel d\'Incarville', '27400'),
 (15, 'BIM&CO', 'Saint Romain de Colbosc', 'France', 'Parc Eco Normandie', '76430'),
 (16, 'Centre Henri-Becquerel', 'Rouen Cedex 1', 'France', 'Rue d\'Amiens', '76038'),
-(17, 'CPAM Rouen-Elbeuf-Dieppe', 'Rouen Cedex', 'France', '50 avenue de Bretagne', '76039'),;
+(17, 'CPAM Rouen-Elbeuf-Dieppe', 'Rouen Cedex', 'France', '50 avenue de Bretagne', '76039');
 
 -- --------------------------------------------------------
 
@@ -155,7 +155,7 @@ CREATE TABLE IF NOT EXISTS `personne` (
 --
 
 INSERT INTO `personne` (`id`, `entreprise_id`, `per_nom`, `per_prenom`, `per_mail`, `per_tel_perso`, `per_tel_pro`) VALUES
-(1, 17, 'Amouret', 'Anne', 'anne.amouret@cpam-rouen-elbeuf-dieppe.cnamts.fr', '0235036378')
+(1, 17, 'Amouret', 'Anne', 'anne.amouret@cpam-rouen-elbeuf-dieppe.cnamts.fr', '0235036378', NULL),
 (2, 3, 'Leuleu', 'Patrick', 'l.leuleu@agevol.fr', '332181832', NULL),
 (4, 5, 'Barré', 'Stéphane', 's.barre@agisoft-e.fr', NULL, NULL),
 (5, 4, 'Loïc', 'Soumillon', 'l.soumillon@dreux-agglomeration.fr', NULL, NULL),
@@ -169,10 +169,9 @@ INSERT INTO `personne` (`id`, `entreprise_id`, `per_nom`, `per_prenom`, `per_mai
 (13, 12, 'Decamp', 'Renan', 'renan@bearstudio.fr', '0760391776', NULL),
 (14, 13, 'Andres', 'Aurélien', 'aurelien.andres@benteler.com', '0633562780', NULL),
 (15, 14, 'Lepiller', 'Antoine', 'alepiller@bimandco.com', '0763916210', NULL),
-(16, 15, 'Le Denmat', 'Jean-Marc', 'jean-marc.le-denmat@chb.unicancer.fr', '0232082209', '0232082958')
+(16, 15, 'Le Denmat', 'Jean-Marc', 'jean-marc.le-denmat@chb.unicancer.fr', '0232082209', '0232082958'),
 (17, 15, '', 'Jean-Marc', 'jean-marc.le-denmat@chb.unicancer.fr', '0232082209', '0232082958'),
-(18, 17, 'Boulard', 'Christophe', 'christophe.boulard@assurance-maladie.fr', '0235036497'),
-();
+(18, 17, 'Boulard', 'Christophe', 'christophe.boulard@assurance-maladie.fr', '0235036497', NULL);
 
 -- --------------------------------------------------------
 
