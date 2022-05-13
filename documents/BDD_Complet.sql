@@ -170,6 +170,7 @@ INSERT INTO `personne` (`id`, `entreprise_id`, `per_nom`, `per_prenom`, `per_mai
 (14, 13, 'Andres', 'Aurélien', 'aurelien.andres@benteler.com', '0633562780', NULL),
 (15, 14, 'Lepiller', 'Antoine', 'alepiller@bimandco.com', '0763916210', NULL),
 (16, 15, 'Le Denmat', 'Jean-Marc', 'jean-marc.le-denmat@chb.unicancer.fr', '0232082209', '0232082958'),
+(17, 15, '', 'Jean-Marc', 'jean-marc.le-denmat@chb.unicancer.fr', '0232082209', '0232082958'),
 (18, 17, 'Boulard', 'Christophe', 'christophe.boulard@assurance-maladie.fr', '0235036497', NULL);
 
 -- --------------------------------------------------------
