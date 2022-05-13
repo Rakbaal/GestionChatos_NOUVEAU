@@ -7,7 +7,6 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Personne;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use App\Form\personneType;
 use App\Form\personneFiltreType;
 

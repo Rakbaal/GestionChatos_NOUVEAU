@@ -21,7 +21,3 @@ function confirmDeleteUtilisateur(id) {
     } 
     
 }
-
-function bonjour(nom, prenom, id) {
-    alert(`Bonjour ${nom}, ${prenom} \nid:${id}`)
-}

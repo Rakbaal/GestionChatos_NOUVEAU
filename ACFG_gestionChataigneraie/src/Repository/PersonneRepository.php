@@ -119,7 +119,6 @@ class PersonneRepository extends ServiceEntityRepository
             ->setParameter('prenom', $qPrenom)
             ->orderBy('p.PER_NOM', 'ASC')
             ->getQuery()
-            ->getResult()
-        ;
+            ->getResult();
     }
 }

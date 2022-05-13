@@ -75,15 +75,26 @@
                             </tbody>
                         </table>
                     </div>
-            
-                    {% if admin %}
-                        <div id="sidebar" class="col-2">
-                            <div class="toolBox">
+                    <div id="sidebar" class="col-2">
+                        <div class="toolBox">
                                 <div class="form">
                                     <h1 class="custom-text">Rechercher par filtres :</h1>
-                                    {{form(formFiltre)}}
+                                    {{form_start(formFiltre)}}
+                                        {{form_label(formFiltre.PER_NOM)}}
+                                        <br/>
+                                        {{form_widget(formFiltre.PER_NOM)}}
+                                        <br/>
+                                        <br/>
+                                        {{form_label(formFiltre.PER_PRENOM)}}
+                                        <br/>
+                                        {{form_widget(formFiltre.PER_PRENOM)}}
+                                        <br/>
+                                        <br/>
+                                        {{form_widget(formFiltre.Rechercher)}}
+                                    {{form_end(formFiltre)}}
                                 </div>
                             </div>
+                        {% if admin %}
                             <div class="toolBox">
                                 <div class="form">
                                     <h1 class="custom-text">Création d'une personne :</h1>
@@ -130,7 +141,7 @@
                                         {{form_widget(formNouveau.envoyer)}}
                                     {{form_end(formNouveau)}}
                                 </div>
-                            </div>
-					{% endif %}
+					    {% endif %}
+                        </div>
     </body>
 </html>

@@ -66,6 +66,7 @@ CREATE TABLE IF NOT EXISTS `entreprise` (
 --
 
 INSERT INTO `entreprise` (`id`, `ent_rs`, `ent_ville`, `ent_pays`, `ent_adresse`, `ent_cp`) VALUES
+(1, 'ABC INFORMATIQUE', 'Friville', 'France', 'Zac Le Parc Allée des marettes', '80130 '),
 (2, 'Agence Digiworks', 'Mont-Saint-Aignan', 'France', '85 Chemin de Clères', '76130'),
 (3, 'AGEVOL Développement', 'Bihorel', 'France', '10 rue du Maréchal De Lattre de Tassigny', '76420'),
 (4, 'Agglo du Pays de Dreux', 'Dreux cedex', 'France', '4 rue du Châteaudun BP20159', '28103'),
@@ -78,7 +79,8 @@ INSERT INTO `entreprise` (`id`, `ent_rs`, `ent_ville`, `ent_pays`, `ent_adresse`
 (13, 'Bearstudio', 'Le Petit-Quevilly', 'France', '72 rue de la République', '76140'),
 (14, 'Benteler Aluminium System', 'Louviers', 'France', 'Parc industriel d\'Incarville', '27400'),
 (15, 'BIM&CO', 'Saint Romain de Colbosc', 'France', 'Parc Eco Normandie', '76430'),
-(16, 'Centre Henri-Becquerel', 'Rouen Cedex 1', 'France', 'Rue d\'Amiens', '76038');
+(16, 'Centre Henri-Becquerel', 'Rouen Cedex 1', 'France', 'Rue d\'Amiens', '76038'),
+(17, 'CPAM Rouen-Elbeuf-Dieppe', 'Rouen Cedex', 'France', '50 avenue de Bretagne', '76039'),;
 
 -- --------------------------------------------------------
 
@@ -127,7 +129,7 @@ INSERT INTO `fonction` (`id`, `fon_libelle`) VALUES
 (2, 'Administrateur Système et Réseaux'),
 (3, 'Directeur de projets'),
 (4, 'Responsable service développement'),
-(5, 'Directeur des Systèmes d\'information');
+(5, 'Directeur des Systèmes d''information');
 
 -- --------------------------------------------------------
 
@@ -153,10 +155,11 @@ CREATE TABLE IF NOT EXISTS `personne` (
 --
 
 INSERT INTO `personne` (`id`, `entreprise_id`, `per_nom`, `per_prenom`, `per_mail`, `per_tel_perso`, `per_tel_pro`) VALUES
-(2, 2, 'Leuleu', 'Patrick', 'l.leuleu@agevol.fr', '332181832', NULL),
-(4, 3, 'Barré', 'Stéphane', 's.barre@agisoft-e.fr', NULL, NULL),
+(1, 17, 'Amouret', 'Anne', 'anne.amouret@cpam-rouen-elbeuf-dieppe.cnamts.fr', '0235036378')
+(2, 3, 'Leuleu', 'Patrick', 'l.leuleu@agevol.fr', '332181832', NULL),
+(4, 5, 'Barré', 'Stéphane', 's.barre@agisoft-e.fr', NULL, NULL),
 (5, 4, 'Loïc', 'Soumillon', 'l.soumillon@dreux-agglomeration.fr', NULL, NULL),
-(6, 5, 'Ronan', 'Pensec', 'ronan.pensec@alstomgroup.com', '0760901598', NULL),
+(6, 6, 'Ronan', 'Pensec', 'ronan.pensec@alstomgroup.com', '0760901598', NULL),
 (7, 6, 'Delmas', 'Christophe', 'christophe.delmas@alta-soft.com', '0972307020', '0972307020'),
 (8, NULL, 'Lepelletier', 'Régis', 'r.leppeletier@alternative-conseil.com', NULL, NULL),
 (9, 8, 'Avigni', 'David', 'david.avigni@ankapi.com', NULL, NULL),
@@ -166,7 +169,10 @@ INSERT INTO `personne` (`id`, `entreprise_id`, `per_nom`, `per_prenom`, `per_mai
 (13, 12, 'Decamp', 'Renan', 'renan@bearstudio.fr', '0760391776', NULL),
 (14, 13, 'Andres', 'Aurélien', 'aurelien.andres@benteler.com', '0633562780', NULL),
 (15, 14, 'Lepiller', 'Antoine', 'alepiller@bimandco.com', '0763916210', NULL),
-(16, 15, 'Le Denmat', 'Jean-Marc', 'jean-marc.le-denmat@chb.unicancer.fr', '0232082209', '0232082958');
+(16, 15, 'Le Denmat', 'Jean-Marc', 'jean-marc.le-denmat@chb.unicancer.fr', '0232082209', '0232082958')
+(17, 15, '', 'Jean-Marc', 'jean-marc.le-denmat@chb.unicancer.fr', '0232082209', '0232082958'),
+(18, 17, 'Boulard', 'Christophe', 'christophe.boulard@assurance-maladie.fr', '0235036497'),
+();
 
 -- --------------------------------------------------------
 
@@ -288,8 +294,8 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
 --
 
 INSERT INTO `utilisateur` (`id`, `uti_login`, `uti_mdp`, `uti_admin`) VALUES
-(5, 'root', '4813494d137e1631bba301d5acab6e7bb7aa74ce1185d456565ef51d737677b2', 1),
-(6, 'test', '9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08', 0);
+(5, 'LyceeChatos', '6120cdb5f13b08aec0a29325a7662871d53a1115e070395bc64673ed5dbe78a3', 1),
+(6, 'CatBar', '06980f0a5fc42bf64f2339f1a73c29884d3e8888b076c4887dd3ecc0e59ffea1', 0);
 
 --
 -- Contraintes pour les tables déchargées

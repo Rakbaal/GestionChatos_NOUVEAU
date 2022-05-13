@@ -8,9 +8,7 @@ use App\Entity\Entreprise;
 use App\Form\entrepriseType;
 use App\Form\entrepriseCompletType;
 use Doctrine\Persistence\ManagerRegistry;
-use App\Entity\Personne;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 
 class entrepriseController extends AbstractController {
 
@@ -98,8 +96,8 @@ class entrepriseController extends AbstractController {
         return $this->render("erreurAcces.html.twig");
     }
 
-    // Accessible uniquement aux visiteurs administrateurs. Permet la modification
-    // des informations d'une entreprise sur la base de son id.
+    // Accessible uniquement aux visiteurs administrateurs. Permet la modification en base de données
+    // des informations d'une entreprise sur la base de son id
     /**
      * @Route("modifierEntreprise/{id}", name="modifierEntreprise")
      */
@@ -136,6 +134,8 @@ class entrepriseController extends AbstractController {
         return $this->render("erreurAcces.html.twig");
     }
 
+    // Permet de consulter les informations d'une entreprise (notamment la liste de ses employés).
+    // Pour un administrateur, permet d'accéder au formulaire de modification de l'entreprise
     /**
      * @Route("/infoEntreprise/{id}", name="infoEntreprise")
      */
